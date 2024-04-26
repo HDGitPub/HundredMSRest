@@ -3,7 +3,7 @@
 namespace HundredMSRest.Lib.Services
 {
     /// <summary>
-    /// 100MS Rest Client Class
+    /// Class <c>HundredMSRestClient</c> Main rest api client
     /// Provides connectivity to 100MS API V2
     /// </summary>
     public sealed class HundredMSRestClient : IHundredMSRestClient

@@ -1,12 +1,13 @@
 ﻿using HundredMSRest.Lib.Enums;
 using HundredMSRest.Lib.Interfaces;
+using HundredMSRest.Lib.Providers;
 
 namespace HundredMSRest.Lib.Services
 {
     /// <summary>
-    /// Class <c>C100MSTokenService</c> Provides tokens to a server or client for use with the 100MS API
+    /// Class <c>TokenService</c> Provides tokens to a server or client for use with the 100MS API
     /// </summary>
-    public class HundredMSTokenService
+    internal class HundredMSTokenService
     {
         /// <summary>
         /// Returns either an Authentication Token that can be used to join a room. Or returns
@@ -15,12 +16,12 @@ namespace HundredMSRest.Lib.Services
         /// <param name="tokenType">Requested Token Type</param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public IHundredMSToken GetToken(HundredMSTokenType tokenType)
+        public IToken GetToken(HundredMSTokenType tokenType)
         {
             return tokenType switch
             {
-                HundredMSTokenType.Authentication => new C100MSAuthTokenProvider().GenerateToken(),
-                HundredMSTokenType.Management => new C100MSManagementTokenProvider().GenerateToken(),
+                HundredMSTokenType.Authentication => new AuthTokenProvider().GenerateToken(),
+                HundredMSTokenType.Management => new ManagementTokenProvider().GenerateToken(),
                 _ => throw new Exception("Invalid token type request")
             };
         }

@@ -9,7 +9,7 @@ namespace HundredMSRest.Lib.Interfaces
     /// <summary>
     /// 
     /// </summary>
-    internal interface IHundredMSParticipant
+    internal interface IParticipant
     {
     }
 }

@@ -1,47 +1,34 @@
-﻿using System.Net.Http.Headers;
+﻿using HundredMSRest.Lib.Interfaces;
+using HundredMSRest.Lib.Records;
+using HundredMSRest.Lib.Requests;
+using System.Net.Http.Headers;
 
 namespace HundredMSRest.Lib.Services
 {
     /// <summary>
-    /// Class <c>HundredMSRoomService</c> Provides Room specific functionality
+    /// Class <c>RoomService</c> Provides Room specific functionality
     /// </summary>
     public class RoomService
     {
-        private readonly HundredMSRestClient _restClient;
+        private readonly RestClient _restClient;
+        
         public RoomService(HttpClient? httpClient = null)
         {
-            _restClient = new HundredMSRestClient(httpClient);
+            _restClient = new RestClient(httpClient);
         }
 
-        public async void GetAsync(HundredMSRestClient client)
+        private IRestRequest<IRestRequestData, IRestResponseData> GetRequest(RoomRestCommand restCommand)
         {
-            // set values on the request
-            //HttpRequestMessage httpRequestMessage = new HttpRequestMessage(request.HttpMethod, request.Route);
-            //var mt = new MediaTypeWithQualityHeaderValue("application/json");
-            //httpRequestMessage.Headers.Accept.Add(mt);
-            //var response = await client.GetHttpClient().SendAsync(request);
-
-            //using (var stream = await response.Content.ReadAsStreamAsync())
-            //{
-            //    using (var streamReader = new StreamReader(stream))
-            //    {
-            //        using (var jsonTextReader = new JsonTextReader(streamReader))
-            //        {
-            //            var customer = new JsonSerializer().Deserialize<Customer>(jsonTextReader);
-
-            //            // do something with the customer
-            //        }
-            //    }
-            //}
+            return restCommand.Id switch
+            {
+                RoomRestCommand.Commands.CreateRoom => new RoomRestRequest<IRestRequestData, IRestResponseData>(restCommand.Data, restCommand.HttpMethod, _restClient),
+                _ => throw new NotImplementedException()
+            };
         }
 
-
-        public void PostAsync()
+        public Task<IRestResponseData> ExecuteAsync(RoomRestCommand restCommand)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, "");
-            var mt = new MediaTypeWithQualityHeaderValue("application/json");
-
-            request.Headers.Accept.Add(mt);
+            return GetRequest(restCommand).RequestAsync();
         }
     }
 }

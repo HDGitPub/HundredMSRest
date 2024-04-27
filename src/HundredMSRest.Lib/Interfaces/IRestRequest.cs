@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace HundredMSRest.Lib.Interfaces
 {
-    internal interface IHundredMSSessionService
+    /// <summary>
+    /// 
+    /// </summary>
+    internal interface IRestRequest<T,R>
     {
+        StringContent GetData(T t);
+        Task<R> RequestAsync();
     }
 }

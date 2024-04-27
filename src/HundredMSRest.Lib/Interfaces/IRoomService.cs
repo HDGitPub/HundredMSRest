@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace HundredMSRest.Lib.Interfaces
 {
-    public interface IHundredMSTokenProvider
+    internal interface IRoomService
     {
+        public string Name { get; set; }
     }
 }

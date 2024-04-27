@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HundredMSRest.Lib.Interfaces
 {
-    internal interface IHundredMSResponse
+    internal interface IRoom
     {
     }
 }

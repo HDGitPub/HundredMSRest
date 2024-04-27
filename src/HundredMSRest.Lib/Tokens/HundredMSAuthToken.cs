@@ -6,7 +6,7 @@ namespace HundredMSRest.Lib.Tokens
     /// This class is used for Room Authentication
     /// https://www.100ms.live/docs/get-started/v2/get-started/security-and-tokens
     /// </summary>
-    public class C100MSAuthToken : IHundredMSToken
+    public class HundredMSAuthToken : IToken
     {
         public string GetToken()
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HundredMSRest.Lib.Providers
 {
-    internal class ManagementTokenProvider : ITokenProvider
+    internal class AuthTokenProvider : ITokenProvider
     {
         public IToken GenerateToken()
         {

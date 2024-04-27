@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HundredMSRest.Lib.Interfaces
+namespace HundredMSRest.Lib.Records
 {
-    internal interface IHundredMSSession
-    {
-    }
+    public record RequestRecord;
 }

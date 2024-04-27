@@ -5,9 +5,9 @@ namespace HundredMSRest.Lib.Services
     /// <summary>
     /// Class <c>HundredMSAuthTokenProvider</c>
     /// </summary>
-    public class HundredMSAuthTokenService : IHundredMSTokenService
+    internal class AuthTokenService : ITokenService
     {
-        public IHundredMSToken GenerateToken()
+        public IToken GenerateToken()
         {
             throw new NotImplementedException();
         }

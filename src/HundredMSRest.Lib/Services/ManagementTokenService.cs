@@ -3,12 +3,12 @@
 namespace HundredMSRest.Lib.Services
 {
     /// <summary>
-    /// Class <c>C100MSManagementTokenProvider</c> Provides management tokens
+    /// Class <c>HundredMSManagementTokenProvider</c> Provides management tokens
     /// for connecting the 100MS Rest Api
     /// </summary>
-    public class HundredMSManagementTokenProvider : IHundredMSTokenService
+    internal class HundredMSManagementTokenProvider : ITokenService
     {
-        public IHundredMSToken GenerateToken()
+        public IToken GenerateToken()
         {
             throw new NotImplementedException();
         }

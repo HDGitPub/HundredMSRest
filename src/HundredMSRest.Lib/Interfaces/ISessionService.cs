@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace HundredMSRest.Lib.Interfaces
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    internal interface IHundredMSRequest
+    internal interface ISessionService
     {
     }
 }

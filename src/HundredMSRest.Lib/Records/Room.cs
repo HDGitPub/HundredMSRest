@@ -25,11 +25,5 @@
         string template,
         string region,
         DateTime created_at,
-        DateTime updated_at) : IRestResponseData
-    {
-        public void GetSomeData()
-        {
-            throw new NotImplementedException();
-        }
-    }
+        DateTime updated_at);
 }

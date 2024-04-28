@@ -1,4 +1,5 @@
 using HundredMSRest.Lib.Interfaces;
+using HundredMSRest.Lib.Records;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
@@ -13,7 +14,7 @@ namespace HundredMSRest.Lib.Requests
 
         public string baseRoute = "https://api.100ms.live/v2/rooms";
         private readonly IRestClient _restClient;
-        private readonly T _t;
+        private readonly T? _t;
         private readonly HttpMethod _httpMethod;
 
         #endregion
@@ -22,7 +23,7 @@ namespace HundredMSRest.Lib.Requests
         /// Constructor
         /// </summary>
         /// <param name="httpClient"></param>
-        public RoomRestRequest(T t,HttpMethod httpMethod, IRestClient restClient)
+        public RoomRestRequest(T t, HttpMethod httpMethod, IRestClient restClient)
         {
             _t = t;
             _restClient = restClient;

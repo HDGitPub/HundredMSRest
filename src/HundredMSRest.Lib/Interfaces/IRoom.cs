@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace HundredMSRest.Lib.Interfaces;
 
-namespace HundredMSRest.Lib.Interfaces
+/// <summary>
+/// Interface <c>IRoom</c>
+/// </summary>
+internal interface IRoom
 {
-    internal interface IRoom
-    {
-    }
 }

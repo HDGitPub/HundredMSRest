@@ -1,9 +1,4 @@
-﻿using HundredMSRest.Lib.Interfaces;
-using HundredMSRest.Lib.Records;
-using HundredMSRest.Lib.Requests;
-using System.Net.Http.Headers;
-
-namespace HundredMSRest.Lib.Services
+﻿namespace HundredMSRest.Lib.Services
 {
     /// <summary>
     /// Class <c>RoomService</c> Provides Room specific functionality
@@ -11,7 +6,7 @@ namespace HundredMSRest.Lib.Services
     public class RoomService
     {
         private readonly RestClient _restClient;
-        
+
         public RoomService(HttpClient? httpClient = null)
         {
             _restClient = new RestClient(httpClient);

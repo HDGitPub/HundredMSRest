@@ -1,7 +1,9 @@
-﻿namespace HundredMSRest.Lib.Interfaces
+﻿namespace HundredMSRest.Lib.Interfaces;
+
+/// <summary>
+/// Interface <c>TokenService</c>
+/// </summary>
+internal interface ITokenService
 {
-    internal interface ITokenService
-    {
-        public IToken GenerateToken();
-    }
+    public IToken GenerateToken();
 }

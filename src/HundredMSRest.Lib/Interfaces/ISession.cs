@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace HundredMSRest.Lib.Interfaces;
 
-namespace HundredMSRest.Lib.Interfaces
+/// <summary>
+/// Interface <c>ISession</c>
+/// </summary>
+internal interface ISession
 {
-    internal interface ISession
-    {
-    }
 }

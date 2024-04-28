@@ -1,6 +1,5 @@
 ﻿using HundredMSRest.Lib.Records;
 using HundredMSRest.Lib.Requests;
-using HundredMSRest.Lib.Services;
 
 namespace HundredMSRest.Tests
 {

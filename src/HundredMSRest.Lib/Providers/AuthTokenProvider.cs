@@ -1,17 +1,14 @@
-﻿using HundredMSRest.Lib.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace HundredMSRest.Lib.Providers;
 
-namespace HundredMSRest.Lib.Providers
+using HundredMSRest.Lib.Interfaces;
+
+/// <summary>
+/// Class <c>AuthTokenProvider</c>
+/// </summary>
+internal class AuthTokenProvider : ITokenProvider
 {
-    internal class AuthTokenProvider : ITokenProvider
+    public IToken GenerateToken()
     {
-        public IToken GenerateToken()
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
     }
 }

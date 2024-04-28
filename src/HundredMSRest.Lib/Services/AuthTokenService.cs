@@ -1,15 +1,15 @@
-﻿using HundredMSRest.Lib.Interfaces;
+﻿namespace HundredMSRest.Lib.Services;
 
-namespace HundredMSRest.Lib.Services
+using HundredMSRest.Lib.Interfaces;
+
+/// <summary>
+/// Class <c>HundredMSAuthTokenProvider</c>
+/// </summary>
+internal class AuthTokenService : ITokenService
 {
-    /// <summary>
-    /// Class <c>HundredMSAuthTokenProvider</c>
-    /// </summary>
-    internal class AuthTokenService : ITokenService
+    public IToken GenerateToken()
     {
-        public IToken GenerateToken()
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
     }
 }
+

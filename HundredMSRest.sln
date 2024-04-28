@@ -5,13 +5,14 @@ VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1EC6B061-8E01-45F3-BF93-1B23A9435B0B}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HundredMSRest.Lib", "src\HundredMSRest.Lib\HundredMSRest.Lib.csproj", "{67FF8561-FD47-45F1-838D-6748E34978DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HundredMSRest.Tests", "src\HundredMSRest.Tests\HundredMSRest.Tests.csproj", "{65D9ECEB-0C4E-4C31-A702-7BCFA2E77836}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HundredMSRest.Tests", "src\HundredMSRest.Tests\HundredMSRest.Tests.csproj", "{65D9ECEB-0C4E-4C31-A702-7BCFA2E77836}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,9 @@
-﻿namespace HundredMSRest.Lib.Interfaces
+﻿namespace HundredMSRest.Lib.Interfaces;
+
+/// <summary>
+/// Interface <c>IRestClient</c>
+/// </summary>
+internal interface IRestClient
 {
-    internal interface IRestClient
-    {
-        HttpClient? GetHttpClient();
-    }
+    HttpClient? GetHttpClient();
 }

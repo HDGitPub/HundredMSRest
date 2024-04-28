@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace HundredMSRest.Lib.Interfaces;
 
-namespace HundredMSRest.Lib.Interfaces
+/// <summary>
+/// Interface <c>IRestRequest</c>
+/// </summary>
+internal interface IRestRequest<T, R>
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    internal interface IRestRequest<T,R>
-    {
-        StringContent GetData(T t);
-        Task<R> RequestAsync();
-    }
+    StringContent GetData(T t);
+    Task<R> RequestAsync();
 }

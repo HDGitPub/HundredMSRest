@@ -1,30 +1,26 @@
-using HundredMSRest.Lib.Interfaces;
-using System.Net.Http.Headers;
+namespace HundredMSRest.Lib.Requests;
 
-namespace HundredMSRest.Lib.Requests
+public class RestRequest
 {
-    public class RestRequest
+    #region Attributes
+    protected string _route;
+    #endregion
+
+    #region Methods
+
+    public RestRequest()
     {
-        #region Attributes
-        protected string _route;
-        #endregion
-
-        #region Methods
-
-        public RestRequest()
-        {
-        }
-
-        public HttpMethod HttpMethod
-        {
-            get;set;
-        }
-
-        public void Request()
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
     }
+
+    public HttpMethod HttpMethod
+    {
+        get; set;
+    }
+
+    public void Request()
+    {
+        throw new NotImplementedException();
+    }
+
+    #endregion
 }

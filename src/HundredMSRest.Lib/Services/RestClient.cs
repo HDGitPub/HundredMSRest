@@ -10,7 +10,7 @@ public class RestClient : IRestClient
 {
     #region Attributes
 
-    private static HttpClient? _httpClient;
+    private static HttpClient _httpClient;
     private static SocketsHttpHandler? _socketHandler;
 
     #endregion
@@ -31,6 +31,7 @@ public class RestClient : IRestClient
         {
             InitHttpClient();
         }
+        _httpClient.BaseAddress = new Uri("https://api.100ms.live");
     }
 
     /// <summary>
@@ -39,7 +40,7 @@ public class RestClient : IRestClient
     /// <see cref="https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines"/>
     /// </summary>
     /// <returns></returns>
-    public void InitHttpClient()
+    public static void InitHttpClient()
     {
         _socketHandler = new SocketsHttpHandler
         {
@@ -53,10 +54,7 @@ public class RestClient : IRestClient
     /// Retrieves an instance of the current HttpClient
     /// </summary>
     /// <returns>HttpClient</returns>
-    public HttpClient? GetHttpClient()
-    {
-        return _httpClient;
-    }
+    public HttpClient HttpClient => _httpClient;
 
     #endregion
 }

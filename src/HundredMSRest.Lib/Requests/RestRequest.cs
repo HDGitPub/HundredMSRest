@@ -1,25 +1,51 @@
 namespace HundredMSRest.Lib.Requests;
 
-public class RestRequest
+using System.Net.Http.Headers;
+using System.Net.Http;
+using HundredMSRest.Lib.Services;
+using System.Net.Http.Json;
+
+
+/// <summary>
+/// Class <c>RestRequest</c> Base 100MS Api request class
+/// </summary>
+/// <param name="token"></param>
+/// <param name="httpMethod"></param>
+/// <param name="url"></param>
+/// <param name="restClient"></param>
+public class RestRequest(string token, HttpMethod httpMethod, string url, RestClient restClient)
 {
     #region Attributes
-    protected string _route;
+    private readonly HttpMethod _httpMethod = httpMethod;
+    private readonly string _url = url;
+    private readonly RestClient _restClient = restClient;
+    private readonly string _bearerToken = $"Bearer {token}";
+    private const string AUTH_HEADER = "Authorization";
     #endregion
 
     #region Methods
 
-    public RestRequest()
+    /// <summary>
+    /// Executes a rest request against the 100MS Api
+    /// </summary>
+    /// <typeparam name="R">Return record type</typeparam>
+    /// <param name="requestData">Request record data</param>
+    /// <returns>Type R</returns>
+    public async Task<R?> ExecuteAsync<R>(string? requestData)
     {
-    }
+        HttpRequestMessage request = new(_httpMethod, _url);
+        request.Headers.Add(AUTH_HEADER, _bearerToken);
+        if(requestData is not null)
+        {
+            request.Content = new StringContent(requestData);
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        }
 
-    public HttpMethod HttpMethod
-    {
-        get; set;
-    }
-
-    public void Request()
-    {
-        throw new NotImplementedException();
+        using HttpResponseMessage response = await _restClient.HttpClient.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+       
+        R? result = await response.Content.ReadFromJsonAsync<R>();
+        return result;
     }
 
     #endregion

@@ -1,12 +1,11 @@
-namespace HundredMSRest.Tests
+namespace HundredMSRest.Tests;
+
+public class ConnectionTests
 {
-    public class ConnectionTests
+    [Fact]
+    public void Test_Connection()
     {
-        [Fact]
-        public void Test_Connection()
-        {
-            bool result = true;
-            Assert.False(result);
-        }
+        bool result = true;
+        Assert.False(result);
     }
 }

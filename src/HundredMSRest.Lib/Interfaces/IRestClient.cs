@@ -5,5 +5,5 @@
 /// </summary>
 internal interface IRestClient
 {
-    HttpClient? GetHttpClient();
+    HttpClient? HttpClient { get; }
 }

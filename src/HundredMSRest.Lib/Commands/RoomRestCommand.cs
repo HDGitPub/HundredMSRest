@@ -1,7 +1,7 @@
-﻿namespace HundredMSRest.Lib.Commands;
+﻿using HundredMSRest.Lib.Records.Room.DataTypes;
+using HundredMSRest.Lib.Records.Room.Requests;
 
-using HundredMSRest.Lib.Records;
-
+namespace HundredMSRest.Lib.Commands;
 /// <summary>
 /// Class <c>RoomRestCommand</c> 100MS Room specific rest commands
 /// </summary>
@@ -25,12 +25,13 @@ public sealed class RoomRestCommand : RestCommand
     /// <param name="name"></param>
     /// <param name="description"></param>
     /// <returns>RoomRestCommand</returns>
-    public static async Task<Room> CreateRoomAsync(string name, string description, HttpClient? httpClient = null)
+    public static async Task<Room> CreateRoomAsync(string name, string description, HttpClient? httpClient = null, CancellationToken cancellationToken = default)
     {
         var command = new RoomRestCommand();
         var result = await command.RequestAsync<Room>(HttpMethod.Post, 
                                                       httpClient,
-                                                      requestRecord: new CreateRoomRecord(name, description, ""));
+                                                      requestRecord: new CreateRoom(name, description, ""),
+                                                      cancellationToken: cancellationToken);
         return result;
     }
 

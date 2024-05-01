@@ -1,11 +1,10 @@
-﻿namespace HundredMSRest.Lib.Commands;
-
-using HundredMSRest.Lib.Enums;
+﻿using HundredMSRest.Lib.Enums;
 using HundredMSRest.Lib.Records;
 using HundredMSRest.Lib.Services;
 using HundredMSRest.Lib.Tokens;
 using HundredMSRest.Lib.Requests;
 
+namespace HundredMSRest.Lib.Commands;
 /// <summary>
 /// Class <c>RestCommand</c> is the base clas for rest commands 
 /// that are sent to the 100 MS Api
@@ -39,7 +38,7 @@ public class RestCommand
     /// <param name="requestRecord">Record data</param>
     /// <param name="httpClient">Client provided HttpClient</param>
     /// <returns>Type R</returns>
-    public async Task<R?> RequestAsync<R>(HttpMethod httpMethod, HttpClient? httpClient = null, string? url = null, RequestRecord? requestRecord = null)
+    public async Task<R?> RequestAsync<R>(HttpMethod httpMethod, HttpClient? httpClient = null, string? url = null, RequestRecord? requestRecord = null,CancellationToken cancellationToken = default)
     {
         ApiToken apiToken = new TokenService().GetToken(TokenType.Management);
         RestRequest request = new(apiToken.Token,
@@ -48,7 +47,7 @@ public class RestCommand
                                   new RestClient(httpClient));
 
         string? requestData = requestRecord?.GetJSON() ?? null;
-        return await request.ExecuteAsync<R>(requestData);
+        return await request.ExecuteAsync<R>(requestData,cancellationToken);
     }
     #endregion
 

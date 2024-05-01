@@ -1,7 +1,6 @@
-﻿namespace HundredMSRest.Lib.Interfaces;
+﻿using HundredMSRest.Lib.Tokens;
 
-using HundredMSRest.Lib.Tokens;
-
+namespace HundredMSRest.Lib.Interfaces;
 /// <summary>
 /// Interface <c>TokenService</c>
 /// </summary>

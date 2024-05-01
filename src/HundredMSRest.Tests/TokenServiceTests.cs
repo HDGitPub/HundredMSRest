@@ -1,8 +1,7 @@
-﻿namespace HundredMSRest.Tests;
+﻿using HundredMSRest.Lib.Core.Services;
+using HundredMSRest.Lib.Core.Tokens;
 
-using HundredMSRest.Lib.Services;
-using HundredMSRest.Lib.Tokens;
-
+namespace HundredMSRest.Tests;
 /// <summary>
 /// Class <c>TokenServiceTests</c> Tests management and authentication token generation
 /// </summary>

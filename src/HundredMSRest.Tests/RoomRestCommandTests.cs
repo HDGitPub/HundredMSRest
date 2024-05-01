@@ -1,5 +1,5 @@
-﻿using HundredMSRest.Lib.Commands;
-using HundredMSRest.Lib.Records;
+﻿using HundredMSRest.Lib.Api.Rooms.Commands;
+using HundredMSRest.Lib.Api.Rooms.DataTypes;
 
 namespace HundredMSRest.Tests;
 

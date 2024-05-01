@@ -1,6 +1,6 @@
 ﻿namespace HundredMSRest.Tests;
 
-using HundredMSRest.Lib.Services;
+using HundredMSRest.Lib.Core.Services;
 using Microsoft.Extensions.Configuration;
 
 /// <summary>

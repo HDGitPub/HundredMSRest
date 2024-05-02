@@ -2,6 +2,10 @@
 using HundredMSRest.Lib.Core.Requests;
 
 namespace HundredMSRest.Lib.Api.Rooms.Requests;
+
+/// <summary>
+/// Record <c>UpdateRoomRequest</c>
+/// </summary>
 public record UpdateRoomRequest : RequestRecord
 {
     public string? name { get; set; }

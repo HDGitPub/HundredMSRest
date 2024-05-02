@@ -5,8 +5,9 @@ using HundredMSRest.Lib.Core.Services;
 using HundredMSRest.Lib.Core.Tokens;
 
 namespace HundredMSRest.Lib.Core.Commands;
+
 /// <summary>
-/// Class <c>RestCommand</c> is the base clas for rest commands 
+/// Class <c>RestCommand</c> is the base clas for rest commands
 /// that are sent to the 100 MS Api
 /// </summary>
 public class RestCommand
@@ -38,13 +39,17 @@ public class RestCommand
     /// <param name="requestRecord">Record data</param>
     /// <param name="httpClient">Client provided HttpClient</param>
     /// <returns>Type R</returns>
-    public async Task<R?> RequestAsync<R>(HttpMethod httpMethod, HttpClient? httpClient = null, string? url = null, RequestRecord? requestRecord = null, CancellationToken cancellationToken = default)
+    public async Task<R?> RequestAsync<R>(
+        HttpMethod httpMethod,
+        HttpClient? httpClient = null,
+        string? url = null,
+        RequestRecord? requestRecord = null,
+        CancellationToken cancellationToken = default
+    )
     {
         ApiToken apiToken = new TokenService().GetToken(TokenType.Management);
-        RestRequest request = new(apiToken.Token,
-                                  httpMethod,
-                                  url ?? BaseUrl,
-                                  new RestClient(httpClient));
+        RestRequest request =
+            new(apiToken.Token, httpMethod, url ?? BaseUrl, new RestClient(httpClient));
 
         string? requestData = requestRecord?.GetJSON() ?? null;
         return await request.ExecuteAsync<R>(requestData, cancellationToken);

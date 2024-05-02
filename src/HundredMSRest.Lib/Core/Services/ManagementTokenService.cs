@@ -1,10 +1,11 @@
-﻿using HundredMSRest.Lib.Core.Interfaces;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using HundredMSRest.Lib.Core.Interfaces;
 using HundredMSRest.Lib.Core.Tokens;
 using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 
 namespace HundredMSRest.Lib.Core.Services;
+
 /// <summary>
 /// Class <c>ManagementTokenService</c> Provides management tokens
 /// for connecting the 100MS Rest Api. These tokens should never be
@@ -20,8 +21,8 @@ public class ManagementTokenService : ITokenService
     #region Methods
     /// <summary>
     /// Set top level api credentials. These values are used to generate
-    /// management tokens. Insure that these values are stored securely. 
-    /// Server side code should retrieve these values from AWS Secrets manager 
+    /// management tokens. Insure that these values are stored securely.
+    /// Server side code should retrieve these values from AWS Secrets manager
     /// or some similar secure storage and pass via this method.
     /// </summary>
     /// <param name="accessKey"></param>
@@ -58,10 +59,10 @@ public class ManagementTokenService : ITokenService
         //});
         var claims = new Dictionary<string, object>()
         {
-            {"access_key", AppAccessKey},
-            {"type", "management"},
-            {"version", 2},
-            {"jti", Guid.NewGuid().ToString()},
+            { "access_key", AppAccessKey },
+            { "type", "management" },
+            { "version", 2 },
+            { "jti", Guid.NewGuid().ToString() },
         };
 
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppSecretKey));
@@ -70,7 +71,7 @@ public class ManagementTokenService : ITokenService
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Claims = claims,
-            Expires = DateTime.UtcNow.AddDays(1),// 86400 seconds = 1 day
+            Expires = DateTime.UtcNow.AddDays(1), // 86400 seconds = 1 day
             IssuedAt = DateTime.UtcNow,
             NotBefore = DateTime.UtcNow,
             SigningCredentials = signingCredentials

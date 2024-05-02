@@ -2,6 +2,7 @@
 using HundredMSRest.Lib.Core.Tokens;
 
 namespace HundredMSRest.Lib.Core.Services;
+
 /// <summary>
 /// Class <c>HundredMSAuthTokenProvider</c>
 /// </summary>
@@ -12,4 +13,3 @@ internal class AuthTokenService : ITokenService
         throw new NotImplementedException();
     }
 }
-

@@ -1,8 +1,9 @@
-using HundredMSRest.Lib.Core.Clients;
 using System.Net.Http.Headers;
 using System.Text.Json;
+using HundredMSRest.Lib.Core.Clients;
 
 namespace HundredMSRest.Lib.Core.Requests;
+
 /// <summary>
 /// Class <c>RestRequest</c> Base 100MS Api request class
 /// </summary>
@@ -28,7 +29,10 @@ public class RestRequest(string token, HttpMethod httpMethod, string url, RestCl
     /// <typeparam name="R">Return record type</typeparam>
     /// <param name="requestData">Request record data</param>
     /// <returns>Type R</returns>
-    public async Task<R?> ExecuteAsync<R>(string? requestData, CancellationToken cancellationToken = default)
+    public async Task<R?> ExecuteAsync<R>(
+        string? requestData,
+        CancellationToken cancellationToken = default
+    )
     {
         HttpRequestMessage request = new(_httpMethod, _url);
         request.Headers.Add(AUTH_HEADER, _bearerToken);
@@ -38,7 +42,10 @@ public class RestRequest(string token, HttpMethod httpMethod, string url, RestCl
             request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
         }
 
-        using HttpResponseMessage response = await _restClient.HttpClient.SendAsync(request, cancellationToken);
+        using HttpResponseMessage response = await _restClient.HttpClient.SendAsync(
+            request,
+            cancellationToken
+        );
         response.EnsureSuccessStatusCode();
         var jsonResponse = await response.Content.ReadAsStringAsync();
         R? result = JsonSerializer.Deserialize<R>(jsonResponse);

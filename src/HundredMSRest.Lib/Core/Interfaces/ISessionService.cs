@@ -3,6 +3,4 @@
 /// <summary>
 /// Interface <c>ISessionService</c>
 /// </summary>
-internal interface ISessionService
-{
-}
+internal interface ISessionService { }

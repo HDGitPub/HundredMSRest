@@ -1,6 +1,7 @@
 ﻿using HundredMSRest.Lib.Core.Interfaces;
 
 namespace HundredMSRest.Lib.Core.Clients;
+
 /// <summary>
 /// Class <c>RestClient</c> Main rest api client
 /// Provides connectivity to 100MS API V2
@@ -34,7 +35,7 @@ public class RestClient : IRestClient
     }
 
     /// <summary>
-    /// Creates a long lived HttpClient that uses a connection pool 
+    /// Creates a long lived HttpClient that uses a connection pool
     /// and can honor DNS changes
     /// <see cref="https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines"/>
     /// </summary>

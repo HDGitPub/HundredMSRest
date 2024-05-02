@@ -2,6 +2,7 @@
 using HundredMSRest.Lib.Core.Tokens;
 
 namespace HundredMSRest.Tests;
+
 /// <summary>
 /// Class <c>TokenServiceTests</c> Tests management and authentication token generation
 /// </summary>

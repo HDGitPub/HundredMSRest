@@ -3,6 +3,4 @@
 /// <summary>
 /// Interface <c>IRestResponse</c>
 /// </summary>
-internal interface IRestResponse
-{
-}
+internal interface IRestResponse { }

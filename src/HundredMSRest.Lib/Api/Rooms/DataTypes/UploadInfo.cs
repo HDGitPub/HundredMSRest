@@ -8,4 +8,10 @@
 /// <param name="prefix"></param>
 /// <param name="options"></param>
 /// <param name="credentials"></param>
-public record UploadInfo(string type, string location, string prefix, Options options, Credentials credentials);
+public record UploadInfo(
+    string type,
+    string location,
+    string prefix,
+    Options options,
+    Credentials credentials
+);

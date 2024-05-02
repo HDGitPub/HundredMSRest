@@ -3,6 +3,4 @@
 /// <summary>
 /// Interface <c>IRoom</c>
 /// </summary>
-internal interface IRoom
-{
-}
+internal interface IRoom { }

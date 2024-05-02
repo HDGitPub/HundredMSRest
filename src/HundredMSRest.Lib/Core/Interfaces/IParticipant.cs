@@ -3,6 +3,4 @@
 /// <summary>
 /// Interface <c>IParticipant</c>
 /// </summary>
-internal interface IParticipant
-{
-}
+internal interface IParticipant { }

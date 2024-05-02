@@ -41,7 +41,7 @@ public class RoomRestCommandTests : AuthenticatedTests
             description = "test description"
         };
 
-        Room? room = await RoomRestCommand.UpdateRoomAsync(testRoomId,updateRoom);
+        Room? room = await RoomRestCommand.UpdateRoomAsync(testRoomId, updateRoom);
         Assert.NotNull(room);
     }
 }

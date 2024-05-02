@@ -19,12 +19,13 @@ public class AuthenticatedTests
     #region Methods
     public AuthenticatedTests()
     {
-        var builder = new ConfigurationBuilder()
-        .AddUserSecrets<AuthenticatedTests>();
+        var builder = new ConfigurationBuilder().AddUserSecrets<AuthenticatedTests>();
 
         IConfiguration Configuration = builder.Build();
-        ManagementTokenService.SetAppSecrets(Configuration[APP_ACCESSKEY],
-                                             Configuration[APP_SECRETKEY]);
+        ManagementTokenService.SetAppSecrets(
+            Configuration[APP_ACCESSKEY],
+            Configuration[APP_SECRETKEY]
+        );
     }
     #endregion
 }

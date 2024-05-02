@@ -29,13 +29,21 @@ public sealed class RoomRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<Room?> CreateRoomAsync(string name, string description, string templateId, HttpClient? httpClient = null, CancellationToken cancellationToken = default)
+    public static async Task<Room?> CreateRoomAsync(
+        string name,
+        string description,
+        string templateId,
+        HttpClient? httpClient = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var command = new RoomRestCommand();
-        var result = await command.RequestAsync<Room>(HttpMethod.Post,
-                                                      httpClient,
-                                                      requestRecord: new CreateRoom(name, description, templateId),
-                                                      cancellationToken: cancellationToken);
+        var result = await command.RequestAsync<Room>(
+            HttpMethod.Post,
+            httpClient,
+            requestRecord: new CreateRoom(name, description, templateId),
+            cancellationToken: cancellationToken
+        );
         return result;
     }
 
@@ -45,12 +53,17 @@ public sealed class RoomRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<RoomList?> ListRoomsAsync(HttpClient? httpClient = null, CancellationToken cancellationToken = default)
+    public static async Task<RoomList?> ListRoomsAsync(
+        HttpClient? httpClient = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var command = new RoomRestCommand();
-        var result = await command.RequestAsync<RoomList>(HttpMethod.Get,
-                                                          httpClient,
-                                                          cancellationToken: cancellationToken);
+        var result = await command.RequestAsync<RoomList>(
+            HttpMethod.Get,
+            httpClient,
+            cancellationToken: cancellationToken
+        );
         return result;
     }
 
@@ -61,12 +74,18 @@ public sealed class RoomRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<Room?> GetRoomAsync(string roomId, HttpClient? httpClient = null, CancellationToken cancellationToken = default)
+    public static async Task<Room?> GetRoomAsync(
+        string roomId,
+        HttpClient? httpClient = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var command = new RoomRestCommand(roomId);
-        var result = await command.RequestAsync<Room>(HttpMethod.Get,
-                                                      httpClient,
-                                                      cancellationToken: cancellationToken);
+        var result = await command.RequestAsync<Room>(
+            HttpMethod.Get,
+            httpClient,
+            cancellationToken: cancellationToken
+        );
         return result;
     }
 
@@ -78,13 +97,20 @@ public sealed class RoomRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<Room?> UpdateRoomAsync(string roomId, UpdateRoomRequest updateRoom, HttpClient? httpClient = null, CancellationToken cancellationToken = default)
+    public static async Task<Room?> UpdateRoomAsync(
+        string roomId,
+        UpdateRoomRequest updateRoom,
+        HttpClient? httpClient = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var command = new RoomRestCommand(roomId);
-        var result = await command.RequestAsync<Room>(HttpMethod.Get,
-                                                      httpClient,
-                                                      requestRecord: updateRoom,
-                                                      cancellationToken: cancellationToken);
+        var result = await command.RequestAsync<Room>(
+            HttpMethod.Get,
+            httpClient,
+            requestRecord: updateRoom,
+            cancellationToken: cancellationToken
+        );
         return result;
     }
 
@@ -96,13 +122,20 @@ public sealed class RoomRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<Room?> EnableDisableRoomAsync(string roomId, EnableDisableRoom enableDisableRoom, HttpClient? httpClient = null, CancellationToken cancellationToken = default)
+    public static async Task<Room?> EnableDisableRoomAsync(
+        string roomId,
+        EnableDisableRoom enableDisableRoom,
+        HttpClient? httpClient = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var command = new RoomRestCommand(roomId);
-        var result = await command.RequestAsync<Room>(HttpMethod.Get,
-                                                      httpClient,
-                                                      requestRecord: enableDisableRoom,
-                                                      cancellationToken: cancellationToken);
+        var result = await command.RequestAsync<Room>(
+            HttpMethod.Get,
+            httpClient,
+            requestRecord: enableDisableRoom,
+            cancellationToken: cancellationToken
+        );
         return result;
     }
     #endregion

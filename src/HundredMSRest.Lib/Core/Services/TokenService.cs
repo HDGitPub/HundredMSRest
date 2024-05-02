@@ -1,8 +1,7 @@
-﻿namespace HundredMSRest.Lib.Core.Services;
-
-using HundredMSRest.Lib.Core.Enums;
+﻿using HundredMSRest.Lib.Core.Enums;
 using HundredMSRest.Lib.Core.Tokens;
 
+namespace HundredMSRest.Lib.Core.Services;
 /// <summary>
 /// Class <c>TokenService</c> Provides tokens to a server or client for use with the 100MS API
 /// </summary>

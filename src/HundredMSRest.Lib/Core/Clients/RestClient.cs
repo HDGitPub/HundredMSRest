@@ -1,7 +1,6 @@
-﻿namespace HundredMSRest.Lib.Core.Clients;
+﻿using HundredMSRest.Lib.Core.Interfaces;
 
-using HundredMSRest.Lib.Core.Interfaces;
-
+namespace HundredMSRest.Lib.Core.Clients;
 /// <summary>
 /// Class <c>RestClient</c> Main rest api client
 /// Provides connectivity to 100MS API V2

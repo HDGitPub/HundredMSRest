@@ -23,7 +23,7 @@ public class AuthenticatedTests
         .AddUserSecrets<AuthenticatedTests>();
 
         IConfiguration Configuration = builder.Build();
-        ManagementTokenService.SetAppSecrets(Configuration[APP_ACCESSKEY], 
+        ManagementTokenService.SetAppSecrets(Configuration[APP_ACCESSKEY],
                                              Configuration[APP_SECRETKEY]);
     }
     #endregion

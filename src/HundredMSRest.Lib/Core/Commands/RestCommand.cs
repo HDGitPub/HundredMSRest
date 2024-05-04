@@ -1,5 +1,6 @@
 ﻿using HundredMSRest.Lib.Core.Clients;
 using HundredMSRest.Lib.Core.Enums;
+using HundredMSRest.Lib.Core.Interfaces;
 using HundredMSRest.Lib.Core.Requests;
 using HundredMSRest.Lib.Core.Services;
 using HundredMSRest.Lib.Core.Tokens;
@@ -43,13 +44,17 @@ public class RestCommand
         HttpMethod httpMethod,
         HttpClient? httpClient = null,
         string? url = null,
-        RequestRecord? requestRecord = null,
+        IRequestRecord? requestRecord = null,
         CancellationToken cancellationToken = default
     )
     {
         ApiToken apiToken = new TokenService().GetToken(TokenType.Management);
-        RestRequest request =
-            new(apiToken.Token, httpMethod, url ?? BaseUrl, new RestClient(httpClient));
+        var request = new RestRequest(
+            apiToken.Token,
+            httpMethod,
+            url ?? BaseUrl,
+            new RestClient(httpClient)
+        );
 
         string? requestData = requestRecord?.GetJSON() ?? null;
         return await request.ExecuteAsync<R>(requestData, cancellationToken);

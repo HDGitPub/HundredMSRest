@@ -1,6 +1,6 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
-using HundredMSRest.Lib.Core.Clients;
+using HundredMSRest.Lib.Core.Interfaces;
 
 namespace HundredMSRest.Lib.Core.Requests;
 
@@ -11,12 +11,13 @@ namespace HundredMSRest.Lib.Core.Requests;
 /// <param name="httpMethod"></param>
 /// <param name="url"></param>
 /// <param name="restClient"></param>
-public class RestRequest(string token, HttpMethod httpMethod, string url, RestClient restClient)
+public class RestRequest(string token, HttpMethod httpMethod, string url, IRestClient restClient)
+    : IRestRequest
 {
     #region Attributes
     private readonly HttpMethod _httpMethod = httpMethod;
     private readonly string _url = url;
-    private readonly RestClient _restClient = restClient;
+    private readonly IRestClient _restClient = restClient;
     private readonly string _bearerToken = $"Bearer {token}";
     private const string AUTH_HEADER = "Authorization";
     #endregion
@@ -42,15 +43,13 @@ public class RestRequest(string token, HttpMethod httpMethod, string url, RestCl
             request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
         }
 
-        using HttpResponseMessage response = await _restClient.HttpClient.SendAsync(
-            request,
-            cancellationToken
-        );
+        using HttpResponseMessage response = await _restClient
+            .GetHttpClient()
+            .SendAsync(request, cancellationToken);
         response.EnsureSuccessStatusCode();
-        var jsonResponse = await response.Content.ReadAsStringAsync();
+        var jsonResponse = await response.Content.ReadAsStringAsync(cancellationToken);
         R? result = JsonSerializer.Deserialize<R>(jsonResponse);
 
-        //R? result = await response.Content.ReadFromJsonAsync<R>();
         return result;
     }
 

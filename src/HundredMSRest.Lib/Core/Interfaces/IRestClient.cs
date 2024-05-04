@@ -3,7 +3,7 @@
 /// <summary>
 /// Interface <c>IRestClient</c>
 /// </summary>
-internal interface IRestClient
+public interface IRestClient
 {
-    HttpClient? HttpClient { get; }
+    HttpClient GetHttpClient();
 }

@@ -1,4 +1,4 @@
-﻿namespace HundredMSRest.Tests;
+﻿namespace HundredMSRest.Tests.IntegrationTests.Core;
 
 using HundredMSRest.Lib.Core.Services;
 using Microsoft.Extensions.Configuration;
@@ -13,7 +13,8 @@ public class AuthenticatedTests
 
     private const string APP_ACCESSKEY = "HundredMSRest:AppAccessKey";
     private const string APP_SECRETKEY = "HundredMSRest:AppSecretKey";
-
+    private const string APP_TEMPLATE_ID = "HundredMSRest:TemplateId";
+    private readonly IConfiguration _configuration;
     #endregion
 
     #region Methods
@@ -21,11 +22,10 @@ public class AuthenticatedTests
     {
         var builder = new ConfigurationBuilder().AddUserSecrets<AuthenticatedTests>();
 
-        IConfiguration Configuration = builder.Build();
-        ManagementTokenService.SetAppSecrets(
-            Configuration[APP_ACCESSKEY],
-            Configuration[APP_SECRETKEY]
-        );
+        _configuration = builder.Build();
+        TokenService.SetAppSecrets(_configuration[APP_ACCESSKEY], _configuration[APP_SECRETKEY]);
     }
+
+    public string TemplateId => _configuration[APP_TEMPLATE_ID];
     #endregion
 }

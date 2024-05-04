@@ -1,9 +1,9 @@
-﻿using HundredMSRest.Lib.Api.Rooms.DataTypes;
-using HundredMSRest.Lib.Api.Rooms.Requests;
-using HundredMSRest.Lib.Api.Rooms.Responses;
+﻿using HundredMSRest.Lib.Api.V2.Rooms.DataTypes;
+using HundredMSRest.Lib.Api.V2.Rooms.Requests;
+using HundredMSRest.Lib.Api.V2.Rooms.Responses;
 using HundredMSRest.Lib.Core.Commands;
 
-namespace HundredMSRest.Lib.Api.Rooms.Commands;
+namespace HundredMSRest.Lib.Api.V2.Rooms.Commands;
 
 /// <summary>
 /// Class <c>RoomRestCommand</c> 100MS Room specific rest commands
@@ -41,7 +41,7 @@ public sealed class RoomRestCommand : RestCommand
         var result = await command.RequestAsync<Room>(
             HttpMethod.Post,
             httpClient,
-            requestRecord: new CreateRoom(name, description, templateId),
+            requestRecord: new CreateRoomRequest(name, description, templateId),
             cancellationToken: cancellationToken
         );
         return result;

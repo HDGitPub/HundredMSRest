@@ -3,8 +3,7 @@
 /// <summary>
 /// Interface <c>IRestRequest</c>
 /// </summary>
-internal interface IRestRequest<T, R>
+internal interface IRestRequest
 {
-    StringContent GetData(T t);
-    Task<R> RequestAsync();
+    Task<R?> ExecuteAsync<R>(string? requestData, CancellationToken cancellationToken = default);
 }

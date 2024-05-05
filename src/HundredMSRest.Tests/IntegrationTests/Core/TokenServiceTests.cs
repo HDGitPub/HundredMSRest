@@ -1,7 +1,4 @@
-﻿using HundredMSRest.Lib.Core.Services;
-using HundredMSRest.Lib.Core.Tokens;
-
-namespace HundredMSRest.Tests.IntegrationTests.Core;
+﻿namespace HundredMSRest.Tests.IntegrationTests.Core;
 
 /// <summary>
 /// Class <c>TokenServiceTests</c> Tests management and authentication token generation
@@ -9,7 +6,5 @@ namespace HundredMSRest.Tests.IntegrationTests.Core;
 public class TokenServiceTests : AuthenticatedTests
 {
     [Fact]
-    public void Get_ManagementToken_ReturnsToken()
-    {
-    }
+    public void Get_ManagementToken_ReturnsToken() { }
 }

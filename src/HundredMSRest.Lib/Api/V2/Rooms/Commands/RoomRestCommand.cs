@@ -106,7 +106,7 @@ public sealed class RoomRestCommand : RestCommand
     {
         var command = new RoomRestCommand(roomId);
         var result = await command.RequestAsync<Room>(
-            HttpMethod.Get,
+            HttpMethod.Post,
             httpClient,
             requestRecord: updateRoom,
             cancellationToken: cancellationToken
@@ -131,7 +131,7 @@ public sealed class RoomRestCommand : RestCommand
     {
         var command = new RoomRestCommand(roomId);
         var result = await command.RequestAsync<Room>(
-            HttpMethod.Get,
+            HttpMethod.Post,
             httpClient,
             requestRecord: enableDisableRoom,
             cancellationToken: cancellationToken

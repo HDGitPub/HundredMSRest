@@ -14,6 +14,10 @@ public class AuthenticatedTests
     private const string APP_ACCESSKEY = "HundredMSRest:AppAccessKey";
     private const string APP_SECRETKEY = "HundredMSRest:AppSecretKey";
     private const string APP_TEMPLATE_ID = "HundredMSRest:TemplateId";
+    private const string ROOM_ID = "HundredMSRest:RoomId";
+    private const string BUCKET = "HundredMSRest:Bucket";
+    private const string BUCKET_ACCESSKEY = "HundredMSRest:BucketAccessKey";
+    private const string BUCKET_SECRETKEY = "HundredMSRest:BucketSecretKey";
     private readonly IConfiguration _configuration;
     #endregion
 
@@ -27,5 +31,9 @@ public class AuthenticatedTests
     }
 
     public string TemplateId => _configuration[APP_TEMPLATE_ID];
+    public string RoomId => _configuration[ROOM_ID];
+    public string Bucket => _configuration[BUCKET];
+    public string BucketAccessKey => _configuration[BUCKET_ACCESSKEY];
+    public string BucketSecretKey => _configuration[BUCKET_SECRETKEY];
     #endregion
 }

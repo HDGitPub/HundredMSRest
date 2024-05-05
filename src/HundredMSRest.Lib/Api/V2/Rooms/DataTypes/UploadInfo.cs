@@ -13,13 +13,13 @@ public record UploadInfo
 {
     public UploadInfo(string type, string location)
     {
-        Type = type;
-        Location = location;
+        this.type = type;
+        this.location = location;
     }
 
-    public string Type { get; set; }
-    public string Location { get; set; }
-    public string? Prefix { get; set; }
-    public Credentials? Credentials { get; set; }
-    public Options? Options { get; set; }
+    public string type { get; set; }
+    public string location { get; set; }
+    public string? prefix { get; set; }
+    public Credentials? credentials { get; set; }
+    public Options? options { get; set; }
 }

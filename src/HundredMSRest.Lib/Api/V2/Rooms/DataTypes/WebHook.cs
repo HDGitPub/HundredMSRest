@@ -5,4 +5,13 @@
 /// </summary>
 /// <param name="url"></param>
 /// <param name="headers"></param>
-public record WebHook(string url, Headers headers);
+public record WebHook
+{
+    public WebHook(string url)
+    {
+        this.url = url;
+    }
+
+    public string? url { get; set; }
+    public Headers? headers { get; set; }
+}

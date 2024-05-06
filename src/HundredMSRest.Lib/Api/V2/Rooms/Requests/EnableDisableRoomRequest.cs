@@ -2,7 +2,10 @@
 
 namespace HundredMSRest.Lib.Api.V2.Rooms.Requests;
 
-public record EnableDisableRoom : RequestRecord
+/// <summary>
+/// Class <c>EnableDisableRoomRequest</c>
+/// </summary>
+public record EnableDisableRoomRequest : RequestRecord
 {
     public bool enabled { get; set; }
 }

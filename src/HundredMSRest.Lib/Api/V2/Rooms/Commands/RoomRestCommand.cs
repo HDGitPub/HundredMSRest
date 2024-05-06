@@ -124,7 +124,7 @@ public sealed class RoomRestCommand : RestCommand
     /// <returns></returns>
     public static async Task<Room?> EnableDisableRoomAsync(
         string roomId,
-        EnableDisableRoom enableDisableRoom,
+        EnableDisableRoomRequest enableDisableRoom,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
     )

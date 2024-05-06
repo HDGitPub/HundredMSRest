@@ -4,22 +4,19 @@ using HundredMSRest.Lib.Api.V2.Rooms.Commands;
 using HundredMSRest.Lib.Api.V2.Rooms.DataTypes;
 using HundredMSRest.Lib.Api.V2.Rooms.Responses;
 using HundredMSRest.Lib.Core.Common;
-using HundredMSRest.Tests.IntegrationTests.Core;
 
 namespace HundredMSRest.Tests.IntegrationTests.Api.V2.Rooms;
 
 /// <summary>
 /// Class <c>RoomTestCommandTests</c> Tests RoomRestComands against the 100MS rest api
 /// </summary>
-public class RoomRestCommandTests : AuthenticatedTests
+public class RoomRestCommandTests
 {
-    private string TestRoomName { get; init; }
-    private string TestRoomDesc { get; init; }
+    private readonly RoomTestSettings _settings;
 
     public RoomRestCommandTests()
     {
-        TestRoomName = $"test-room-{DateTime.Now:hh-mm-ss}";
-        TestRoomDesc = $"test-room-desc-{DateTime.Now:hh-mm-ss}";
+        _settings = new RoomTestSettings();
     }
 
     [Fact]
@@ -28,14 +25,18 @@ public class RoomRestCommandTests : AuthenticatedTests
         // Arrange
 
         // Act
-        var result = await RoomRestCommand.CreateRoomAsync(TestRoomName, TestRoomDesc, TemplateId);
+        var result = await RoomRestCommand.CreateRoomAsync(
+            _settings.RoomName,
+            _settings.RoomDescription,
+            _settings.TemplateId
+        );
 
         // Assert
         var expected = new
         {
-            name = TestRoomName,
-            description = TestRoomDesc,
-            template_id = TemplateId
+            name = _settings.RoomName,
+            description = _settings.RoomDescription,
+            template_id = _settings.TemplateId
         };
 
         result.Should().BeOfType<Room>();
@@ -61,7 +62,7 @@ public class RoomRestCommandTests : AuthenticatedTests
         // Arrange
 
         // Act
-        var result = await RoomRestCommand.GetRoomAsync(RoomId);
+        var result = await RoomRestCommand.GetRoomAsync(_settings.RoomId);
 
         // Assert
         result.Should().NotBeNull();
@@ -73,17 +74,40 @@ public class RoomRestCommandTests : AuthenticatedTests
     {
         // Arrange
         var updateRoomRequest = new UpdateRoomRequestBuilder()
-            .AddName(TestRoomName)
-            .AddDescription(TestRoomDesc)
+            .AddName(_settings.RoomName)
+            .AddDescription(_settings.RoomDescription)
             .AddRecordingInfo()
-            .AddUploadInfo(StorageType.S3, Bucket, region: Region.Aws.US_EAST_1)
-            .AddCredentials(BucketAccessKey, BucketSecretKey)
+            .AddUploadInfo(StorageType.S3, _settings.Bucket, region: Region.Aws.US_EAST_1)
+            .AddCredentials(_settings.BucketAccessKey, _settings.BucketSecretKey)
             .Build();
 
         // Act
-        var result = await RoomRestCommand.UpdateRoomAsync(RoomId, updateRoomRequest);
+        var result = await RoomRestCommand.UpdateRoomAsync(_settings.RoomId, updateRoomRequest);
 
-        var expected = new { name = TestRoomName, description = TestRoomDesc };
+        var expected = new { name = _settings.RoomName, description = _settings.RoomDescription };
+
+        // Assert
+        result.Should().NotBeNull();
+        result.Should().BeOfType<Room>();
+        result.Should().BeEquivalentTo(expected);
+    }
+
+    [Fact]
+    public async void EnableDisable_Room_ReturnsRoom()
+    {
+        // Arrange
+        var enableDisableRoomRequest = new Lib.Api.V2.Rooms.Requests.EnableDisableRoomRequest()
+        {
+            enabled = true
+        };
+
+        // Act
+        var result = await RoomRestCommand.EnableDisableRoomAsync(
+            _settings.RoomId,
+            enableDisableRoomRequest
+        );
+
+        var expected = new { enabled = true };
 
         // Assert
         result.Should().NotBeNull();

@@ -21,6 +21,7 @@ public class ActiveRoomRestCommandTests
     public async void Get_ActiveRoom_ReturnsActiveRoom()
     {
         // Arrange
+        var expected = new { id = _settings.ActiveRoomId };
 
         // Act
         var result = await ActiveRoomRestCommand.GetAsync(_settings.ActiveRoomId);
@@ -28,6 +29,7 @@ public class ActiveRoomRestCommandTests
         // Assert
         result.Should().NotBeNull();
         result.Should().BeOfType<ActiveRoom>();
+        result.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -36,12 +38,15 @@ public class ActiveRoomRestCommandTests
         // Arrange
         string peerId = _settings.PeerId;
 
+        var expected = new { id = _settings.PeerId };
+
         // Act
         var result = await ActiveRoomRestCommand.GetPeerAsync(_settings.ActiveRoomId, peerId);
 
         // Assert
         result.Should().NotBeNull();
         result.Should().BeOfType<Peer>();
+        result.Should().BeEquivalentTo(expected);
     }
 
     [Fact]
@@ -55,6 +60,7 @@ public class ActiveRoomRestCommandTests
         // Assert
         result.Should().NotBeNull();
         result.Should().BeOfType<PeerList>();
+        result?.peers.Should().NotBeNull();
     }
 
     [Fact]
@@ -69,6 +75,7 @@ public class ActiveRoomRestCommandTests
         // Assert
         result.Should().NotBeNull();
         result.Should().BeOfType<PeerList>();
+        result?.peers.Should().NotBeNull();
     }
 
     [Fact]
@@ -99,7 +106,7 @@ public class ActiveRoomRestCommandTests
     {
         // Arrange
         string peerId = _settings.PeerId;
-        string newRole = "NewRole";
+        string newRole = _settings.Role;
         var request = new UpdateActiveRoomPeerRequest() { role = newRole };
         var expected = new { role = newRole };
 
@@ -201,7 +208,7 @@ public class ActiveRoomRestCommandTests
     public async void End_ActiveRoom_EndsActiveRoom()
     {
         // Arrange
-        var request = new EndRoomRequest() { reason = "Ending Room", Lock = false };
+        var request = new EndRoomRequest() { reason = "Ending Room", @lock = false };
 
         // Act
         var result = await ActiveRoomRestCommand.EndRoom(_settings.ActiveRoomId, request);

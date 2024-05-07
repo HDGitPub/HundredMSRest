@@ -11,5 +11,5 @@ public record Peer
     public string? metadata { get; set; }
     public string? role { get; set; }
     public string? joined_at { get; set; }
-    public Track[]? tracks { get; set; }
+    public Dictionary<string, Track>? tracks { get; set; }
 }

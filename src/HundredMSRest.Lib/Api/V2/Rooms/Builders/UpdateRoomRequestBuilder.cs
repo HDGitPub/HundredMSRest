@@ -10,17 +10,15 @@ namespace HundredMSRest.Lib.Api.V2.Rooms.Builders;
 public class UpdateRoomRequestBuilder
 {
     #region Attributes
-    private string? _name;
-    private string? _description;
-    private bool? _largeRoom;
-    private string[]? _polls;
-    private int? _size;
-    private int? _max_duration_seconds;
-    private WebHook? _webHook;
-    private RecordingInfo? _recordingInfo;
+    private readonly UpdateRoomRequest _request;
     #endregion
 
     #region
+
+    public UpdateRoomRequestBuilder()
+    {
+        _request = new UpdateRoomRequest();
+    }
 
     /// <summary>
     /// Class <c>UpdateRoomRequest</c> Builds a new UpdateRoomRequest
@@ -29,17 +27,7 @@ public class UpdateRoomRequestBuilder
     /// <returns></returns>
     public UpdateRoomRequest Build()
     {
-        return new UpdateRoomRequest()
-        {
-            name = _name,
-            description = _description,
-            large_room = _largeRoom,
-            size = _size,
-            max_duration_seconds = _max_duration_seconds,
-            polls = _polls,
-            webhook = _webHook,
-            recording_info = _recordingInfo
-        };
+        return _request;
     }
 
     /// <summary>
@@ -48,7 +36,7 @@ public class UpdateRoomRequestBuilder
     /// <param name="name"></param>
     public UpdateRoomRequestBuilder AddName(string name)
     {
-        _name = name;
+        _request.name = name;
         return this;
     }
 
@@ -58,7 +46,7 @@ public class UpdateRoomRequestBuilder
     /// <param name="description"></param>
     public UpdateRoomRequestBuilder AddDescription(string description)
     {
-        _description = description;
+        _request.description = description;
         return this;
     }
 
@@ -70,7 +58,7 @@ public class UpdateRoomRequestBuilder
     /// <returns></returns>
     public UpdateRoomRequestBuilder AddRecordingInfo(bool? enabled = null)
     {
-        _recordingInfo = new RecordingInfo() { enabled = enabled };
+        _request.recording_info = new RecordingInfo() { enabled = enabled };
         return this;
     }
 
@@ -91,18 +79,18 @@ public class UpdateRoomRequestBuilder
         string? region = null
     )
     {
-        if (_recordingInfo is null)
+        if (_request.recording_info is null)
             throw new Exception(Strings.ROOM_INVALID_UPLOAD_CONFIG);
 
-        _recordingInfo.upload_info = new UploadInfo(type.Value, location)
+        _request.recording_info.upload_info = new UploadInfo(type.Value, location)
         {
             prefix = prefix,
             options = region is not null ? new Options(region) : null
         };
 
         if (
-            _recordingInfo.upload_info.type == StorageType.S3.Value
-            && _recordingInfo.upload_info.options is null
+            _request.recording_info.upload_info.type == StorageType.S3.Value
+            && _request.recording_info.upload_info.options is null
         )
         {
             throw new Exception(Strings.ROOM_INVALID_UPLOAD_S3_CONFIG);
@@ -118,10 +106,10 @@ public class UpdateRoomRequestBuilder
     /// <returns></returns>
     public UpdateRoomRequestBuilder AddCredentials(string key, string secret)
     {
-        if (_recordingInfo?.upload_info is null)
+        if (_request.recording_info?.upload_info is null)
             throw new Exception(Strings.ROOM_INVALID_CREDENTIALS_CONFIG);
 
-        _recordingInfo.upload_info.credentials = new Credentials(key, secret);
+        _request.recording_info.upload_info.credentials = new Credentials(key, secret);
         return this;
     }
 
@@ -132,7 +120,7 @@ public class UpdateRoomRequestBuilder
     /// <returns></returns>
     public UpdateRoomRequestBuilder AddLargeRoom(bool largeRoom)
     {
-        _largeRoom = largeRoom;
+        _request.large_room = largeRoom;
         return this;
     }
 
@@ -143,7 +131,7 @@ public class UpdateRoomRequestBuilder
     /// <returns></returns>
     public UpdateRoomRequestBuilder AddSize(int size)
     {
-        _size = size;
+        _request.size = size;
         return this;
     }
 
@@ -154,7 +142,7 @@ public class UpdateRoomRequestBuilder
     /// <returns></returns>
     public UpdateRoomRequestBuilder AddMaxDurationSeconds(int maxDurationSeconds)
     {
-        _max_duration_seconds = maxDurationSeconds;
+        _request.max_duration_seconds = maxDurationSeconds;
         return this;
     }
 
@@ -165,13 +153,18 @@ public class UpdateRoomRequestBuilder
     /// <returns></returns>
     public UpdateRoomRequestBuilder AddPolls(string[] polls)
     {
-        _polls = polls;
+        _request.polls = polls;
         return this;
     }
 
+    /// <summary>
+    /// Sets the webhook property
+    /// </summary>
+    /// <param name="webHook"></param>
+    /// <returns></returns>
     public UpdateRoomRequestBuilder AddWebHook(WebHook webHook)
     {
-        _webHook = webHook;
+        _request.webhook = webHook;
         return this;
     }
 

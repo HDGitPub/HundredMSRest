@@ -2,6 +2,7 @@
 using HundredMSRest.Lib.Api.V2.ActiveRooms.Commands;
 using HundredMSRest.Lib.Api.V2.ActiveRooms.DataTypes;
 using HundredMSRest.Lib.Api.V2.ActiveRooms.Requests;
+using HundredMSRest.Lib.Api.V2.Common.DataTypes;
 
 namespace HundredMSRest.Tests.IntegrationTests.Api.V2.ActiveRooms;
 

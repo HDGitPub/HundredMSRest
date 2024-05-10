@@ -1,4 +1,4 @@
-﻿namespace HundredMSRest.Lib.Api.V2.ActiveRooms.DataTypes;
+﻿namespace HundredMSRest.Lib.Api.V2.Common.DataTypes;
 
 public class PeerList
 {

@@ -1,4 +1,6 @@
-﻿namespace HundredMSRest.Lib.Api.V2.ActiveRooms.DataTypes;
+﻿using HundredMSRest.Lib.Api.V2.ActiveRooms.DataTypes;
+
+namespace HundredMSRest.Lib.Api.V2.Common.DataTypes;
 
 /// <summary>
 /// Record <c>Peer</c> represents a peer in a room
@@ -11,5 +13,7 @@ public record Peer
     public string? metadata { get; set; }
     public string? role { get; set; }
     public string? joined_at { get; set; }
+    public string? left_at { get; set; }
+    public string? session_id { get; set; }
     public Dictionary<string, Track>? tracks { get; set; }
 }

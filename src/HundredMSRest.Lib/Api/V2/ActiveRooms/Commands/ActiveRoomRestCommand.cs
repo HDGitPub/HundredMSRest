@@ -1,5 +1,6 @@
 ﻿using HundredMSRest.Lib.Api.V2.ActiveRooms.DataTypes;
 using HundredMSRest.Lib.Api.V2.ActiveRooms.Requests;
+using HundredMSRest.Lib.Api.V2.Common.DataTypes;
 using HundredMSRest.Lib.Core.Commands;
 
 namespace HundredMSRest.Lib.Api.V2.ActiveRooms.Commands;

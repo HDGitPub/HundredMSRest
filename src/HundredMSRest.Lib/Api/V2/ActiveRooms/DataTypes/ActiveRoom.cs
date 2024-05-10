@@ -23,5 +23,5 @@ public record ActiveRoom
     /// <summary>
     /// Object of type session.This object contains an array of the unique identifier of the peers.
     /// </summary>
-    public object? session { get; set; }
+    public ActiveRoomSession? session { get; set; }
 }

@@ -3,7 +3,7 @@
 /// <summary>
 /// Record <c>Session</c>
 /// </summary>
-public record Session
+public record ActiveRoomSession
 {
     /// <summary>
     /// Unique identifier for the session

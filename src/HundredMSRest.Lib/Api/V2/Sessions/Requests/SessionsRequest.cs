@@ -10,25 +10,26 @@ public record SessionsRequest : RequestRecord
     /// <summary>
     /// Flag to fetch the list of active room sessions.
     /// </summary>
-    public bool? active {get;set;}
+    public bool? active { get; set; }
 
     /// <summary>
     /// etch the list of sessions created in the room specified.
     /// </summary>
-    public string? room_id {get;set;}
+    public string? room_id { get; set; }
 
     /// <summary>
     /// Check for sessions started with a timestamp greater than or equal to "after"
     /// </summary>
-    public string? after{get;set;}
+    public string? after { get; set; }
+
     /// <summary>
     /// Check for sessions started with a timestamp less than or equal to "after"
     /// </summary>
-    public string? before {get;set;}
+    public string? before { get; set; }
 
     /// <summary>
     /// Determines the number of session objects to be included in response.
     /// Allowed values: Min: 10, Max: 100
     /// </summary>
-    public int? limit {get;set;} = 10;
+    public int? limit { get; set; } = 10;
 }

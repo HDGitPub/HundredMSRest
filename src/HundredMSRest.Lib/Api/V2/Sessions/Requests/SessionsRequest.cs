@@ -20,12 +20,12 @@ public record SessionsRequest : RequestRecord
     /// <summary>
     /// Check for sessions started with a timestamp greater than or equal to "after"
     /// </summary>
-    public string? after { get; set; }
+    public DateTime? after { get; set; }
 
     /// <summary>
     /// Check for sessions started with a timestamp less than or equal to "after"
     /// </summary>
-    public string? before { get; set; }
+    public DateTime? before { get; set; }
 
     /// <summary>
     /// Determines the number of session objects to be included in response.

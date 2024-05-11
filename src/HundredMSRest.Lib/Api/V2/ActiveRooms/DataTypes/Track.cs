@@ -16,6 +16,6 @@ public record Track
     public bool? mute { get; set; }
     public string? type { get; set; }
     public string? source { get; set; }
-    public string? started_at { get; set; }
+    public DateTime? started_at { get; set; }
     public string? description { get; set; }
 }

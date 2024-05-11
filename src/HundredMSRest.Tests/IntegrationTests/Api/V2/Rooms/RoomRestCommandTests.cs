@@ -2,6 +2,7 @@
 using HundredMSRest.Lib.Api.V2.Rooms.Builders;
 using HundredMSRest.Lib.Api.V2.Rooms.Commands;
 using HundredMSRest.Lib.Api.V2.Rooms.DataTypes;
+using HundredMSRest.Lib.Api.V2.Rooms.Requests;
 using HundredMSRest.Lib.Api.V2.Rooms.Responses;
 using HundredMSRest.Lib.Core.Common;
 
@@ -96,10 +97,7 @@ public class RoomRestCommandTests
     public async void EnableDisable_Room_ReturnsRoom()
     {
         // Arrange
-        var enableDisableRoomRequest = new Lib.Api.V2.Rooms.Requests.EnableDisableRoomRequest()
-        {
-            enabled = true
-        };
+        var enableDisableRoomRequest = new EnableDisableRoomRequest() { enabled = true };
 
         // Act
         var result = await RoomRestCommand.EnableDisableRoomAsync(

@@ -1,3 +1,4 @@
+using System.Text;
 using HundredMSRest.Lib.Api.V2.Sessions.Requests;
 
 namespace HundredMSRest.Lib.Api.V2.Sessions.Filters;
@@ -22,12 +23,33 @@ public class SessionsRequestFilter
     }
 
     /// <summary>
-    /// Returns a new SessionsRequest
+    /// Returns a new SessionsRequest filter
     /// </summary>
     /// <returns></returns>
     public string Filter()
     {
-        return _request.ToString();
+        var builder = new StringBuilder("?");
+        if (_request.active is not null)
+        {
+            builder.Append($"active={_request.active?.ToString().ToLower()}&");
+        }
+        if (_request.room_id is not null)
+        {
+            builder.Append($"room_id={_request.room_id}&");
+        }
+        if (_request.before is not null)
+        {
+            builder.Append($"before={_request.before?.ToString("o")}&");
+        }
+        if (_request.after is not null)
+        {
+            builder.Append($"after={_request.after?.ToString("o")}&");
+        }
+        if (_request.limit is not null)
+        {
+            builder.Append($"limit={_request.limit}&");
+        }
+        return builder.ToString().TrimEnd('&');
     }
 
     /// <summary>
@@ -53,23 +75,27 @@ public class SessionsRequestFilter
     }
 
     /// <summary>
-    /// Sets after property
+    /// Sets after date property. This value will be converted to utc
+    /// if it is not explicitly set
     /// </summary>
     /// <param name="after"></param>
     /// <returns></returns>
-    public SessionsRequestFilter AddAfter(string after)
+    public SessionsRequestFilter AddAfter(DateTime after)
     {
+        after = after.Kind != DateTimeKind.Utc ? after.ToUniversalTime() : after;
         _request.after = after;
         return this;
     }
 
     /// <summary>
-    /// Sets before property
+    /// Sets before property. This value will be converted to utc
+    /// if it is not explicitly set
     /// </summary>
     /// <param name="before"></param>
     /// <returns></returns>
-    public SessionsRequestFilter AddBefore(string before)
+    public SessionsRequestFilter AddBefore(DateTime before)
     {
+        before = before.Kind != DateTimeKind.Utc ? before.ToUniversalTime() : before;
         _request.before = before;
         return this;
     }

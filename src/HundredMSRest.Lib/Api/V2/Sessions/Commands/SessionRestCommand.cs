@@ -1,5 +1,4 @@
 using HundredMSRest.Lib.Api.V2.Sessions.DataTypes;
-using HundredMSRest.Lib.Api.V2.Sessions.Requests;
 using HundredMSRest.Lib.Core.Commands;
 
 namespace HundredMSRest.Lib.Api.V2.Sessions.Commands;
@@ -14,10 +13,14 @@ public sealed class SessionRestCommand : RestCommand
     /// <summary>
     /// Constructor takes RequestData and HttpMethod
     /// </summary>
-    public SessionRestCommand(string? urlExtension = null)
+    public SessionRestCommand(string? urlParams = null, string? filterParams = null)
     {
         string baseRoute = "v2/sessions";
-        BaseUrl = urlExtension is not null ? $"{baseRoute}/{urlExtension}" : baseRoute;
+        BaseUrl = urlParams is not null ? $"{baseRoute}/{urlParams}" : baseRoute;
+        if (urlParams is not null)
+            return;
+
+        BaseUrl = filterParams is not null ? $"{baseRoute}{filterParams}" : baseRoute;
     }
 
     /// <summary>
@@ -48,6 +51,7 @@ public sealed class SessionRestCommand : RestCommand
     /// <param name="filter">Query string filter parameters</param>
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
+    /// <see href="https://www.100ms.live/docs/server-side/v2/api-reference/Sessions/list-sessions"/>
     /// <example>
     /// Example:
     /// <code>
@@ -61,7 +65,7 @@ public sealed class SessionRestCommand : RestCommand
         CancellationToken cancellationToken = default
     )
     {
-        var command = new SessionRestCommand(filter);
+        var command = new SessionRestCommand(filterParams: filter);
         return await command.RequestAsync<SessionList>(
             HttpMethod.Get,
             httpClient,

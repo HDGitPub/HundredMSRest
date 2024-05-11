@@ -12,8 +12,8 @@ public record Peer
     public string? user_id { get; set; }
     public string? metadata { get; set; }
     public string? role { get; set; }
-    public string? joined_at { get; set; }
-    public string? left_at { get; set; }
+    public DateTime? joined_at { get; set; }
+    public DateTime? left_at { get; set; }
     public string? session_id { get; set; }
     public Dictionary<string, Track>? tracks { get; set; }
 }

@@ -30,23 +30,48 @@ public class SessionsRestCommandTests
     }
 
     [Fact]
-    public async Task List_Sessions_ReturnsSessions()
+    public async Task List_Sessions_ByRoom_ReturnsSessions()
     {
         // Arrange
-        var filter = new SessionsRequestFilter()
-            .AddActive(true)
-            .AddLimit(20)
-            .AddRoomId("2412341")
-            .Filter();
-
-        var expected = new { id = _settings.SessionId };
+        var filter = new SessionsRequestFilter().AddRoomId(_settings.SessionRoomId).Filter();
 
         // Act
         var result = await SessionRestCommand.ListSessionsAsync(filter);
 
         // Assert
         result.Should().NotBeNull();
-        result.Should().BeOfType<Session>();
-        result.Should().BeEquivalentTo(expected);
+        result.Should().BeOfType<SessionList>();
+    }
+
+    [Fact]
+    public async Task List_Sessions_AfterDate_ReturnsSessions()
+    {
+        DateTime after = new DateTime(2024, 05, 7, 2, 30, 0);
+
+        // Arrange
+        var filter = new SessionsRequestFilter().AddAfter(after).Filter();
+
+        // Act
+        var result = await SessionRestCommand.ListSessionsAsync(filter);
+
+        // Assert
+        result.Should().NotBeNull();
+        result.Should().BeOfType<SessionList>();
+    }
+
+    [Fact]
+    public async Task List_Sessions_BeforeDate_ReturnsSessions()
+    {
+        DateTime before = new DateTime(2024, 05, 6, 6, 30, 0);
+
+        // Arrange
+        var filter = new SessionsRequestFilter().AddBefore(before).Filter();
+
+        // Act
+        var result = await SessionRestCommand.ListSessionsAsync(filter);
+
+        // Assert
+        result.Should().NotBeNull();
+        result.Should().BeOfType<SessionList>();
     }
 }

@@ -8,10 +8,10 @@
 /// Constructor that takes a json web token in string format
 /// </remarks>
 /// <param name="token"></param>
-internal class ApiToken(string token)
+public class Token(string value)
 {
     /// <summary>
     /// Get a reference to the json web token string
     /// </summary>
-    public string Token { get; } = token;
+    public string Value { get; } = value;
 }

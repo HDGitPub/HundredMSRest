@@ -1,17 +1,16 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using HundredMSRest.Lib.Core.Interfaces;
 using HundredMSRest.Lib.Core.Tokens;
 using Microsoft.IdentityModel.Tokens;
 
-namespace HundredMSRest.Lib.Core.Services;
+namespace HundredMSRest.Lib.Core.Interfaces;
 
 /// <summary>
-/// Class <c>ManagementTokenService</c> Provides management tokens
-/// for connecting the 100MS Rest Api. These tokens should never be
-/// exposed to client applications.
+/// Class <c>BaseTokenService</c> Base class for token services
 /// </summary>
-internal class ManagementTokenService(string accessKey, string secretKey) : ITokenService
+/// <param name="accessKey"></param>
+/// <param name="secretKey"></param>
+internal class BaseTokenService(string accessKey, string secretKey)
 {
     #region Attributes
     private readonly string appAccessKey = accessKey;
@@ -20,21 +19,11 @@ internal class ManagementTokenService(string accessKey, string secretKey) : ITok
 
     #region Methods
 
-    /// <summary>
-    /// Generates management tokens for use with the 100MS
-    /// rest API
-    /// </summary>
-    /// <see href="https://www.100ms.live/docs/get-started/v2/get-started/security-and-tokens#set-up-your-token-server">100 MS Token Server</see>
-    /// <returns>A management token in IToken format</returns>
-    public ApiToken GenerateToken()
+    protected Token _GenerateToken(Dictionary<string, object> claims)
     {
-        var claims = new Dictionary<string, object>()
-        {
-            { "access_key", appAccessKey },
-            { "type", "management" },
-            { "version", 2 },
-            { "jti", Guid.NewGuid().ToString() },
-        };
+        claims.Add("access_key", appAccessKey);
+        claims.Add("jti", Guid.NewGuid().ToString());
+        claims.Add("version", 2);
 
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appSecretKey));
         var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -51,7 +40,7 @@ internal class ManagementTokenService(string accessKey, string secretKey) : ITok
         var tokenHandler = new JwtSecurityTokenHandler();
         var token = tokenHandler.CreateJwtSecurityToken(tokenDescriptor);
         var jwtToken = tokenHandler.WriteToken(token);
-        return new ManagementToken(jwtToken);
+        return new Token(jwtToken);
     }
     #endregion
 }

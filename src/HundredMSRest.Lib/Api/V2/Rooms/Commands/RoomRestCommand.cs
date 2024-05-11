@@ -2,6 +2,8 @@
 using HundredMSRest.Lib.Api.V2.Rooms.Requests;
 using HundredMSRest.Lib.Api.V2.Rooms.Responses;
 using HundredMSRest.Lib.Core.Commands;
+using HundredMSRest.Lib.Core.Services;
+using HundredMSRest.Lib.Core.Tokens;
 
 namespace HundredMSRest.Lib.Api.V2.Rooms.Commands;
 
@@ -19,6 +21,18 @@ public sealed class RoomRestCommand : RestCommand
     {
         string baseRoute = "v2/rooms";
         BaseUrl = urlExtension is not null ? $"{baseRoute}/{urlExtension}" : baseRoute;
+    }
+
+    /// <summary>
+    /// Returns a new authentication token that can be used to connect to a room
+    /// </summary>
+    /// <param name="roomId"></param>
+    /// <param name="role"></param>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    public static Token GetRoomToken(string roomId, string role, string userId)
+    {
+        return new TokenService().GetAuthToken(roomId, role, userId);
     }
 
     /// <summary>

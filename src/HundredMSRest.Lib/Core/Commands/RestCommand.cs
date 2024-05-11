@@ -48,9 +48,9 @@ public class RestCommand
         CancellationToken cancellationToken = default
     )
     {
-        ApiToken apiToken = new TokenService().GetToken(TokenType.Management);
+        Token apiToken = new TokenService().GetManagementToken();
         var request = new RestRequest(
-            apiToken.Token,
+            apiToken.Value,
             httpMethod,
             url ?? BaseUrl,
             new RestClient(httpClient)

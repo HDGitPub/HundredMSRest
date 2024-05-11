@@ -46,7 +46,7 @@ public class SessionsRestCommandTests
     [Fact]
     public async Task List_Sessions_AfterDate_ReturnsSessions()
     {
-        DateTime after = new DateTime(2024, 05, 7, 2, 30, 0);
+        var after = new DateTime(2024, 05, 7, 2, 30, 0);
 
         // Arrange
         var filter = new SessionsRequestFilter().AddAfter(after).Filter();
@@ -62,7 +62,7 @@ public class SessionsRestCommandTests
     [Fact]
     public async Task List_Sessions_BeforeDate_ReturnsSessions()
     {
-        DateTime before = new DateTime(2024, 05, 6, 6, 30, 0);
+        var before = new DateTime(2024, 05, 6, 6, 30, 0);
 
         // Arrange
         var filter = new SessionsRequestFilter().AddBefore(before).Filter();

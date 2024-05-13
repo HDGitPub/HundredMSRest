@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Api\V2\Common\Builders\" />
     <Folder Include="Api\V2\Sessions\Builders\" />
   </ItemGroup>
 

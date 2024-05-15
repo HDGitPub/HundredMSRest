@@ -1,5 +1,5 @@
 using System.Text;
-using HundredMSRest.Lib.Api.V2.Sessions.Requests;
+using HundredMSRest.Lib.Core.Interfaces;
 
 namespace HundredMSRest.Lib.Api.V2.Sessions.Filters;
 
@@ -7,20 +7,34 @@ namespace HundredMSRest.Lib.Api.V2.Sessions.Filters;
 /// Class <c>SessionsRequestFilter</c> Builds a new SessionsRequest filter
 /// that represents a set of query parameters that can be sent to the API
 /// </summary>
-public class SessionsRequestFilter
+public class SessionsRequestFilter : IRequestFilter
 {
     #region Attributes
-    private readonly SessionsRequest _request;
+    public bool? _active;
+
+    /// <summary>
+    /// etch the list of sessions created in the room specified.
+    /// </summary>
+    public string? _room_id;
+
+    /// <summary>
+    /// Check for sessions started with a timestamp greater than or equal to "after"
+    /// </summary>
+    public DateTime? _after;
+
+    /// <summary>
+    /// Check for sessions started with a timestamp less than or equal to "after"
+    /// </summary>
+    public DateTime? _before;
+
+    /// <summary>
+    /// Determines the number of session objects to be included in response.
+    /// Allowed values: Min: 10, Max: 100
+    /// </summary>
+    public int? _limit;
     #endregion
 
     #region Methods
-    /// <summary>
-    /// Constructor
-    /// </summary>
-    public SessionsRequestFilter()
-    {
-        _request = new SessionsRequest();
-    }
 
     /// <summary>
     /// Returns a new SessionsRequest filter
@@ -29,25 +43,25 @@ public class SessionsRequestFilter
     public string Filter()
     {
         var builder = new StringBuilder("?");
-        if (_request.active is not null)
+        if (_active is not null)
         {
-            builder.Append($"active={_request.active?.ToString().ToLower()}&");
+            builder.Append($"active={_active?.ToString().ToLower()}&");
         }
-        if (_request.room_id is not null)
+        if (_room_id is not null)
         {
-            builder.Append($"room_id={_request.room_id}&");
+            builder.Append($"room_id={_room_id}&");
         }
-        if (_request.before is not null)
+        if (_before is not null)
         {
-            builder.Append($"before={_request.before?.ToString("o")}&");
+            builder.Append($"before={_before?.ToString("o")}&");
         }
-        if (_request.after is not null)
+        if (_after is not null)
         {
-            builder.Append($"after={_request.after?.ToString("o")}&");
+            builder.Append($"after={_after?.ToString("o")}&");
         }
-        if (_request.limit is not null)
+        if (_limit is not null)
         {
-            builder.Append($"limit={_request.limit}&");
+            builder.Append($"limit={_limit}&");
         }
         return builder.ToString().TrimEnd('&');
     }
@@ -59,7 +73,7 @@ public class SessionsRequestFilter
     /// <returns></returns>
     public SessionsRequestFilter AddActive(bool active)
     {
-        _request.active = active;
+        _active = active;
         return this;
     }
 
@@ -70,7 +84,7 @@ public class SessionsRequestFilter
     /// <returns></returns>
     public SessionsRequestFilter AddRoomId(string roomId)
     {
-        _request.room_id = roomId;
+        _room_id = roomId;
         return this;
     }
 
@@ -83,7 +97,7 @@ public class SessionsRequestFilter
     public SessionsRequestFilter AddAfter(DateTime after)
     {
         after = after.Kind != DateTimeKind.Utc ? after.ToUniversalTime() : after;
-        _request.after = after;
+        _after = after;
         return this;
     }
 
@@ -96,7 +110,7 @@ public class SessionsRequestFilter
     public SessionsRequestFilter AddBefore(DateTime before)
     {
         before = before.Kind != DateTimeKind.Utc ? before.ToUniversalTime() : before;
-        _request.before = before;
+        _before = before;
         return this;
     }
 
@@ -107,7 +121,7 @@ public class SessionsRequestFilter
     /// <returns></returns>
     public SessionsRequestFilter AddLimit(int limit)
     {
-        _request.limit = limit;
+        _limit = limit;
         return this;
     }
     #endregion

@@ -1,4 +1,5 @@
-﻿using HundredMSRest.Lib.Api.V2.Recordings.DataTypes;
+﻿using HundredMSRest.Lib.Api.V2.Common.DataTypes;
+using HundredMSRest.Lib.Api.V2.Recordings.DataTypes;
 using HundredMSRest.Lib.Api.V2.Recordings.Requests;
 
 namespace HundredMSRest.Lib.Api.V2.Recordings.Builders;

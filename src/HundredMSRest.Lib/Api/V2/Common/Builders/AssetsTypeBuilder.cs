@@ -1,6 +1,6 @@
-﻿using HundredMSRest.Lib.Api.V2.Recordings.Constants;
+﻿using HundredMSRest.Lib.Api.V2.Common.Constants;
 
-namespace HundredMSRest.Lib.Api.V2.Recordings.Builders;
+namespace HundredMSRest.Lib.Api.V2.Common.Builders;
 
 /// <summary>
 /// Class <c>AssetsTypeBuilder</c> builds an AssetsType
@@ -26,7 +26,17 @@ public sealed class AssetsTypeBuilder
     /// <returns></returns>
     public AssetsTypeBuilder AddComposite()
     {
-        _assetTypes.Add("room-composite");
+        _assetTypes.Add(AssetType.ROOM_COMPOSITE);
+        return this;
+    }
+
+    /// <summary>
+    /// Adds composite asset type
+    /// </summary>
+    /// <returns></returns>
+    public AssetsTypeBuilder AddVod()
+    {
+        _assetTypes.Add(AssetType.ROOM_VOD);
         return this;
     }
 
@@ -36,7 +46,7 @@ public sealed class AssetsTypeBuilder
     /// <returns></returns>
     public AssetsTypeBuilder AddChat()
     {
-        _assetTypes.Add("chat");
+        _assetTypes.Add(AssetType.CHAT);
         return this;
     }
 
@@ -46,7 +56,7 @@ public sealed class AssetsTypeBuilder
     /// <returns></returns>
     public AssetsTypeBuilder AddSummary()
     {
-        _assetTypes.Add("summary");
+        _assetTypes.Add(AssetType.SUMMARY);
         return this;
     }
 
@@ -56,7 +66,7 @@ public sealed class AssetsTypeBuilder
     /// <returns></returns>
     public AssetsTypeBuilder AddTranscript()
     {
-        _assetTypes.Add("transcript");
+        _assetTypes.Add(AssetType.TRANSCRIPT);
         return this;
     }
 

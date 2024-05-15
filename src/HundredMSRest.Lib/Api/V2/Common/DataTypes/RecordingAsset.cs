@@ -1,7 +1,7 @@
-﻿namespace HundredMSRest.Lib.Api.V2.Recordings.DataTypes;
+﻿namespace HundredMSRest.Lib.Api.V2.Common.DataTypes;
 
 /// <summary>
-/// Record <c>RecordingAsset</c>
+/// Record <c>RecordingAsset</c> Represents a recording asset
 /// </summary>
 public record RecordingAsset
 {

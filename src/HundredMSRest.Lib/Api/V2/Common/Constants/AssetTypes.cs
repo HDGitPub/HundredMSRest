@@ -1,4 +1,4 @@
-﻿namespace HundredMSRest.Lib.Api.V2.Recordings.Constants;
+﻿namespace HundredMSRest.Lib.Api.V2.Common.Constants;
 
 /// <summary>
 /// Class <c>AssetTypes</c> Represents recording asset types

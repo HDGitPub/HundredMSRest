@@ -57,7 +57,7 @@ public sealed class RecordingAssetRestCommand : RestCommand
     /// <returns></returns>
     public static async Task<PresignedUrl?> GetPreSignedUrlAsync(
         string assetId,
-        int? duration,
+        int? duration = null,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
     )

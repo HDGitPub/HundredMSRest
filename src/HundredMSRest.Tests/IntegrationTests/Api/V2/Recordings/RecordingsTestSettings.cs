@@ -5,8 +5,8 @@ namespace HundredMSRest.Tests.IntegrationTests.Api.V2.Recordings;
 internal class RecordingsTestSettings : TestSettings
 {
     #region Attributes
-    private const string RECORDING_ID = "HundredMSRest:RecordingId";
-    private const string RECORDING_ROOM_ID = "HundredMSRest:RecordingRoomId";
+    private const string RECORDING_ID = "HundredMSRest:Recording:Id";
+    private const string RECORDING_ROOM_ID = "HundredMSRest:Recording:RoomId";
     #endregion
 
     #region Properties

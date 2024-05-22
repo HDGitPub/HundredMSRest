@@ -63,8 +63,8 @@ public sealed class RecordingAssetRestCommand : RestCommand
     )
     {
         var commandUrl = duration is not null
-            ? $"{assetId}/presigned-url"
-            : $"{assetId}/presigned-url?presign_duration={duration}";
+            ? $"{assetId}/presigned-url?presign_duration={duration}"
+            : $"{assetId}/presigned-url";
         var command = new RecordingAssetRestCommand(commandUrl);
         var result = await command.RequestAsync<PresignedUrl>(
             HttpMethod.Get,
@@ -82,9 +82,9 @@ public sealed class RecordingAssetRestCommand : RestCommand
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public static async Task<RecordingAssetList?> ListAsync(
-    string? filter = null,
-    HttpClient? httpClient = null,
-    CancellationToken cancellationToken = default
+        string? filter = null,
+        HttpClient? httpClient = null,
+        CancellationToken cancellationToken = default
     )
     {
         var command = new RecordingAssetRestCommand(filterParams: filter);

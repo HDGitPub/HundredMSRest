@@ -5,10 +5,10 @@ namespace HundredMSRest.Tests.IntegrationTests.Api.V2.ActiveRooms;
 internal class ActiveRoomTestSettings : TestSettings
 {
     #region Attributes
-    private const string ACTIVE_ROOM_ID = "HundredMSRest:ActiveRoomId";
-    private const string PEER_ID = "HundredMSRest:PeerId";
-    private const string ROLE = "HundredMSRest:Role";
-    private const string USER_ID = "HundredMSRest:UserId";
+    private const string ACTIVE_ROOM_ID = "HundredMSRest:ActiveRoom:RoomId";
+    private const string PEER_ID = "HundredMSRest:ActiveRoom:PeerId";
+    private const string ROLE = "HundredMSRest:ActiveRoom:Role";
+    private const string USER_ID = "HundredMSRest:ActiveRoom:UserId";
     #endregion
 
     #region Properties

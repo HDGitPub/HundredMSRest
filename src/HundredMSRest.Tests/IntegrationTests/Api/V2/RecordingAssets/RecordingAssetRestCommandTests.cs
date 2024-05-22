@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using HundredMSRest.Lib.Api.V2.Common.Constants;
 using HundredMSRest.Lib.Api.V2.Common.DataTypes;
 using HundredMSRest.Lib.Api.V2.RecordingAssets.Commands;
 using HundredMSRest.Lib.Api.V2.RecordingAssets.DataTypes;
@@ -6,9 +7,11 @@ using HundredMSRest.Lib.Api.V2.RecordingAssets.Filters;
 using HundredMSRest.Lib.Api.V2.RecordingAssets.Responses;
 
 namespace HundredMSRest.Tests.IntegrationTests.Api.V2.RecordingAssets;
+
 public class RecordingAssetRestCommandTests
 {
     private readonly RecordingAssetTestSettings _settings;
+
     public RecordingAssetRestCommandTests()
     {
         _settings = new RecordingAssetTestSettings();
@@ -54,10 +57,10 @@ public class RecordingAssetRestCommandTests
         // Arrange
         var assetId = _settings.AssetId;
         var expected = new { id = assetId };
-        var duration = 20;
+        var duration = 300; //5 minutes in seconds
 
         // Act
-        var result = await RecordingAssetRestCommand.GetPreSignedUrlAsync(assetId,duration);
+        var result = await RecordingAssetRestCommand.GetPreSignedUrlAsync(assetId, duration);
 
         // Assert
         result.Should().NotBeNull();
@@ -117,8 +120,7 @@ public class RecordingAssetRestCommandTests
     public async void List_RecordingAssets_FilterByStatus_ReturnsRecordingAssets()
     {
         // Arrange
-        var status = _settings.Status;
-        var filter = new RecordingAssetFilter().AddStatus(status).Filter();
+        var filter = new RecordingAssetFilter().AddStatus(RecordingAssetStatus.COMPLETED).Filter();
 
         // Act
         var result = await RecordingAssetRestCommand.ListAsync(filter);

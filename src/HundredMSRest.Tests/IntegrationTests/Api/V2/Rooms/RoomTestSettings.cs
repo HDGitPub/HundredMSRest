@@ -8,11 +8,11 @@ namespace HundredMSRest.Tests.IntegrationTests.Api.V2.Rooms;
 internal class RoomTestSettings : TestSettings
 {
     #region Attributes
-    private const string TEMPLATE_ID = "HundredMSRest:TemplateId";
-    private const string ROOM_ID = "HundredMSRest:RoomId";
-    private const string BUCKET = "HundredMSRest:Bucket";
-    private const string BUCKET_ACCESSKEY = "HundredMSRest:BucketAccessKey";
-    private const string BUCKET_SECRETKEY = "HundredMSRest:BucketSecretKey";
+    private const string TEMPLATE_ID = "HundredMSRest:Room:TemplateId";
+    private const string ROOM_ID = "HundredMSRest:Room:RoomId";
+    private const string BUCKET = "HundredMSRest:Room:Bucket";
+    private const string BUCKET_ACCESSKEY = "HundredMSRest:Room:BucketAccessKey";
+    private const string BUCKET_SECRETKEY = "HundredMSRest:Room:BucketSecretKey";
     #endregion
 
     #region Methods

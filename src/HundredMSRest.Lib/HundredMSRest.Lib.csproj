@@ -4,6 +4,15 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>HundredMSRest.Lib</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Hooker Davis</Authors>
+    <Description>100MS rest client library allows your services to connect to the 100MS rest API</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>100MS Rest Client Library</Title>
+    <PackageProjectUrl>https://github.com/HDGitPub/HundredMSRest</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +28,14 @@
     <Folder Include="Api\V2\RecordingAssets\Requests\" />
     <Folder Include="Api\V2\Sessions\Builders\" />
     <Folder Include="Api\V2\Sessions\Requests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

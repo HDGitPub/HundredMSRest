@@ -7,4 +7,4 @@ namespace HundredMSRest.Lib.Api.V2.RoomCodes.Requests;
 /// </summary>
 /// <param name="code"></param>
 /// <param name="enabled"></param>
-public record RoomCodeRequest(string code,bool enabled) : RequestRecord;
+public record RoomCodeRequest(string code, bool enabled) : RequestRecord;

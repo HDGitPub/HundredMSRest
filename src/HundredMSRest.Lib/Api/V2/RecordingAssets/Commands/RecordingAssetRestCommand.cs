@@ -6,7 +6,7 @@ using HundredMSRest.Lib.Core.Commands;
 namespace HundredMSRest.Lib.Api.V2.RecordingAssets.Commands;
 
 /// <summary>
-/// Class <cRecordingAssetsRestCommand></c> Provides recording assets commands
+/// Class <c>RecordingAssetsRestCommand></c> Provides recording assets commands
 /// </summary>
 public sealed class RecordingAssetRestCommand : RestCommand
 {
@@ -18,7 +18,7 @@ public sealed class RecordingAssetRestCommand : RestCommand
     /// <param name="filterParams"></param>
     public RecordingAssetRestCommand(string? urlParams = null, string? filterParams = null)
     {
-        BuildBaseRoute("v2/recording-assets",urlParams,filterParams);
+        BuildBaseRoute("v2/recording-assets", urlParams, filterParams);
     }
 
     /// <summary>

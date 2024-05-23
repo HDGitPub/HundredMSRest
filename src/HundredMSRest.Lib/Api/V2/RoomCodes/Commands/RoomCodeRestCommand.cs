@@ -98,7 +98,7 @@ public sealed class RoomCodeRestCommand : RestCommand
         CancellationToken cancellationToken = default
     )
     {
-        var request = new RoomCodeRequest(roomCode,enabled);
+        var request = new RoomCodeRequest(roomCode, enabled);
         var command = new RoomCodeRestCommand($"code");
         return await command.RequestAsync<RoomCode>(
             HttpMethod.Post,

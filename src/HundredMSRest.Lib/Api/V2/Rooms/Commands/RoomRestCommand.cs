@@ -17,10 +17,9 @@ public sealed class RoomRestCommand : RestCommand
     /// <summary>
     /// Constructor takes RequestData and HttpMethod
     /// </summary>
-    public RoomRestCommand(string? urlExtension = null)
+    public RoomRestCommand(string? urlParams = null)
     {
-        string baseRoute = "v2/rooms";
-        BaseUrl = urlExtension is not null ? $"{baseRoute}/{urlExtension}" : baseRoute;
+        BuildBaseRoute("v2/rooms", urlParams);
     }
 
     /// <summary>

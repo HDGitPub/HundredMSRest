@@ -15,12 +15,7 @@ public sealed class SessionRestCommand : RestCommand
     /// </summary>
     public SessionRestCommand(string? urlParams = null, string? filterParams = null)
     {
-        string baseRoute = "v2/sessions";
-        BaseUrl = urlParams is not null ? $"{baseRoute}/{urlParams}" : baseRoute;
-        if (urlParams is not null)
-            return;
-
-        BaseUrl = filterParams is not null ? $"{baseRoute}{filterParams}" : baseRoute;
+        BuildBaseRoute("v2/sessions", urlParams, filterParams);
     }
 
     /// <summary>

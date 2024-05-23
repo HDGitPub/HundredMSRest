@@ -15,12 +15,7 @@ public class RecordingRestCommand : RestCommand
     /// </summary>
     public RecordingRestCommand(string? urlParams = null, string? filterParams = null)
     {
-        string baseRoute = "v2/recordings";
-        BaseUrl = urlParams is not null ? $"{baseRoute}/{urlParams}" : baseRoute;
-        if (urlParams is not null)
-            return;
-
-        BaseUrl = filterParams is not null ? $"{baseRoute}{filterParams}" : baseRoute;
+        BuildBaseRoute("v2/recordings", urlParams, filterParams);
     }
 
     /// <summary>

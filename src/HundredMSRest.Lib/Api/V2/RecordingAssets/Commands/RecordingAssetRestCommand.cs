@@ -18,12 +18,7 @@ public sealed class RecordingAssetRestCommand : RestCommand
     /// <param name="filterParams"></param>
     public RecordingAssetRestCommand(string? urlParams = null, string? filterParams = null)
     {
-        string baseRoute = "v2/recording-assets";
-        BaseUrl = urlParams is not null ? $"{baseRoute}/{urlParams}" : baseRoute;
-        if (urlParams is not null)
-            return;
-
-        BaseUrl = filterParams is not null ? $"{baseRoute}{filterParams}" : baseRoute;
+        BuildBaseRoute("v2/recording-assets",urlParams,filterParams);
     }
 
     /// <summary>

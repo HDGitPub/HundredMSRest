@@ -13,10 +13,9 @@ public class ActiveRoomRestCommand : RestCommand
     /// <summary>
     /// Constructor takes RequestData and HttpMethod
     /// </summary>
-    public ActiveRoomRestCommand(string? urlExtension = null)
+    public ActiveRoomRestCommand(string? urlParams = null)
     {
-        string baseRoute = "v2/active-rooms";
-        BaseUrl = urlExtension is not null ? $"{baseRoute}/{urlExtension}" : baseRoute;
+        BuildBaseRoute("v2/active-rooms",urlParams);
     }
 
     /// <summary>

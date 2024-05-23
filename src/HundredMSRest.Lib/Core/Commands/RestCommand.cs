@@ -4,6 +4,7 @@ using HundredMSRest.Lib.Core.Interfaces;
 using HundredMSRest.Lib.Core.Requests;
 using HundredMSRest.Lib.Core.Services;
 using HundredMSRest.Lib.Core.Tokens;
+using System.IO.Compression;
 
 namespace HundredMSRest.Lib.Core.Commands;
 
@@ -15,19 +16,19 @@ public class RestCommand
 {
     #region Attributes
 
-    protected string _baseUrl;
+    protected string _baseUrl = string.Empty;
 
     #endregion
 
     #region Methods
 
-    /// <summary>
-    /// Constructor
-    /// </summary>
-    /// <param name="data">Request data to pass to the 100MS Api</param>
-    public RestCommand()
+    protected void BuildBaseRoute(string baseRoute,string? urlParams = null,string? filterParams = null)
     {
-        _baseUrl = string.Empty;
+        _baseUrl = urlParams is not null ? $"{baseRoute}/{urlParams}" : baseRoute;
+        if (urlParams is not null)
+            return;
+
+        _baseUrl = filterParams is not null ? $"{baseRoute}{filterParams}" : baseRoute;
     }
 
     /// <summary>

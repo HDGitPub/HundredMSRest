@@ -1,5 +1,5 @@
-﻿using HundredMSRest.Lib.Api.V2.Recordings.Constants;
-using HundredMSRest.Lib.Api.V2.Recordings.DataTypes;
+﻿using HundredMSRest.Lib.Api.V2.Common.DataTypes;
+using HundredMSRest.Lib.Api.V2.Recordings.Constants;
 
 namespace HundredMSRest.Lib.Api.V2.Recordings.Builders;
 
@@ -41,6 +41,7 @@ public sealed class TranscriptionBuilder
     public TranscriptionBuilder AddOutputModes(OutputModes outputModes)
     {
         _transcription.output_modes = outputModes;
+        _transcription.outputModes = outputModes;
         return this;
     }
 
@@ -52,6 +53,7 @@ public sealed class TranscriptionBuilder
     public TranscriptionBuilder AddCustomVocabulary(string[] vocabulary)
     {
         _transcription.custom_vocabulary = vocabulary;
+        _transcription.customVocabulary = vocabulary;
         return this;
     }
 

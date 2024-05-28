@@ -15,7 +15,7 @@ public class ActiveRoomRestCommand : RestCommand
     /// </summary>
     public ActiveRoomRestCommand(string? urlParams = null)
     {
-        BuildBaseRoute("v2/active-rooms",urlParams);
+        BuildBaseRoute("v2/active-rooms", urlParams);
     }
 
     /// <summary>

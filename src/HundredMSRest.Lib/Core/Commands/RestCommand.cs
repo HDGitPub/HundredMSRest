@@ -1,10 +1,8 @@
 ﻿using HundredMSRest.Lib.Core.Clients;
-using HundredMSRest.Lib.Core.Enums;
 using HundredMSRest.Lib.Core.Interfaces;
 using HundredMSRest.Lib.Core.Requests;
 using HundredMSRest.Lib.Core.Services;
 using HundredMSRest.Lib.Core.Tokens;
-using System.IO.Compression;
 
 namespace HundredMSRest.Lib.Core.Commands;
 
@@ -22,7 +20,11 @@ public class RestCommand
 
     #region Methods
 
-    protected void BuildBaseRoute(string baseRoute,string? urlParams = null,string? filterParams = null)
+    protected void BuildBaseRoute(
+        string baseRoute,
+        string? urlParams = null,
+        string? filterParams = null
+    )
     {
         _baseUrl = urlParams is not null ? $"{baseRoute}/{urlParams}" : baseRoute;
         if (urlParams is not null)

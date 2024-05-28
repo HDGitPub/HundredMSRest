@@ -1,4 +1,4 @@
-﻿namespace HundredMSRest.Lib.Api.V2.Rooms.DataTypes;
+﻿namespace HundredMSRest.Lib.Api.V2.Common.DataTypes;
 
 /// <summary>
 /// Record <c>RecordingInfo</c>
@@ -9,4 +9,5 @@ public record RecordingInfo
 {
     public bool? enabled { get; set; }
     public UploadInfo? upload_info { get; set; }
+    public UploadInfo? upload { get; set; }
 }

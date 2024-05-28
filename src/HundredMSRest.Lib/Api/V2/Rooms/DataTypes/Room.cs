@@ -1,4 +1,6 @@
-﻿namespace HundredMSRest.Lib.Api.V2.Rooms.DataTypes;
+﻿using HundredMSRest.Lib.Api.V2.Common.DataTypes;
+
+namespace HundredMSRest.Lib.Api.V2.Rooms.DataTypes;
 
 /// <summary>
 /// Record <c>Room</c>

@@ -1,4 +1,5 @@
-﻿using HundredMSRest.Lib.Api.V2.Rooms.DataTypes;
+﻿using HundredMSRest.Lib.Api.V2.Common.DataTypes;
+using HundredMSRest.Lib.Api.V2.Rooms.DataTypes;
 using HundredMSRest.Lib.Api.V2.Rooms.Requests;
 using HundredMSRest.Lib.Core.Common;
 

@@ -6,6 +6,6 @@ namespace HundredMSRest.Lib.Api.V2.Policy.DataTypes;
 public record SubscribeParams
 {
     public int maxSubsBitRate { get; set; }
-    public string[]? subscribeToRoles { get; set; }
+    public IEnumerable<string>? subscribeToRoles { get; set; }
     public SubscribeDegradation? subscribeDegradation { get; set; }
 }

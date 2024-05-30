@@ -1,6 +1,4 @@
-﻿using System.IO.Compression;
-using HundredMSRest.Lib.Core.Clients;
-using HundredMSRest.Lib.Core.Enums;
+﻿using HundredMSRest.Lib.Core.Clients;
 using HundredMSRest.Lib.Core.Interfaces;
 using HundredMSRest.Lib.Core.Requests;
 using HundredMSRest.Lib.Core.Services;

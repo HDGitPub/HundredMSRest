@@ -9,6 +9,6 @@ public record Role
     public PublishParams? publishParams { get; set; }
     public SubscribeParams? subscribeParams { get; set; }
     public Permissions? permissions { get; set; }
-    public int priority { get; set; }
-    public int maxPeerCount { get; set; }
+    public int? priority { get; set; }
+    public int? maxPeerCount { get; set; }
 }

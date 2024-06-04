@@ -14,6 +14,12 @@ public sealed class PolicyBuilder
         _template = new Template();
     }
 
+    public PolicyBuilder AddName(string name)
+    {
+        _template.name = name;
+        return this;
+    }
+
     public PolicyBuilder AddRole(Role role)
     {
         if (_template.roles is null)
@@ -22,6 +28,18 @@ public sealed class PolicyBuilder
         {
             _template.roles.Add(role.name, role);
         }
+        return this;
+    }
+
+    public PolicyBuilder AddSettings(Settings settings)
+    {
+        _template.settings = settings;
+        return this;
+    }
+
+    public PolicyBuilder AddDestinations(Destinations destinations)
+    {
+        _template.destinations = destinations;
         return this;
     }
 

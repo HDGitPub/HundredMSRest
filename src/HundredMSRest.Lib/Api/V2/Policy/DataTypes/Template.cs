@@ -1,9 +1,11 @@
+using HundredMSRest.Lib.Core.Requests;
+
 namespace HundredMSRest.Lib.Api.V2.Policy.DataTypes;
 
 /// <summary>
 /// Record <c>Template</c> Template
 /// </summary>
-public record Template
+public record Template : RequestRecord
 {
     public string? id { get; set; }
     public string? name { get; set; }

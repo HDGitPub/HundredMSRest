@@ -32,4 +32,5 @@ internal class Strings
     public const string POLICY_INVALID_DEGRADATION_GRACE_PERIOD = "must be within range 1 - 10";
     public const string POLICY_INVALID_DEGRADATION_RECOVER_PERIOD = "must be within range 1 - 10";
     public const string POLICY_INVALID_ROLE_PRIORITY = "must be withing range 1 - 5";
+    public const string POLICY_INVALID_REGION = "region must be (in, us, eu or auto)";
 }

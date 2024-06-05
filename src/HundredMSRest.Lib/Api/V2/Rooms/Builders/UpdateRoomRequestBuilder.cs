@@ -110,7 +110,7 @@ public class UpdateRoomRequestBuilder
         if (_request.recording_info?.upload_info is null)
             throw new Exception(Strings.ROOM_INVALID_CREDENTIALS_CONFIG);
 
-        _request.recording_info.upload_info.credentials = new Credentials(key, secret);
+        _request.recording_info.upload_info.credentials = new Credentials(key) { secret = secret };
         return this;
     }
 

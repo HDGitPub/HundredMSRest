@@ -2,63 +2,117 @@ using HundredMSRest.Lib.Api.V2.Policy.DataTypes;
 
 namespace HundredMSRest.Lib.Api.V2.Policy.Builders;
 
+/// <summary>
+/// Class <c>HlsDestinationsBuilder</c> Builds HlsDestinations class
+/// </summary>
 public sealed class HlsDestinationsBuilder
 {
     #region Attributes
     private readonly HlsDestinations _hlsDestinations;
     #endregion
 
-    #region Method
-    public HlsDestinationsBuilder()
+    #region Methods
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="name"></param>
+    public HlsDestinationsBuilder(string name)
     {
-        _hlsDestinations = new HlsDestinations("");
+        _hlsDestinations = new HlsDestinations(name);
     }
 
-    public HlsRecording? recording { get; set; }
-
+    /// <summary>
+    /// Adds max duration
+    /// </summary>
+    /// <param name="maxDuration"></param>
+    /// <returns></returns>
     public HlsDestinationsBuilder AddMaxDuration(int maxDuration)
     {
         _hlsDestinations.maxDuration = maxDuration;
         return this;
     }
 
+    /// <summary>
+    /// Adds playlist type
+    /// </summary>
+    /// <param name="playListType"></param>
+    /// <returns></returns>
     public HlsDestinationsBuilder AddPlayListType(string playListType)
     {
         _hlsDestinations.playlistType = playListType;
         return this;
     }
 
+    /// <summary>
+    /// Adds num playlist segments
+    /// </summary>
+    /// <param name="numPlaylistSegments"></param>
+    /// <returns></returns>
     public HlsDestinationsBuilder AddNumPlayListSegmets(int numPlaylistSegments)
     {
         _hlsDestinations.numPlaylistSegments = numPlaylistSegments;
         return this;
     }
 
+    /// <summary>
+    /// Adds VideoFrameRate
+    /// </summary>
+    /// <param name="videoFrameRate"></param>
+    /// <returns></returns>
     public HlsDestinationsBuilder AddVideoFrameRate(int videoFrameRate)
     {
         _hlsDestinations.videoFrameRate = videoFrameRate;
         return this;
     }
 
+    /// <summary>
+    /// Adds EnabledMetaDataInsertion
+    /// </summary>
+    /// <param name="enableMetaDataInsertion"></param>
+    /// <returns></returns>
     public HlsDestinationsBuilder AddEnableMetaDataInsertion(bool enableMetaDataInsertion)
     {
         _hlsDestinations.enableMetadataInsertion = enableMetaDataInsertion;
         return this;
     }
 
+    /// <summary>
+    /// Adds StaticUrl
+    /// </summary>
+    /// <param name="enableStaticUrl"></param>
+    /// <returns></returns>
     public HlsDestinationsBuilder AddStaticUrl(bool enableStaticUrl)
     {
         _hlsDestinations.enableStaticUrl = enableStaticUrl;
         return this;
     }
 
+    /// <summary>
+    /// Adds autostoptimeout
+    /// </summary>
+    /// <param name="autoStopTimeout"></param>
+    /// <returns></returns>
     public HlsDestinationsBuilder AddAutoStopTimeout(int autoStopTimeout)
     {
         _hlsDestinations.autoStopTimeout = autoStopTimeout;
         return this;
     }
 
-    public HlsDestinationsBuilder AddHlsLayers(int? width, int? height, int? videoBitrate, int? audioBitrate)
+    /// <summary>
+    /// Adds Hlslayer configuration
+    /// </summary>
+    /// <param name="width"></param>
+    /// <param name="height"></param>
+    /// <param name="videoBitrate"></param>
+    /// <param name="audioBitrate"></param>
+    /// <returns></returns>
+    public HlsDestinationsBuilder AddHlsLayers(
+        int? width,
+        int? height,
+        int? videoBitrate,
+        int? audioBitrate
+    )
     {
         var hlsLayer = new HlsLayer()
         {
@@ -72,14 +126,24 @@ public sealed class HlsDestinationsBuilder
         return this;
     }
 
-        public bool hlsVod { get; set; }
-    public bool singleFilePerLayer { get; set; }
-    public bool enableZipUpload { get; set; }
-    public HlsLayer? layers { get; set; }
-    public Thumbnail? thumbnails { get; set; }
-    public int presignDuration { get; set; }
-
-    public HlsDestinationsBuilder AddHlsRecording(bool? hlsVod,bool? singleFilePerLayer, bool? enableZipUpload,HlsLayer? layers,Thumbnail? thumbnails,int presignDuration)
+    /// <summary>
+    /// Adds hls recording configuration
+    /// </summary>
+    /// <param name="hlsVod"></param>
+    /// <param name="singleFilePerLayer"></param>
+    /// <param name="enableZipUpload"></param>
+    /// <param name="layers"></param>
+    /// <param name="thumbnails"></param>
+    /// <param name="presignDuration"></param>
+    /// <returns></returns>
+    public HlsDestinationsBuilder AddHlsRecording(
+        bool? hlsVod,
+        bool? singleFilePerLayer,
+        bool? enableZipUpload,
+        HlsLayer? layers,
+        Thumbnail? thumbnails,
+        int presignDuration
+    )
     {
         var hlsRecording = new HlsRecording()
         {
@@ -94,5 +158,13 @@ public sealed class HlsDestinationsBuilder
         return this;
     }
 
+    /// <summary>
+    /// Returns a configured instance of HlsDestinations class
+    /// </summary>
+    /// <returns></returns>
+    public HlsDestinations Build()
+    {
+        return _hlsDestinations;
+    }
     #endregion
 }

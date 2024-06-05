@@ -10,7 +10,7 @@ public record Template : RequestRecord
     public string? id { get; set; }
     public string? name { get; set; }
     public string? customer_id { get; set; }
-    public Dictionary<string, Role>? roles { get; set; }
+    public IDictionary<string, Role>? roles { get; set; }
     public Settings? settings { get; set; }
     public Destinations? destinations { get; set; }
 }

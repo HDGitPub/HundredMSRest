@@ -8,6 +8,7 @@
 public record RecordingInfo
 {
     public bool? enabled { get; set; }
+
     public UploadInfo? upload_info { get; set; }
     public UploadInfo? upload { get; set; }
 }

@@ -7,7 +7,7 @@ namespace HundredMSRest.Lib.Api.V2.Policy.DataTypes;
 /// </summary>
 public record PublishParams
 {
-    public IEnumerable<TrackType>? allowed { get; set; }
+    public IEnumerable<string>? allowed { get; set; }
     public AudioParams? audio { get; set; }
     public VideoParams? video { get; set; }
     public ScreenParams? screen { get; set; }

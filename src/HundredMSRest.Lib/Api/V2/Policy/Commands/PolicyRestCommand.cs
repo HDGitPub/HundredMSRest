@@ -8,11 +8,23 @@ namespace HundredMSRest.Lib.Api.V2.Policy.Commands;
 /// </summary>
 public sealed class PolicyRestCommand : RestCommand
 {
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="urlParams"></param>
+    /// <param name="filterParams"></param>
     public PolicyRestCommand(string? urlParams = null, string? filterParams = null)
     {
         BuildBaseRoute("v2/templates", urlParams, filterParams);
     }
 
+    /// <summary>
+    /// Creates a new policy template
+    /// </summary>
+    /// <param name="template"></param>
+    /// <param name="httpClient"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     public static async Task<Template?> CreateAsync(
         Template template,
         HttpClient? httpClient = null,
@@ -23,6 +35,7 @@ public sealed class PolicyRestCommand : RestCommand
         return await command.RequestAsync<Template>(
             HttpMethod.Post,
             httpClient,
+            requestRecord: template,
             cancellationToken: cancellationToken
         );
     }

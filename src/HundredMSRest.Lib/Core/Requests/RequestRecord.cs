@@ -14,8 +14,8 @@ public record RequestRecord : IRequestRecord
     private static readonly JsonSerializerOptions RecordSerializerOptions =
         new()
         {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            PropertyNamingPolicy = new LowerCaseNamingPolicy()
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            //PropertyNamingPolicy = new LowerCaseNamingPolicy()
         };
 
     /// <summary>

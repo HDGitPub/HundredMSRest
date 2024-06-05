@@ -5,7 +5,7 @@ namespace HundredMSRest.Lib.Api.V2.Common.DataTypes;
 /// <summary>
 /// Record <c>Transcription</c>
 /// </summary>
-public class Transcription
+public record Transcription(string name)
 {
     public bool? enabled { get; set; }
     public OutputModes? output_modes { get; set; }

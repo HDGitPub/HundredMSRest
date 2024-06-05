@@ -3,6 +3,9 @@ using HundredMSRest.Lib.Core.Common;
 
 namespace HundredMSRest.Lib.Api.V2.Policy.Builders;
 
+/// <summary>
+/// Class <c>SubscibeParamsBuilder</c> Builds SubscribeParams class
+/// </summary>
 public sealed class SubscribeParamsBuilder
 {
     #region Attributes
@@ -10,27 +13,49 @@ public sealed class SubscribeParamsBuilder
     #endregion
 
     #region Methods
+
+    /// <summary>
+    /// Constructor
+    /// </summary>
     public SubscribeParamsBuilder()
     {
         _subscribeParams = new SubscribeParams();
     }
 
+    /// <summary>
+    /// Adds MaxSubsBitRate
+    /// </summary>
+    /// <param name="maxSubsBitRate"></param>
+    /// <returns></returns>
     public SubscribeParamsBuilder AddMaxSubsBitRate(int maxSubsBitRate)
     {
         _subscribeParams.maxSubsBitRate = maxSubsBitRate;
         return this;
     }
 
+    /// <summary>
+    /// Adds roles which can be subscribed to
+    /// </summary>
+    /// <param name="roleNames"></param>
+    /// <returns></returns>
     public SubscribeParamsBuilder AddSubscribeToRoles(List<string> roleNames)
     {
         _subscribeParams.subscribeToRoles = roleNames;
         return this;
     }
 
+    /// <summary>
+    /// Adds subscribe degradation params
+    /// </summary>
+    /// <param name="packetLossThreshold"></param>
+    /// <param name="degradeGracePeriodSeconds"></param>
+    /// <param name="recoverGracePeriodSeconds"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
     public SubscribeParamsBuilder AddDegradation(
-        int? packetLossThreshold,
-        int? degradeGracePeriodSeconds,
-        int? recoverGracePeriodSeconds
+        int? packetLossThreshold = null,
+        int? degradeGracePeriodSeconds = null,
+        int? recoverGracePeriodSeconds = null
     )
     {
         if (packetLossThreshold is not null && packetLossThreshold < 1 || packetLossThreshold > 100)
@@ -61,6 +86,10 @@ public sealed class SubscribeParamsBuilder
         return this;
     }
 
+    /// <summary>
+    /// Returns a configured instance of SubscribeParams
+    /// </summary>
+    /// <returns></returns>
     public SubscribeParams Build()
     {
         return _subscribeParams;

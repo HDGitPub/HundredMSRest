@@ -7,7 +7,7 @@ namespace HundredMSRest.Lib.Api.V2.Policy.DataTypes;
 /// </summary>
 public record Destinations
 {
-    public RtmpDestinations? rtmpDestinations { get; set; }
-    public HlsDestinations? hlsDestinations { get; set; }
-    public Transcription? transcriptions { get; set; }
+    public IDictionary<string, RtmpDestinations>? rtmpDestinations { get; set; }
+    public IDictionary<string, HlsDestinations>? hlsDestinations { get; set; }
+    public IDictionary<string, Transcription>? transcriptions { get; set; }
 }

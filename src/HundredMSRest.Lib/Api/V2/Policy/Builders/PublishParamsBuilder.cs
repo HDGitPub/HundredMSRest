@@ -4,6 +4,9 @@ using HundredMSRest.Lib.Core.Common;
 
 namespace HundredMSRest.Lib.Api.V2.Policy.Builders;
 
+/// <summary>
+/// Class <c>PublicParamsBuilder</c> Builds PublishParams class
+/// </summary>
 public sealed class PublishParamsBuilder
 {
     #region Attributes
@@ -11,54 +14,87 @@ public sealed class PublishParamsBuilder
     #endregion
 
     #region Methods
+    /// <summary>
+    /// Constructor
+    /// </summary>
     public PublishParamsBuilder()
     {
         _publishParams = new PublishParams();
     }
 
+    /// <summary>
+    /// Adds Allowed track types
+    /// </summary>
+    /// <param name="trackTypes"></param>
+    /// <returns></returns>
     public PublishParamsBuilder AddAllowedTracks(IEnumerable<TrackType> trackTypes)
     {
-        _publishParams.allowed = trackTypes;
+        if (trackTypes.Count() == 0)
+            return this;
+
+        var tracks = new List<string>();
+        foreach (TrackType trackType in trackTypes)
+        {
+            tracks.Add(trackType.Value);
+        }
+        _publishParams.allowed = tracks;
         return this;
     }
 
-    public PublishParamsBuilder AddAudio(int? bitrate = null, string? codec = null)
+    /// <summary>
+    /// Adds audio config
+    /// </summary>
+    /// <param name="bitRate"></param>
+    /// <param name="codec"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
+    public PublishParamsBuilder AddAudio(int? bitRate = null, string? codec = null)
     {
-        if (bitrate is not null && bitrate < 16 || bitrate > 128)
-            throw new Exception(Strings.POLICY_INVALID_AUDIO_BITRATE);
+        if (bitRate is not null && bitRate < 16 || bitRate > 128)
+            throw new ArgumentException(Strings.POLICY_INVALID_AUDIO_BITRATE);
         if (codec is not null && codec != Codec.OPUS)
-            throw new Exception(Strings.POLICY_INVALID_AUDIO_CODEC);
+            throw new ArgumentException(Strings.POLICY_INVALID_AUDIO_CODEC);
 
         _publishParams.audio = new AudioParams()
         {
-            bitRate = bitrate ?? 32,
+            bitRate = bitRate ?? 32,
             codec = codec ?? Codec.OPUS
         };
         return this;
     }
 
+    /// <summary>
+    /// Adds video config
+    /// </summary>
+    /// <param name="bitRate"></param>
+    /// <param name="frameRate"></param>
+    /// <param name="width"></param>
+    /// <param name="height"></param>
+    /// <param name="codec"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public PublishParamsBuilder AddVideo(
-        int? bitrate,
-        string? codec = null,
+        int? bitRate = null,
         int? frameRate = null,
+        int? width = null,
         int? height = null,
-        int? width = null
+        string? codec = null
     )
     {
-        if (bitrate is not null && bitrate < 30 || bitrate > 2000)
-            throw new Exception(Strings.POLICY_INVALID_VIDEO_BITRATE);
+        if (bitRate is not null && bitRate < 30 || bitRate > 2000)
+            throw new ArgumentException(Strings.POLICY_INVALID_VIDEO_BITRATE);
         if (codec is not null && codec != Codec.VP8)
-            throw new Exception(Strings.POLICY_INVALID_VIDEO_CODEC);
+            throw new ArgumentException(Strings.POLICY_INVALID_VIDEO_CODEC);
         if (frameRate is not null && frameRate < 1 && frameRate > 30)
-            throw new Exception(Strings.POLICY_INVALID_VIDEO_FRAMERATE);
+            throw new ArgumentException(Strings.POLICY_INVALID_VIDEO_FRAMERATE);
         if (height is not null && height < 50 && height > 1080)
-            throw new Exception(Strings.POLICY_INVALID_VIDEO_HEIGHT);
+            throw new ArgumentException(Strings.POLICY_INVALID_VIDEO_HEIGHT);
         if (width is not null && width < 50 && width > 1920)
-            throw new Exception(Strings.POLICY_INVALID_VIDEO_WIDTH);
+            throw new ArgumentException(Strings.POLICY_INVALID_VIDEO_WIDTH);
 
         _publishParams.video = new VideoParams()
         {
-            bitRate = bitrate ?? 256,
+            bitRate = bitRate ?? 256,
             codec = codec ?? Codec.VP8,
             frameRate = frameRate ?? 25,
             height = height ?? 180,
@@ -67,28 +103,38 @@ public sealed class PublishParamsBuilder
         return this;
     }
 
+    /// <summary>
+    /// Adds screen config
+    /// </summary>
+    /// <param name="bitRate"></param>
+    /// <param name="frameRate"></param>
+    /// <param name="width"></param>
+    /// <param name="height"></param>
+    /// <param name="codec"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public PublishParamsBuilder AddScreen(
-        int? bitrate,
-        string? codec = null,
+        int? bitRate = null,
         int? frameRate = null,
+        int? width = null,
         int? height = null,
-        int? width = null
+        string? codec = null
     )
     {
-        if (bitrate is not null && bitrate >= 500)
-            throw new Exception(Strings.POLICY_INVALID_SCREEN_BITRATE);
+        if (bitRate is not null && bitRate < 500)
+            throw new ArgumentException(Strings.POLICY_INVALID_SCREEN_BITRATE);
         if (codec is not null && codec != Codec.VP8)
-            throw new Exception(Strings.POLICY_INVALID_SCREEN_CODEC);
+            throw new ArgumentException(Strings.POLICY_INVALID_SCREEN_CODEC);
         if (frameRate is not null && frameRate < 1 && frameRate > 30)
-            throw new Exception(Strings.POLICY_INVALID_SCREEN_FRAMERATE);
+            throw new ArgumentException(Strings.POLICY_INVALID_SCREEN_FRAMERATE);
         if (height is not null && height < 270 && height > 1080)
-            throw new Exception(Strings.POLICY_INVALID_SCREEN_HEIGHT);
+            throw new ArgumentException(Strings.POLICY_INVALID_SCREEN_HEIGHT);
         if (width is not null && width < 480 && width > 1920)
-            throw new Exception(Strings.POLICY_INVALID_SCREEN_WIDTH);
+            throw new ArgumentException(Strings.POLICY_INVALID_SCREEN_WIDTH);
 
         _publishParams.screen = new ScreenParams()
         {
-            bitRate = bitrate ?? 1024,
+            bitRate = bitRate ?? 1024,
             codec = codec ?? Codec.VP8,
             frameRate = frameRate ?? 10,
             height = height ?? 720,
@@ -97,6 +143,10 @@ public sealed class PublishParamsBuilder
         return this;
     }
 
+    /// <summary>
+    /// Returns a configured instance of PublishParams
+    /// </summary>
+    /// <returns></returns>
     public PublishParams Build()
     {
         return _publishParams;

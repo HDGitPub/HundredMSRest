@@ -17,9 +17,9 @@ public sealed class TranscriptionBuilder
     /// <summary>
     /// Constructor
     /// </summary>
-    public TranscriptionBuilder()
+    public TranscriptionBuilder(string name)
     {
-        _transcription = new Transcription();
+        _transcription = new Transcription(name);
     }
 
     /// <summary>

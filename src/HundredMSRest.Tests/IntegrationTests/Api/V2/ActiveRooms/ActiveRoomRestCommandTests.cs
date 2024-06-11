@@ -209,7 +209,7 @@ public class ActiveRoomRestCommandTests
     public async void End_ActiveRoom_EndsActiveRoom()
     {
         // Arrange
-        var request = new EndRoomRequest() { reason = "Ending Room", @lock = false };
+        var request = new EndRoomRequest() { reason = "Ending Room", @lock = true };
 
         // Act
         var result = await ActiveRoomRestCommand.EndRoom(_settings.ActiveRoomId, request);

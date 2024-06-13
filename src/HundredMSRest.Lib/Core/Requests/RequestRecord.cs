@@ -1,7 +1,5 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using HundredMSRest.Lib.Core.Common;
 using HundredMSRest.Lib.Core.Interfaces;
 
 namespace HundredMSRest.Lib.Core.Requests;
@@ -12,11 +10,7 @@ namespace HundredMSRest.Lib.Core.Requests;
 public record RequestRecord : IRequestRecord
 {
     private static readonly JsonSerializerOptions RecordSerializerOptions =
-        new()
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-            //PropertyNamingPolicy = new LowerCaseNamingPolicy()
-        };
+        new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
 
     /// <summary>
     /// Returns a JSON representation of the record

@@ -35,6 +35,23 @@ public class RestRequest(string token, HttpMethod httpMethod, string url, IRestC
         CancellationToken cancellationToken = default
     )
     {
+        string jsonResponse = await _ExecuteRequest(requestData, cancellationToken);
+        return JsonSerializer.Deserialize<R>(jsonResponse);
+    }
+
+    public async Task ExecuteAsync(
+        string? requestData,
+        CancellationToken cancellationToken = default
+    )
+    {
+        await _ExecuteRequest(requestData, cancellationToken);
+    }
+
+    private async Task<string> _ExecuteRequest(
+        string? requestData,
+        CancellationToken cancellationToken = default
+    )
+    {
         HttpRequestMessage request = new(_httpMethod, _url);
         request.Headers.Add(AUTH_HEADER, _bearerToken);
         if (requestData is not null)
@@ -47,10 +64,7 @@ public class RestRequest(string token, HttpMethod httpMethod, string url, IRestC
             .GetHttpClient()
             .SendAsync(request, cancellationToken);
         response.EnsureSuccessStatusCode();
-        var jsonResponse = await response.Content.ReadAsStringAsync(cancellationToken);
-        R? result = JsonSerializer.Deserialize<R>(jsonResponse);
-
-        return result;
+        return await response.Content.ReadAsStringAsync(cancellationToken);
     }
 
     #endregion

@@ -3,6 +3,7 @@ using HundredMSRest.Lib.Api.V2.Common.Builders;
 using HundredMSRest.Lib.Api.V2.Policy.Builders;
 using HundredMSRest.Lib.Api.V2.Policy.Commands;
 using HundredMSRest.Lib.Api.V2.Policy.Common;
+using HundredMSRest.Lib.Api.V2.Policy.DataTypes;
 using HundredMSRest.Lib.Core.Common;
 
 namespace HundredMSRest.Tests.IntegrationTests.Api.V2.Policy;
@@ -16,6 +17,7 @@ public class PolicyRestCommandTests
         _settings = new PolicyTestSettings();
     }
 
+    // Policy template based tests
     [Fact]
     public async Task Create_Policy_ReturnsPolicy()
     {
@@ -131,5 +133,99 @@ public class PolicyRestCommandTests
 
         // Assert
         result.Should().NotBeNull();
+    }
+
+    [Fact]
+    public async Task Get_Policy_ReturnsPolicy()
+    {
+        // Arrange
+        var templateId = _settings.TemplateId;
+
+        // Act
+        var result = await PolicyRestCommand.GetAsync(templateId);
+
+        // Assert
+        result.Should().NotBeNull();
+    }
+
+    [Fact]
+    public async Task List_Policy_ReturnsAllPolicies()
+    {
+        // Act
+        var result = await PolicyRestCommand.ListAsync();
+
+        // Assert
+        result.Should().NotBeNull();
+        result?.data.Should().NotBeEmpty();
+    }
+
+    [Fact]
+    public async Task Update_Policy_ReturnsPolicy()
+    {
+        // Arrange
+        var templateId = _settings.TemplateId;
+        var template = await PolicyRestCommand.GetAsync(templateId);
+
+        // Act
+        Role testRole = new RoleBuilder()
+            .AddName("Test")
+            .AddMaxPeerCount(10)
+            .AddPriority(4)
+            .Build();
+        template?.roles.Add(testRole?.name, testRole);
+
+        var result = await PolicyRestCommand.UpdateAsync(template);
+
+        // Assert
+        result.Should().NotBeNull();
+    }
+
+    // Role base tests
+    [Fact]
+    public async Task Get_Policy_Role_ReturnsPolicyRole()
+    {
+        // Arrange
+        var templateId = _settings.TemplateId;
+        var roleName = _settings.RoleName;
+
+        // Act
+        var result = await PolicyRestCommand.GetRoleAsync(templateId, roleName);
+
+        // Assert
+        result.Should().NotBeNull();
+    }
+
+    [Fact]
+    public async Task Update_Policy_Role_ReturnsPolicyRole()
+    {
+        // Arrange
+        var templateId = _settings.TemplateId;
+        var roleName = _settings.RoleName;
+
+        // Act
+        var role = await PolicyRestCommand.GetRoleAsync(templateId, roleName);
+        if (role is not null)
+        {
+            role.maxPeerCount = _settings.MaxPeerCount;
+        }
+
+        var result = await PolicyRestCommand.UpdateRoleAsync(templateId, role);
+
+        // Assert
+        result.Should().NotBeNull();
+    }
+
+    [Fact]
+    public async Task Delete_Policy_Role_ReturnsPolicyRole()
+    {
+        // Arrange
+        var templateId = _settings.TemplateId;
+        var roleName = _settings.RoleName;
+
+        // Act
+        var result = await PolicyRestCommand.DeleteRoleAsync(templateId, roleName);
+
+        // Assert
+        result.Should().BeTrue();
     }
 }

@@ -68,6 +68,26 @@ public class RestCommand
         string? requestData = requestRecord?.GetJSON() ?? null;
         return await request.ExecuteAsync<R>(requestData, cancellationToken);
     }
+
+    public async Task RequestAsync(
+        HttpMethod httpMethod,
+        HttpClient? httpClient = null,
+        string? url = null,
+        IRequestRecord? requestRecord = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        Token apiToken = new TokenService().GetManagementToken();
+        var request = new RestRequest(
+            apiToken.Value,
+            httpMethod,
+            url ?? BaseUrl,
+            new RestClient(httpClient)
+        );
+
+        string? requestData = requestRecord?.GetJSON() ?? null;
+        await request.ExecuteAsync(requestData, cancellationToken);
+    }
     #endregion
 
     #region

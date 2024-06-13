@@ -47,7 +47,7 @@ public sealed class RoomCodeRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<RoomCodeList?> CreateAsync(
+    public static async Task<RoomCodeList> CreateAsync(
         string roomId,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
@@ -68,7 +68,7 @@ public sealed class RoomCodeRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<RoomCode?> CreateRoleRoomCodeAsync(
+    public static async Task<RoomCode> CreateRoleRoomCodeAsync(
         string roomId,
         string role,
         HttpClient? httpClient = null,
@@ -91,7 +91,7 @@ public sealed class RoomCodeRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<RoomCode?> UpdateAsync(
+    public static async Task<RoomCode> UpdateAsync(
         string roomCode,
         bool enabled,
         HttpClient? httpClient = null,

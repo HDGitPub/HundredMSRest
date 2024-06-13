@@ -49,7 +49,7 @@ public class RestCommand
     /// <param name="requestRecord">Record data</param>
     /// <param name="httpClient">Client provided HttpClient</param>
     /// <returns>Type R</returns>
-    public async Task<R?> RequestAsync<R>(
+    public async Task<R> RequestAsync<R>(
         HttpMethod httpMethod,
         HttpClient? httpClient = null,
         string? url = null,

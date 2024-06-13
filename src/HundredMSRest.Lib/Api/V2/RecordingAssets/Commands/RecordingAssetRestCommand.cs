@@ -28,7 +28,7 @@ public sealed class RecordingAssetRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<RecordingAsset?> GetAsync(
+    public static async Task<RecordingAsset> GetAsync(
         string assetId,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
@@ -50,7 +50,7 @@ public sealed class RecordingAssetRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<PresignedUrl?> GetPreSignedUrlAsync(
+    public static async Task<PresignedUrl> GetPreSignedUrlAsync(
         string assetId,
         int? duration = null,
         HttpClient? httpClient = null,
@@ -76,7 +76,7 @@ public sealed class RecordingAssetRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<RecordingAssetList?> ListAsync(
+    public static async Task<RecordingAssetList> ListAsync(
         string? filter = null,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default

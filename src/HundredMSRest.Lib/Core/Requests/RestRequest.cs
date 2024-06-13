@@ -1,5 +1,6 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
+using HundredMSRest.Lib.Core.Common;
 using HundredMSRest.Lib.Core.Interfaces;
 
 namespace HundredMSRest.Lib.Core.Requests;
@@ -30,13 +31,16 @@ public class RestRequest(string token, HttpMethod httpMethod, string url, IRestC
     /// <typeparam name="R">Return record type</typeparam>
     /// <param name="requestData">Request record data</param>
     /// <returns>Type R</returns>
-    public async Task<R?> ExecuteAsync<R>(
+    public async Task<R> ExecuteAsync<R>(
         string? requestData,
         CancellationToken cancellationToken = default
     )
     {
         string jsonResponse = await _ExecuteRequest(requestData, cancellationToken);
-        return JsonSerializer.Deserialize<R>(jsonResponse);
+        var result = JsonSerializer.Deserialize<R>(jsonResponse);
+        if (result is null)
+            throw new Exception(Strings.INVALID_JSON_DESERIALIZATION + typeof(R));
+        return result;
     }
 
     public async Task ExecuteAsync(

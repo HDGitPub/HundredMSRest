@@ -5,5 +5,5 @@
 /// </summary>
 internal interface IRestRequest
 {
-    Task<R?> ExecuteAsync<R>(string? requestData, CancellationToken cancellationToken = default);
+    Task<R> ExecuteAsync<R>(string? requestData, CancellationToken cancellationToken = default);
 }

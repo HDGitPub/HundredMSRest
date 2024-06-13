@@ -23,7 +23,7 @@ public sealed class PolicyRestCommand : RestCommand
     /// </summary>
     /// <param name="templateId"></param>
     /// <returns></returns>
-    public static async Task<Template?> GetAsync(
+    public static async Task<Template> GetAsync(
         string templateId,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
@@ -41,7 +41,7 @@ public sealed class PolicyRestCommand : RestCommand
     /// Lists templates
     /// </summary>
     /// <returns></returns>
-    public static async Task<TemplateList?> ListAsync(
+    public static async Task<TemplateList> ListAsync(
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
     )
@@ -61,7 +61,7 @@ public sealed class PolicyRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<Template?> CreateAsync(
+    public static async Task<Template> CreateAsync(
         Template template,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
@@ -81,7 +81,7 @@ public sealed class PolicyRestCommand : RestCommand
     /// </summary>
     /// <param name="template"></param>
     /// <returns></returns>
-    public static async Task<Template?> UpdateAsync(
+    public static async Task<Template> UpdateAsync(
         Template template,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
@@ -101,7 +101,7 @@ public sealed class PolicyRestCommand : RestCommand
     /// </summary>
     /// <param name="templateId"></param>
     /// <returns></returns>
-    public static async Task<Role?> GetRoleAsync(
+    public static async Task<Role> GetRoleAsync(
         string templateId,
         string roleName,
         HttpClient? httpClient = null,
@@ -122,7 +122,7 @@ public sealed class PolicyRestCommand : RestCommand
     /// <param name="templateId"></param>
     /// <param name="role"></param>
     /// <returns></returns>
-    public static async Task<Role?> UpdateRoleAsync(
+    public static async Task<Role> UpdateRoleAsync(
         string templateId,
         Role role,
         HttpClient? httpClient = null,
@@ -165,7 +165,7 @@ public sealed class PolicyRestCommand : RestCommand
     /// </summary>
     /// <param name="templateId"></param>
     /// <returns></returns>
-    public static async Task<Settings?> GetSettingsAsync(
+    public static async Task<Settings> GetSettingsAsync(
         string templateId,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
@@ -184,7 +184,7 @@ public sealed class PolicyRestCommand : RestCommand
     /// </summary>
     /// <param name="templateId"></param>
     /// <returns></returns>
-    public static async Task<Settings?> UpdateSettingsAsync(
+    public static async Task<Settings> UpdateSettingsAsync(
         string templateId,
         Settings settings,
         HttpClient? httpClient = null,
@@ -205,7 +205,7 @@ public sealed class PolicyRestCommand : RestCommand
     /// </summary>
     /// <param name="templateId"></param>
     /// <returns></returns>
-    public static async Task<Destinations?> GetDestinationsAsync(
+    public static async Task<Destinations> GetDestinationsAsync(
         string templateId,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
@@ -224,7 +224,7 @@ public sealed class PolicyRestCommand : RestCommand
     /// </summary>
     /// <param name="templateId"></param>
     /// <returns></returns>
-    public static async Task<Destinations?> UpdateDestinationsAsync(
+    public static async Task<Destinations> UpdateDestinationsAsync(
         string templateId,
         Destinations destinations,
         HttpClient? httpClient = null,
@@ -245,7 +245,7 @@ public sealed class PolicyRestCommand : RestCommand
     /// </summary>
     /// <param name="templateId"></param>
     /// <returns></returns>
-    public static async Task<TemplateRecording?> UpdateRecordingAsync(
+    public static async Task<TemplateRecording> UpdateRecordingAsync(
         string templateId,
         TemplateRecording templateRecording,
         HttpClient? httpClient = null,
@@ -266,7 +266,7 @@ public sealed class PolicyRestCommand : RestCommand
     /// </summary>
     /// <param name="templateId"></param>
     /// <returns></returns>
-    public static async Task<TemplateRecording?> GetRecordingAsync(
+    public static async Task<TemplateRecording> GetRecordingAsync(
         string templateId,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default

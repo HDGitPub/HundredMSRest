@@ -25,7 +25,7 @@ public class RecordingRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<Recording?> GetAsync(
+    public static async Task<Recording> GetAsync(
         string recordingId,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
@@ -47,7 +47,7 @@ public class RecordingRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<Recording?> StartRecordingAsync(
+    public static async Task<Recording> StartRecordingAsync(
         string roomId,
         RecordingRequest request,
         HttpClient? httpClient = null,
@@ -70,7 +70,7 @@ public class RecordingRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<RecordingList?> StopRecordingAsync(
+    public static async Task<RecordingList> StopRecordingAsync(
         string roomId,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
@@ -91,7 +91,7 @@ public class RecordingRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<Recording?> StopRecordingByIdAsync(
+    public static async Task<Recording> StopRecordingByIdAsync(
         string recordingId,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
@@ -112,7 +112,7 @@ public class RecordingRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<Recording?> PauseRecordingAsync(
+    public static async Task<Recording> PauseRecordingAsync(
         string recordingId,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
@@ -133,7 +133,7 @@ public class RecordingRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<Recording?> ResumeRecordingAsync(
+    public static async Task<Recording> ResumeRecordingAsync(
         string recordingId,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
@@ -154,7 +154,7 @@ public class RecordingRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<RecordingList?> ListRecordingsAsync(
+    public static async Task<RecordingList> ListRecordingsAsync(
         string filter,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default

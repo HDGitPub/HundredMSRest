@@ -26,7 +26,7 @@ public sealed class SessionRestCommand : RestCommand
     /// <param name="cancellationToken"></param>
     /// <see href="https://www.100ms.live/docs/server-side/v2/api-reference/Sessions/retrieve-a-session"/>
     /// <returns></returns>
-    public static async Task<Session?> GetAsync(
+    public static async Task<Session> GetAsync(
         string sessionId,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
@@ -54,7 +54,7 @@ public sealed class SessionRestCommand : RestCommand
     /// </code>
     /// <remarks>This method returns a list of sessions based on filter criteria</remarks>
     /// <returns></returns>
-    public static async Task<SessionList?> ListSessionsAsync(
+    public static async Task<SessionList> ListSessionsAsync(
         string? filter = null,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default

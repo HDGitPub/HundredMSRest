@@ -36,4 +36,6 @@ internal class Strings
     public const string POLICY_INVALID_ROLE_PRIORITY = "must be withing range 1 - 5";
     public const string POLICY_INVALID_REGION = "region must be (in, us, eu or auto)";
     public const string POLICY_INVALID_RTMPURL_COUNT = "rtmp urls has max count of 3";
+    public const string INVALID_JSON_DESERIALIZATION =
+        "Unable to deserialize json into object of type: ";
 }

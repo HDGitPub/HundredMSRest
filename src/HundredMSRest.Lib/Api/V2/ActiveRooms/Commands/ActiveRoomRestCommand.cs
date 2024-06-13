@@ -26,7 +26,7 @@ public class ActiveRoomRestCommand : RestCommand
     /// <param name="cancellationToken"></param>
     /// <see href="https://www.100ms.live/docs/server-side/v2/api-reference/active-rooms/retrieve-active-room"/>
     /// <returns></returns>
-    public static async Task<ActiveRoom?> GetAsync(
+    public static async Task<ActiveRoom> GetAsync(
         string activeRoomId,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
@@ -49,7 +49,7 @@ public class ActiveRoomRestCommand : RestCommand
     /// <param name="cancellationToken"></param>
     /// <see href="https://www.100ms.live/docs/server-side/v2/api-reference/active-rooms/retrieve-peer"/>
     /// <returns></returns>
-    public static async Task<Peer?> GetPeerAsync(
+    public static async Task<Peer> GetPeerAsync(
         string activeRoomId,
         string peerId,
         HttpClient? httpClient = null,
@@ -72,7 +72,7 @@ public class ActiveRoomRestCommand : RestCommand
     /// <param name="cancellationToken"></param>
     /// <see href="https://www.100ms.live/docs/server-side/v2/api-reference/active-rooms/list-peers"/>
     /// <returns></returns>
-    public static async Task<PeerList?> ListPeersAsync(
+    public static async Task<PeerList> ListPeersAsync(
         string activeRoomId,
         string? userId = null,
         string? role = null,
@@ -97,7 +97,7 @@ public class ActiveRoomRestCommand : RestCommand
     /// <param name="cancellationToken"></param>
     /// <see href="https://www.100ms.live/docs/server-side/v2/api-reference/active-rooms/update-a-peer"/>
     /// <returns></returns>
-    public static async Task<Peer?> UpdatePeerAsync(
+    public static async Task<Peer> UpdatePeerAsync(
         string activeRoomId,
         string peerId,
         UpdateActiveRoomPeerRequest request,
@@ -124,7 +124,7 @@ public class ActiveRoomRestCommand : RestCommand
     /// <param name="cancellationToken"></param>
     /// <see href="https://www.100ms.live/docs/server-side/v2/api-reference/active-rooms/send-message/">
     /// <returns></returns>
-    public static async Task<ActiveRoomResponse?> SendMessageAsync(
+    public static async Task<ActiveRoomResponse> SendMessageAsync(
         string activeRoomId,
         ActiveRoomMessageRequest request,
         HttpClient? httpClient = null,
@@ -151,7 +151,7 @@ public class ActiveRoomRestCommand : RestCommand
     /// <param name="cancellationToken"></param>
     /// <see href="https://www.100ms.live/docs/server-side/v2/api-reference/active-rooms/remove-peers"/>
     /// <returns></returns>
-    public static async Task<ActiveRoomResponse?> RemovePeers(
+    public static async Task<ActiveRoomResponse> RemovePeers(
         string activeRoomId,
         RemovePeerRequest request,
         HttpClient? httpClient = null,
@@ -176,7 +176,7 @@ public class ActiveRoomRestCommand : RestCommand
     /// <param name="cancellationToken"></param>
     /// <see href="https://www.100ms.live/docs/server-side/v2/api-reference/active-rooms/end-active-room"/>
     /// <returns></returns>
-    public static async Task<ActiveRoomResponse?> EndRoom(
+    public static async Task<ActiveRoomResponse> EndRoom(
         string activeRoomId,
         EndRoomRequest request,
         HttpClient? httpClient = null,

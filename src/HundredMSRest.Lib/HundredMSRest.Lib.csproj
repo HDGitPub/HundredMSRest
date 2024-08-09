@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>HundredMSRest.Lib</PackageId>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <Authors>Hooker Davis</Authors>
     <Description>100MS rest client library allows your services to connect to the 100MS rest API</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>

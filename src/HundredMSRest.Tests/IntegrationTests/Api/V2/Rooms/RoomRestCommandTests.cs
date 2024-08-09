@@ -2,8 +2,10 @@
 using HundredMSRest.Lib.Api.V2.Rooms.Builders;
 using HundredMSRest.Lib.Api.V2.Rooms.Commands;
 using HundredMSRest.Lib.Api.V2.Rooms.DataTypes;
+using HundredMSRest.Lib.Api.V2.Rooms.Filters;
 using HundredMSRest.Lib.Api.V2.Rooms.Requests;
 using HundredMSRest.Lib.Api.V2.Rooms.Responses;
+using HundredMSRest.Lib.Api.V2.Sessions.Filters;
 using HundredMSRest.Lib.Core.Common;
 
 namespace HundredMSRest.Tests.IntegrationTests.Api.V2.Rooms;
@@ -47,10 +49,25 @@ public class RoomRestCommandTests
     [Fact]
     public async void List_Rooms_ReturnsRooms()
     {
-        // Arrange
-
         // Act
         var result = await RoomRestCommand.ListRoomsAsync();
+
+        // Assert
+        result.Should().NotBeNull();
+        result.Should().BeOfType<RoomList>();
+    }
+
+    [Fact]
+    public async void List_Rooms_By_Filter_ReturnsRooms()
+    {
+        // Arrange
+        var filter = new RoomsRequestFilter()
+            .AddTemplateId(_settings.TemplateId)
+            .AddEnabled(true)
+            .Filter();
+
+        // Act
+        var result = await RoomRestCommand.ListRoomsAsync(filter);
 
         // Assert
         result.Should().NotBeNull();

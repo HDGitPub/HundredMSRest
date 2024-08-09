@@ -17,9 +17,9 @@ public sealed class RoomRestCommand : RestCommand
     /// <summary>
     /// Constructor takes RequestData and HttpMethod
     /// </summary>
-    public RoomRestCommand(string? urlParams = null)
+    public RoomRestCommand(string? urlParams = null, string? filterParams = null)
     {
-        BuildBaseRoute("v2/rooms", urlParams);
+        BuildBaseRoute("v2/rooms", urlParams, filterParams);
     }
 
     /// <summary>
@@ -63,15 +63,17 @@ public sealed class RoomRestCommand : RestCommand
     /// <summary>
     /// Returns a list of rooms
     /// </summary>
+    /// <param name="filter"></param>
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public static async Task<RoomList> ListRoomsAsync(
+        string? filter = null,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
     )
     {
-        var command = new RoomRestCommand();
+        var command = new RoomRestCommand(filterParams: filter);
         var result = await command.RequestAsync<RoomList>(
             HttpMethod.Get,
             httpClient,

@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using HundredMSRest.Lib.Api.V2.Sessions.Filters;
 using HundredMSRest.Lib.Core.Interfaces;
 
 namespace HundredMSRest.Lib.Api.V2.Rooms.Filters;
@@ -30,11 +29,11 @@ public sealed class RoomsRequestFilter : IRequestFilter
         var builder = new StringBuilder("?");
         if (_name is not null)
         {
-            builder.Append($"enabled={_name}&");
+            builder.Append($"name={_name}&");
         }
         if (_templateId is not null)
         {
-            builder.Append($"enabled={_templateId}&");
+            builder.Append($"template_id={_templateId}&");
         }
         if (_enabled is not null)
         {

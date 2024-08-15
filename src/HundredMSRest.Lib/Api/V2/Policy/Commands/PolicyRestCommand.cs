@@ -1,5 +1,6 @@
 using HundredMSRest.Lib.Api.V2.Policy.DataTypes;
 using HundredMSRest.Lib.Core.Commands;
+using HundredMSRest.Lib.Core.Requests;
 
 namespace HundredMSRest.Lib.Api.V2.Policy.Commands;
 
@@ -245,7 +246,7 @@ public sealed class PolicyRestCommand : RestCommand
     /// </summary>
     /// <param name="templateId"></param>
     /// <returns></returns>
-    public static async Task<TemplateRecording> UpdateRecordingAsync(
+    public static async Task<RequestRecordList<TemplateRecording>> UpdateRecordingAsync(
         string templateId,
         TemplateRecording templateRecording,
         HttpClient? httpClient = null,
@@ -253,10 +254,11 @@ public sealed class PolicyRestCommand : RestCommand
     )
     {
         var command = new PolicyRestCommand($"{templateId}/recordings");
-        return await command.RequestAsync<TemplateRecording>(
+        var recordingList = new RequestRecordList<TemplateRecording>() { templateRecording };
+        return await command.RequestAsync<RequestRecordList<TemplateRecording>>(
             HttpMethod.Post,
             httpClient,
-            requestRecord: templateRecording,
+            requestRecord: recordingList,
             cancellationToken: cancellationToken
         );
     }

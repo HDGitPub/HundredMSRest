@@ -9,14 +9,14 @@ namespace HundredMSRest.Lib.Core.Requests;
 /// </summary>
 public record RequestRecord : IRequestRecord
 {
-    private static readonly JsonSerializerOptions RecordSerializerOptions =
+    protected static readonly JsonSerializerOptions RecordSerializerOptions =
         new() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
 
     /// <summary>
     /// Returns a JSON representation of the record
     /// </summary>
     /// <returns></returns>
-    public string GetJSON()
+    public virtual string GetJSON()
     {
         return JsonSerializer.Serialize(this, this.GetType(), RecordSerializerOptions);
     }

@@ -77,6 +77,7 @@ public class UpdateRoomRequestBuilder
         StorageType type,
         string location,
         string? prefix = null,
+        string? accountId = null,
         string? region = null
     )
     {
@@ -86,8 +87,16 @@ public class UpdateRoomRequestBuilder
         _request.recording_info.upload_info = new UploadInfo(type.Value, location)
         {
             prefix = prefix,
-            options = region is not null ? new Options(region) : null
         };
+
+        if (accountId is not null || region is not null)
+        {
+            _request.recording_info.upload_info.options = new Options()
+            {
+                region = region,
+                account_id = accountId
+            };
+        }
 
         if (
             _request.recording_info.upload_info.type == StorageType.S3.Value

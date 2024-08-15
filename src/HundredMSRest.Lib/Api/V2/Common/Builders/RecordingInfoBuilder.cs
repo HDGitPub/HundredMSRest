@@ -46,14 +46,16 @@ public sealed class RecordingInfoBuilder
         StorageType type,
         string location,
         string? prefix = null,
+        string? accountId = null,
         string? region = null
     )
     {
-        var uploadInfo = new UploadInfo(type.Value, location)
+        var uploadInfo = new UploadInfo(type.Value, location) { prefix = prefix };
+
+        if (accountId is not null || region is not null)
         {
-            prefix = prefix,
-            options = region is not null ? new Options(region) : null
-        };
+            uploadInfo.options = new Options { region = region, account_id = accountId };
+        }
 
         _recordingInfo.upload = uploadInfo;
 

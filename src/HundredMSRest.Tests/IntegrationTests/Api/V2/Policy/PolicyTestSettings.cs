@@ -11,6 +11,7 @@ internal class PolicyTestSettings : TestSettings
     private const string TEMPLATE_ID = "HundredMSRest:Policy:TemplateId";
     private const string ROLE_NAME = "HundredMSRest:Policy:RoleName";
     private const string MAX_PEER_COUNT = "HundredMSRest:Policy:MaxPeerCount";
+    private const string ACCOUNT_ID = "HundredMSRest:Policy:AccountId";
     #endregion
 
     #region Methods
@@ -28,5 +29,6 @@ internal class PolicyTestSettings : TestSettings
     public int MaxPeerCount => int.Parse(_configuration[MAX_PEER_COUNT]);
     public string BucketAccessKey => _configuration[BUCKET_ACCESSKEY];
     public string BucketSecretKey => _configuration[BUCKET_SECRETKEY];
+    public string AccountId => _configuration[ACCOUNT_ID];
     #endregion
 }

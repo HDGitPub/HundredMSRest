@@ -31,6 +31,7 @@ public class PolicyRestCommandTests
             TrackType.VIDEO,
             TrackType.SCREEN,
         };
+
         IEnumerable<TrackType> guestAllowedTracks = new List<TrackType>()
         {
             TrackType.AUDIO,
@@ -99,7 +100,13 @@ public class PolicyRestCommandTests
             .Build();
 
         var recordingInfo = new RecordingInfoBuilder()
-            .AddUploadInfo(StorageType.S3, _settings.Bucket, region: Region.Aws.US_EAST_1)
+            .AddUploadInfo(
+                StorageType.R2,
+                _settings.Bucket,
+                prefix: $"{Guid.NewGuid()}",
+                accountId: _settings.AccountId,
+                region: Region.Aws.US_EAST_1
+            )
             .AddCredentials(_settings.BucketAccessKey, _settings.BucketSecretKey)
             .Build();
 
@@ -113,7 +120,6 @@ public class PolicyRestCommandTests
             .AddWidth(1080)
             .AddHeight(1920)
             .AddMaxDuration(1800)
-            .AddRtmpUrls(new List<string>() { "aaa", "bbb", "ccc" })
             .AddAutoStopTimeout(5)
             .SetRecordingEnabled(true)
             .Build();
@@ -128,11 +134,22 @@ public class PolicyRestCommandTests
             .AddDestinations(destinations)
             .Build();
 
+        var templateRecording = new TemplateRecordingBuilder(hostRole.name ?? "DEFAULT", HOST_ROLE)
+            .AddCompositeRecording(false, true, false, 0, 1280, 720)
+            .Build();
+
         // Act
         var result = await PolicyRestCommand.CreateAsync(template);
-
         // Assert
         result.Should().NotBeNull();
+        if (result.id is not null)
+        {
+            var result2 = await PolicyRestCommand.UpdateRecordingAsync(
+                result.id,
+                templateRecording
+            );
+            result2.Should().NotBeNull();
+        }
     }
 
     [Fact]

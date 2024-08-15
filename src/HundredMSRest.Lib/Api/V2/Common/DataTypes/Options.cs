@@ -4,4 +4,8 @@
 /// Record <c>Options</c>
 /// </summary>
 /// <param name="region"></param>
-public record Options(string region);
+public record Options
+{
+    public string? region { get; set; }
+    public string? account_id { get; set; }
+}

@@ -51,6 +51,7 @@ public sealed class TemplateRecordingBuilder
     public TemplateRecordingBuilder AddCompositeRecording(
         bool custom,
         bool browser,
+        bool autoStart,
         int autoStopTimeout,
         int width,
         int height
@@ -62,7 +63,7 @@ public sealed class TemplateRecordingBuilder
             browserComposite = browser
                 ? new BrowserComposite()
                 {
-                    enabled = true,
+                    autoStart = autoStart,
                     autoStopTimeout = autoStopTimeout,
                     height = height,
                     width = width

@@ -58,28 +58,6 @@ public sealed class PollRestCommand : RestCommand
     }
 
     /// <summary>
-    /// Links one or more polls to a room
-    /// </summary>
-    /// <param name="request"></param>
-    /// <param name="httpClient"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    public static async Task<Poll> LinkAsync(
-        LinkRequest request,
-        HttpClient? httpClient = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var command = new PollRestCommand();
-        return await command.RequestAsync<Poll>(
-            HttpMethod.Post,
-            httpClient,
-            requestRecord: request,
-            cancellationToken: cancellationToken
-        );
-    }
-
-    /// <summary>
     /// Returns a poll object
     /// </summary>
     /// <param name="pollId"></param>
@@ -109,7 +87,7 @@ public sealed class PollRestCommand : RestCommand
     /// <returns></returns>
     public static async Task<ResponseList<SessionResponse>> GetSessionsAsync(
         string pollId,
-        string? filter,
+        string? filter = null,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
     )
@@ -132,7 +110,7 @@ public sealed class PollRestCommand : RestCommand
     /// <returns></returns>
     public static async Task<ResponseList<UserResponse>> GetResponsesAsync(
         string pollId,
-        string? filter,
+        string? filter = null,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
     )
@@ -180,7 +158,7 @@ public sealed class PollRestCommand : RestCommand
     /// <returns></returns>
     public static async Task<PollResultList> GetResultsAsync(
         string pollId,
-        string? filter,
+        string? filter = null,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
     )
@@ -205,12 +183,11 @@ public sealed class PollRestCommand : RestCommand
     public static async Task<PollResult> GetResultAsync(
         string pollId,
         string resultId,
-        string? filter,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
     )
     {
-        var command = new PollRestCommand($"{pollId}/results/{resultId}",filter);
+        var command = new PollRestCommand($"{pollId}/results/{resultId}");
         return await command.RequestAsync<PollResult>(
             HttpMethod.Get,
             httpClient,

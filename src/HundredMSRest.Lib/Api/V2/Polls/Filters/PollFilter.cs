@@ -4,9 +4,9 @@ using System.Text;
 namespace HundredMSRest.Lib.Api.V2.Polls.Filters;
 
 /// <summary>
-/// Class <c>PollSessionFilter</c>
+/// Class <c>PollFilter</c>
 /// </summary>
-public sealed class PollSessionFilter : IRequestFilter
+public sealed class PollFilter : IRequestFilter
 {
     #region Attributes
     private string? _start { get; set; }
@@ -36,6 +36,30 @@ public sealed class PollSessionFilter : IRequestFilter
             builder.Append($"question={_question}&");
         }
         return builder.ToString().TrimEnd('&');
+    }
+
+    public PollFilter AddStart(string start)
+    {
+        _start = start;
+        return this;
+    }
+
+    public PollFilter AddLimit(int limit)
+    {
+        _limit = limit;
+        return this;
+    }
+
+    public PollFilter AddAll(Boolean all)
+    {
+        _all = all;
+        return this;
+    }
+
+    public PollFilter AddQuestion(int question)
+    {
+        _question = question;
+        return this;
     }
     #endregion
 }

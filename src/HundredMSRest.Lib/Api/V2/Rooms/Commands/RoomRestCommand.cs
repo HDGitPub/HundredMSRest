@@ -46,6 +46,7 @@ public sealed class RoomRestCommand : RestCommand
         string name,
         string description,
         string templateId,
+        string[]? polls,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
     )
@@ -54,7 +55,9 @@ public sealed class RoomRestCommand : RestCommand
         var result = await command.RequestAsync<Room>(
             HttpMethod.Post,
             httpClient,
-            requestRecord: new CreateRoomRequest(name, description, templateId),
+            requestRecord: new CreateRoomRequest(name, description, templateId){
+                polls = polls
+            },
             cancellationToken: cancellationToken
         );
         return result;

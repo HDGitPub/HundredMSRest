@@ -2,6 +2,9 @@ using System.Runtime.InteropServices;
 
 namespace HundredMSRest.Lib.Api.V2.Polls.DataTypes;
 
+/// <summary>
+/// Record <c>Answer</c>
+/// </summary>
 public record Answer
 {
     public bool? hidden {get; set;}

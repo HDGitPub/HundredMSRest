@@ -2,6 +2,9 @@ using HundredMSRest.Lib.Core.Requests;
 
 namespace HundredMSRest.Lib.Api.V2.Polls.DataTypes;
 
+/// <summary>
+/// Record <c>Poll</c>
+/// </summary>
 public record Poll : RequestRecord
 {
     public string? Id {get;set;}

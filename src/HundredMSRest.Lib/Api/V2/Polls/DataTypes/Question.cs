@@ -1,5 +1,8 @@
 namespace HundredMSRest.Lib.Api.V2.Polls.DataTypes;
 
+/// <summary>
+/// Record <c>Question</c>
+/// </summary>
 public record Question
 {
     public int? index {get;set;}

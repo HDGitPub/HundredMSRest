@@ -1,4 +1,5 @@
-﻿using HundredMSRest.Lib.Core.Requests;
+﻿using HundredMSRest.Lib.Api.V2.Polls.DataTypes;
+using HundredMSRest.Lib.Core.Requests;
 
 namespace HundredMSRest.Lib.Api.V2.Rooms.Requests;
 
@@ -9,5 +10,7 @@ namespace HundredMSRest.Lib.Api.V2.Rooms.Requests;
 /// <param name="name">Name Param</param>
 /// <param name="description"></param>
 /// <param name="template_id"></param>
-public record CreateRoomRequest(string name, string description, string template_id)
-    : RequestRecord;
+public record CreateRoomRequest(string name, string description, string template_id) : RequestRecord
+{
+    public string[]? polls { get; set; }
+}

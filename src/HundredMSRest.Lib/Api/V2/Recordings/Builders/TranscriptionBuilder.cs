@@ -95,5 +95,15 @@ public sealed class TranscriptionBuilder
 
         return this;
     }
+
+
+    /// <summary>
+    /// Returns a configured Transcription object
+    /// </summary>
+    /// <returns></returns>
+    public Transcription Build()
+    {
+        return _transcription;
+    }
     #endregion
 }

@@ -1,5 +1,5 @@
-using HundredMSRest.Lib.Core.Interfaces;
 using System.Text;
+using HundredMSRest.Lib.Core.Interfaces;
 
 namespace HundredMSRest.Lib.Api.V2.Polls.Filters;
 
@@ -12,7 +12,7 @@ public sealed class PollFilter : IRequestFilter
     private string? _start { get; set; }
     private int? _limit { get; set; }
     private Boolean? _all { get; set; }
-    private int? _question  {get; set; }
+    private int? _question { get; set; }
     #endregion
 
     #region Methods

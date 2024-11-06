@@ -11,9 +11,7 @@ internal class PollRestCommandTestSettings : TestSettings
     #endregion
 
     #region Methods
-    public PollRestCommandTestSettings()
-    {
-    }
+    public PollRestCommandTestSettings() { }
     #endregion
 
     #region Properties

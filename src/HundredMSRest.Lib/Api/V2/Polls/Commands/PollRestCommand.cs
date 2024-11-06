@@ -79,7 +79,7 @@ public sealed class PollRestCommand : RestCommand
     }
 
     /// <summary>
-    /// Returns sessions in which the specified poll was run 
+    /// Returns sessions in which the specified poll was run
     /// </summary>
     /// <param name="pollId"></param>
     /// <param name="httpClient"></param>
@@ -92,7 +92,7 @@ public sealed class PollRestCommand : RestCommand
         CancellationToken cancellationToken = default
     )
     {
-        var command = new PollRestCommand($"{pollId}/sessions",filter);
+        var command = new PollRestCommand($"{pollId}/sessions", filter);
         return await command.RequestAsync<ResponseList<SessionResponse>>(
             HttpMethod.Get,
             httpClient,
@@ -115,7 +115,7 @@ public sealed class PollRestCommand : RestCommand
         CancellationToken cancellationToken = default
     )
     {
-        var command = new PollRestCommand($"{pollId}/responses",filter);
+        var command = new PollRestCommand($"{pollId}/responses", filter);
         return await command.RequestAsync<ResponseList<UserResponse>>(
             HttpMethod.Get,
             httpClient,
@@ -163,7 +163,7 @@ public sealed class PollRestCommand : RestCommand
         CancellationToken cancellationToken = default
     )
     {
-        var command = new PollRestCommand($"{pollId}/results",filter);
+        var command = new PollRestCommand($"{pollId}/results", filter);
         return await command.RequestAsync<PollResultList>(
             HttpMethod.Get,
             httpClient,
@@ -194,5 +194,4 @@ public sealed class PollRestCommand : RestCommand
             cancellationToken: cancellationToken
         );
     }
-
 }

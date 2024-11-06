@@ -10,7 +10,12 @@ public sealed class QuestionBuilder
     #endregion
 
     #region Methods
-    public QuestionBuilder(int? index = null, string? text = null, string? format = null,bool? skippable = null)
+    public QuestionBuilder(
+        int? index = null,
+        string? text = null,
+        string? format = null,
+        bool? skippable = null
+    )
     {
         _question = new Question()
         {

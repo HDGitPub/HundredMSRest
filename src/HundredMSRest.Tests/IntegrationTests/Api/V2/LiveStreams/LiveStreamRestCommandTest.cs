@@ -24,29 +24,25 @@ public class LiveStreamRestCommandTests
 
         var request = new StartLiveStreamRequest();
         request.meeting_url = _settings.MeetingUrl;
-        request.recording = new Recording()
-        {
-            hls_vod = false,
-            single_file_per_layer = false
-        };
+        request.recording = new Recording() { hls_vod = false, single_file_per_layer = false };
         var transcription = new TranscriptionBuilder("TestTranscript")
-        .AddEnabled(true)
-        .AddSummary(true,"TestSummary",0.1f)
-        .Build();
+            .AddEnabled(true)
+            .AddSummary(true, "TestSummary", 0.1f)
+            .Build();
 
         request.transcription = transcription;
 
         // Act
-        var result = await LiveStreamsRestCommand.StartAsync(roomId,request);
+        var result = await LiveStreamsRestCommand.StartAsync(roomId, request);
 
         // Assert
         result.Should().NotBeNull();
         result.Should().BeOfType<LiveStream>();
-    }    
-    
+    }
+
     [Fact]
     public async void Stop_LiveStream_ReturnsLiveStreamList()
-    {   
+    {
         // Arrange
         var roomId = _settings.RoomId;
 
@@ -88,9 +84,9 @@ public class LiveStreamRestCommandTests
     {
         // Arrange
         var filter = new LiveStreamFilter()
-        .AddLimit(_settings.Limit)
-        .AddRoomId(_settings.RoomId)
-        .Filter();
+            .AddLimit(_settings.Limit)
+            .AddRoomId(_settings.RoomId)
+            .Filter();
 
         // Act
         var result = await LiveStreamsRestCommand.ListAsync(filter);
@@ -107,10 +103,7 @@ public class LiveStreamRestCommandTests
         // Arrange
         var streamId = _settings.StreamId;
 
-        var expected = new LiveStream()
-        {
-            id = streamId
-        };
+        var expected = new LiveStream() { id = streamId };
 
         // Act
         var result = await LiveStreamsRestCommand.StopByIdAsync(streamId);
@@ -121,7 +114,6 @@ public class LiveStreamRestCommandTests
         result.Should().BeEquivalentTo(expected);
     }
 
-
     [Fact]
     public async void Send_LiveStream_TimedMetaData_ReturnsLiveStream()
     {
@@ -130,10 +122,10 @@ public class LiveStreamRestCommandTests
         var payload = _settings.Payload;
         var duration = _settings.Duration;
 
-        var request = new TimedMetaDataRequest(payload,duration);
-    
+        var request = new TimedMetaDataRequest(payload, duration);
+
         // Act
-        var result = await LiveStreamsRestCommand.SendTimedMetaData(streamId,request);
+        var result = await LiveStreamsRestCommand.SendTimedMetaData(streamId, request);
 
         // Assert
         result.Should().NotBeNull();

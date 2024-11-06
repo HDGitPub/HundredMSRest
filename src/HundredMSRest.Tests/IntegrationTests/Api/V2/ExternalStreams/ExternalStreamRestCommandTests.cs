@@ -20,11 +20,11 @@ public class ExternalStreamRestCommandTests
         // Arrange
         var roomId = _settings.RoomId;
 
-        var rtmp_urls = new string[] {""};
+        var rtmp_urls = new string[] { "" };
         var request = new StartExternalStreamRequest(rtmp_urls);
 
         // Act
-        var result = await ExternalStreamsRestCommand.StartAsync(roomId,request);
+        var result = await ExternalStreamsRestCommand.StartAsync(roomId, request);
 
         // Assert
         result.Should().NotBeNull();

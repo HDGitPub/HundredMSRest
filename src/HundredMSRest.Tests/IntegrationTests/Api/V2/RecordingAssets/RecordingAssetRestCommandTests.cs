@@ -93,6 +93,15 @@ public class RecordingAssetRestCommandTests
 
         // Act
         var result = await RecordingAssetRestCommand.ListAsync(filter);
+        string[] tokens = result.data[2].path.Split("/");
+        if (tokens.Count() != 8)
+        {
+            throw new Exception("Storage format changed");
+        }
+
+        string roomsId = tokens[5];
+        string date = tokens[6];
+        string recording = tokens[7];
 
         // Assert
         result.Should().NotBeNull();

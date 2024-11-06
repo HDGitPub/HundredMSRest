@@ -1,6 +1,5 @@
 using HundredMSRest.Lib.Api.V2.ExternalStreams.DataTypes;
 
-
 /// <summary>
 /// Class <c>DestinationsBuilder</c> Builds destinations config class
 /// </summary>
@@ -37,7 +36,7 @@ public sealed class ExternalStreamBuilder
 
     public ExternalStreamBuilder AddResolution(int width, int height)
     {
-        _externalStream.resolution = new Resolution(width,height);
+        _externalStream.resolution = new Resolution(width, height);
         return this;
     }
 

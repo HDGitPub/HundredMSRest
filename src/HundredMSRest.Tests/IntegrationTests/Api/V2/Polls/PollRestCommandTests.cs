@@ -34,14 +34,12 @@ public class PollRestCommandTests
             @case = false
         };
 
-        var question1 = new QuestionBuilder(1,"Test Question 1","text",false)
+        var question1 = new QuestionBuilder(1, "Test Question 1", "text", false)
             .AddAnswer(answer1)
             .AddOption(option1)
             .Build();
 
-        var poll = new PollBuilder("TestPoll",1,true)
-            .AddQuestion(question1)
-            .Build();
+        var poll = new PollBuilder("TestPoll", 1, true).AddQuestion(question1).Build();
 
         // Act
         var result = await PollRestCommand.CreateAsync(poll);
@@ -63,7 +61,7 @@ public class PollRestCommandTests
         var poll = await PollRestCommand.GetAsync(pollId);
         poll.duration = updateDuration;
         poll.Title = updateTitle;
-        
+
         var result = await PollRestCommand.UpdateAsync(poll);
 
         // Assert
@@ -106,12 +104,10 @@ public class PollRestCommandTests
     {
         // Arrange
         var pollId = _settings.PollId;
-        var filter = new PollFilter()
-            .AddAll(true)
-            .Filter();
-        
+        var filter = new PollFilter().AddAll(true).Filter();
+
         // Act
-        var result = await PollRestCommand.GetSessionsAsync(pollId,filter);
+        var result = await PollRestCommand.GetSessionsAsync(pollId, filter);
 
         // Assert
         result.Should().NotBeNull();
@@ -126,7 +122,7 @@ public class PollRestCommandTests
         var responseId = _settings.ResponseId;
 
         // Act
-        var result = await PollRestCommand.GetResponseAsync(pollId,responseId);
+        var result = await PollRestCommand.GetResponseAsync(pollId, responseId);
 
         // Assert
         result.Should().NotBeNull();
@@ -155,7 +151,7 @@ public class PollRestCommandTests
         var filter = new PollFilter().AddAll(true).Filter();
 
         // Act
-        var result = await PollRestCommand.GetResponsesAsync(pollId,filter);
+        var result = await PollRestCommand.GetResponsesAsync(pollId, filter);
 
         // Assert
         result.Should().NotBeNull();
@@ -170,7 +166,7 @@ public class PollRestCommandTests
         var resultId = _settings.ResultId;
 
         // Act
-        var result = await PollRestCommand.GetResultAsync(pollId,resultId);
+        var result = await PollRestCommand.GetResultAsync(pollId, resultId);
 
         // Assert
         result.Should().NotBeNull();
@@ -199,7 +195,7 @@ public class PollRestCommandTests
         var filter = new PollFilter().AddAll(true).Filter();
 
         // Act
-        var result = await PollRestCommand.GetResultsAsync(pollId,filter);
+        var result = await PollRestCommand.GetResultsAsync(pollId, filter);
 
         // Assert
         result.Should().NotBeNull();

@@ -10,9 +10,7 @@ internal class ExternalStreamTestSettings : TestSettings
     #endregion
 
     #region Methods
-    public ExternalStreamTestSettings()
-    {
-    }
+    public ExternalStreamTestSettings() { }
     #endregion
 
     #region Properties

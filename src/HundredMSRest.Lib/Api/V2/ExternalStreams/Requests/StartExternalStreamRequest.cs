@@ -9,8 +9,8 @@ namespace HundredMSRest.Lib.Api.V2.ExternalStreams.Requests;
 /// <param name="rtmp_urls"></param>
 public record StartExternalStreamRequest(string[] rtmp_urls) : RequestRecord
 {
-    public string? meeting_url {get;set;}
-    public bool? recording {get;set;}
-    public Resolution? resolution {get;set;}
-    public string? destination {get;set;}
+    public string? meeting_url { get; set; }
+    public bool? recording { get; set; }
+    public Resolution? resolution { get; set; }
+    public string? destination { get; set; }
 }

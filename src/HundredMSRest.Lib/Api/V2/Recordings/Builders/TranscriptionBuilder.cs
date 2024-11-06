@@ -96,7 +96,6 @@ public sealed class TranscriptionBuilder
         return this;
     }
 
-
     /// <summary>
     /// Returns a configured Transcription object
     /// </summary>

@@ -24,6 +24,7 @@ public class PolicyRestCommandTests
         // Arrange
         string GUEST_ROLE = "guest";
         string HOST_ROLE = "host";
+        string RECORDER_ROLE = "recorder";
 
         IEnumerable<TrackType> hostAllowedTracks = new List<TrackType>()
         {
@@ -52,6 +53,8 @@ public class PolicyRestCommandTests
             .AddAllowedTracks(guestAllowedTracks)
             .Build();
 
+        var recorderPublishParams = new PublishParamsBuilder().AddAllowedTracks().Build();
+
         var hostPermissions = new PermissionsBuilder()
             .EnableHlsStreaming(false)
             .EnableRtmpStreaming(false)
@@ -73,6 +76,13 @@ public class PolicyRestCommandTests
             .EnableSendRoomState(true)
             .EnablePollWrite(true)
             .EnablePollRead(true)
+            .Build();
+
+        var recorderPermissions = new PermissionsBuilder()
+            .EnableHlsStreaming(true)
+            .EnableRtmpStreaming(true)
+            .EnableBrowserRecording(true)
+            .EnableSendRoomState(true)
             .Build();
 
         var subscribeParams = new SubscribeParamsBuilder()
@@ -97,6 +107,13 @@ public class PolicyRestCommandTests
             .AddPublishParams(guestPublishParams)
             .AddSubscribeParams(subscribeParams)
             .AddMaxPeerCount(50) // 0, n, -1
+            .Build();
+
+        var recorderRole = new RoleBuilder()
+            .AddName(RECORDER_ROLE)
+            .AddPriority(1)
+            .AddPermissions(recorderPermissions)
+            .AddSubscribeParams(subscribeParams)
             .Build();
 
         var recordingInfo = new RecordingInfoBuilder()
@@ -130,12 +147,17 @@ public class PolicyRestCommandTests
             .AddName(_settings.TemplateName)
             .AddRole(hostRole)
             .AddRole(guestRole)
+            .AddRole(recorderRole)
             .AddSettings(settings)
             .AddDestinations(destinations)
             .Build();
 
-        var templateRecording = new TemplateRecordingBuilder(hostRole.name ?? "DEFAULT", HOST_ROLE)
+        var templateRecording = new TemplateRecordingBuilder(
+            recorderRole.name ?? "default",
+            RECORDER_ROLE
+        )
             .AddCompositeRecording(false, true, false, 0, 1280, 720)
+            .AddStreamRecording(1280, 720)
             .Build();
 
         // Act

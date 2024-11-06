@@ -11,8 +11,8 @@ public sealed class LiveStreamFilter
     private string? _roomId { get; set; }
     private string? _sessionId { get; set; }
     private string? _status { get; set; }
-    private int? _start  { get; set; }
-    private int? _limit  { get; set; }
+    private int? _start { get; set; }
+    private int? _limit { get; set; }
     #endregion
 
     #region Methods

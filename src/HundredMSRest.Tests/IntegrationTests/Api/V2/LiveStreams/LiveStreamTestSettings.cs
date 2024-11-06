@@ -14,9 +14,7 @@ internal class LiveStreamTestSettings : TestSettings
     #endregion
 
     #region Methods
-    public LiveStreamTestSettings()
-    {
-    }
+    public LiveStreamTestSettings() { }
     #endregion
 
     #region Properties

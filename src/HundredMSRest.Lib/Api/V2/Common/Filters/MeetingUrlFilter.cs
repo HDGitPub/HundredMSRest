@@ -11,8 +11,8 @@ public sealed class MeetingUrlFilter
     private bool? _skipPreview { get; set; }
     private bool? _skipPreviewHeadful { get; set; }
     private string? _authToken { get; set; }
-    private string? _uiMode {get; set; }
-    private string? _name {get; set; }
+    private string? _uiMode { get; set; }
+    private string? _name { get; set; }
     #endregion
 
     #region Methods

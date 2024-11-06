@@ -9,8 +9,8 @@ namespace HundredMSRest.Lib.Api.V2.LiveStreams.Requests;
 /// </summary>
 public record StartLiveStreamRequest : RequestRecord
 {
-    public string? meeting_url {get;set;}
-    public Recording? recording {get;set;}
-    public string? destination {get;set;}
-    public Transcription? transcription {get;set;}
+    public string? meeting_url { get; set; }
+    public Recording? recording { get; set; }
+    public string? destination { get; set; }
+    public Transcription? transcription { get; set; }
 }

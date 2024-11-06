@@ -1,5 +1,5 @@
-using HundredMSRest.Lib.Api.V2.Polls.DataTypes;
 using System.ComponentModel;
+using HundredMSRest.Lib.Api.V2.Polls.DataTypes;
 
 /// <summary>
 /// Class <c>PollBuilder</c>
@@ -11,13 +11,9 @@ public sealed class PollBuilder
     #endregion
 
     #region Methods
-    public PollBuilder(string? title = null,int? duration = null,bool? anonymous = null)
+    public PollBuilder(string? title = null, int? duration = null, bool? anonymous = null)
     {
-        _poll = new Poll()
-        {
-            Title = title,
-            duration = duration
-        };
+        _poll = new Poll() { Title = title, duration = duration };
     }
 
     public PollBuilder AddQuestion(Question question)

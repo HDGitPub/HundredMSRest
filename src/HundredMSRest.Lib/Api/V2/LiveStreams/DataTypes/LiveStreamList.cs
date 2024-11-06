@@ -8,5 +8,5 @@ using HundredMSRest.Lib.Api.V2.LiveStreams.DataTypes;
 /// <param name="last"></param>
 public record LiveStreamList(int limit, LiveStream[] data, string last)
 {
-    public string? Error {get;set;}
+    public string? Error { get; set; }
 }

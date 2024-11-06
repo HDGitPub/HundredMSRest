@@ -5,5 +5,5 @@ namespace HundredMSRest.Lib.Api.V2.LiveStreams.DataTypes;
 /// </summary>
 public record Playback
 {
-    public string? url {get;set;}
+    public string? url { get; set; }
 }

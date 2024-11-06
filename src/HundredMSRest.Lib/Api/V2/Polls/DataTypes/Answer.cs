@@ -7,10 +7,9 @@ namespace HundredMSRest.Lib.Api.V2.Polls.DataTypes;
 /// </summary>
 public record Answer
 {
-    public bool? hidden {get; set;}
-    public Option[]? options{get; set;}
-    public string? text {get; set;}
-    public bool? @case {get;set;}
-    public bool? trim {get; set;}
-
+    public bool? hidden { get; set; }
+    public Option[]? options { get; set; }
+    public string? text { get; set; }
+    public bool? @case { get; set; }
+    public bool? trim { get; set; }
 }

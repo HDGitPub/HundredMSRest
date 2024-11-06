@@ -14,7 +14,7 @@ public sealed class LiveStreamsRestCommand : RestCommand
     /// </summary>
     public LiveStreamsRestCommand(string? urlParams = null, string? filterParams = null)
     {
-        BuildBaseRoute("v2/live-streams", urlParams,filterParams);
+        BuildBaseRoute("v2/live-streams", urlParams, filterParams);
     }
 
     /// <summary>

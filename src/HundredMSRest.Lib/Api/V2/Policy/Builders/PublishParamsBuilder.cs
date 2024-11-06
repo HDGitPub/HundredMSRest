@@ -27,17 +27,19 @@ public sealed class PublishParamsBuilder
     /// </summary>
     /// <param name="trackTypes"></param>
     /// <returns></returns>
-    public PublishParamsBuilder AddAllowedTracks(IEnumerable<TrackType> trackTypes)
+    public PublishParamsBuilder AddAllowedTracks(IEnumerable<TrackType>? trackTypes = null)
     {
-        if (trackTypes.Count() == 0)
-            return this;
-
         var tracks = new List<string>();
-        foreach (TrackType trackType in trackTypes)
+        if (trackTypes?.Count() > 0)
         {
-            tracks.Add(trackType.Value);
+            tracks = [];
+            foreach (TrackType trackType in trackTypes)
+            {
+                tracks.Add(trackType.Value);
+            }
         }
-        _publishParams.allowed = tracks;
+
+        _publishParams.allowed = tracks.Count > 0 ? tracks : null;
         return this;
     }
 

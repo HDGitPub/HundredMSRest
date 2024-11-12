@@ -33,7 +33,7 @@ Any line items without a status have not been developed at this time.
 7. Analytics
 8. Room Codes
 9. Recordings
-10. Recoding assets
+10. Recording assets
 11. Polls
 
 ---
@@ -458,6 +458,371 @@ This section provides code examples for the Policy Server Side API
 
       var result = await PolicyRestCommand.CreateAsync(template);
    ```
+
+2. Get a policy template by id
+
+   ```c#
+      var policyTemplateId = "Template Id";
+
+      var result = await PolicyRestCommand.GetAsync(policyTemplateId);
+   ```
+
+3. Lists all policy templates
+
+   ```c#
+      var result = await PolicyRestCommand.ListAsync();
+   ```
+
+4. Lists all policy templates
+
+   ```c#
+      var policyTemplateId = "Policy Template Id";
+      var template = await PolicyRestCommand.GetAsync(policyTemplateId);
+
+      Role testRole = new RoleBuilder()
+            .AddName("Test")
+            .AddMaxPeerCount(10)
+            .AddPriority(4)
+            .Build();
+      template?.roles.Add(testRole?.name, testRole);
+
+      var result = await PolicyRestCommand.UpdateAsync(template);
+   ```
+
+5. Get a policy role
+
+   ```c#
+      var policyTemplateId = "Policy Template Id";
+      var roleName = "Role Name";
+
+      var result = await PolicyRestCommand.GetRoleAsync(policyTemplateId, roleName);
+   ```
+
+6. Update a policy role
+
+   ```c#
+      var templateId = "Policy Template Id";
+      var roleName = "Role Name";
+
+      var role = await PolicyRestCommand.GetRoleAsync(templateId, roleName);
+      if (role is not null)
+      {
+         role.maxPeerCount = _settings.MaxPeerCount;
+      }
+
+      var result = await PolicyRestCommand.UpdateRoleAsync(templateId, role);
+   ```
+
+7. Delete a policy role
+
+   ```c#
+      var templateId = "Policy Template Id";
+      var roleName = "Role Name";
+
+      var result = await PolicyRestCommand.DeleteRoleAsync(templateId, roleName);
+   ```
+
+---
+
+### Room Codes
+
+[100ms Room Codes Overview](https://www.100ms.live/docs/server-side/v2/api-reference/room-codes/room-code-overview)
+
+This section provides code examples for the Room Codes Server Side API
+
+1. Creates Room Code for every Role in the Room at once
+
+   ```c#
+      var roomId = "Room Id";
+
+      var result = await RoomCodeRestCommand.CreateAsync(roomId);
+   ```
+
+2. Creates a Room Code for a specific Role in a Room
+
+   ```c#
+      var roomId = "Room Id";
+      var role = "guest";
+
+      var result = await RoomCodeRestCommand.CreateRoleRoomCodeAsync(roomId, role);
+   ```
+
+3. Retrieves Room Codes for all Roles in a Room
+
+   ```c#
+      var roomId = "Room Id";
+
+      var result = await RoomCodeRestCommand.ListAsync(roomId);
+   ```
+
+4. Updates the current state for a given Room Code.
+
+   ```c#
+      var roomCode = "Room Code";
+      var enabled = false;
+
+      var result = await RoomCodeRestCommand.UpdateAsync(roomCode, enabled);
+   ```
+
+---
+
+### Recordings
+
+[100ms Recordings Overview](https://www.100ms.live/docs/server-side/v2/api-reference/recordings/overview)
+
+This section provides code examples for the Recordings Server Side API
+
+1. Start a recording job for a room.
+
+   ```c#
+      var roomId = "Room Id";
+      var width = 1280;
+      var height = 720;
+      var request = new RecordingRequestBuilder().AddResolution(width, height).Build();
+
+      var result = await RecordingRestCommand.StartRecordingAsync(roomId, request);
+   ```
+
+2. Stop all recordings running in a room
+
+   ```c#
+      var roomId = "Room Id";
+
+      var result = await RecordingRestCommand.StopRecordingAsync(roomId);
+   ```
+
+3. Stop a specific recording for a room by recording id
+
+   ```c#
+      var recordingId = "Recording Id";
+
+      var result = await RecordingRestCommand.StopRecordingByIdAsync(recordingId);
+   ```
+
+4. Get the recording job object at any point after it has been created.
+
+   ```c#
+      var recordingId = "Recording Id";
+
+      var result = await RecordingRestCommand.GetAsync(recordingId);
+   ```
+
+5. List and filter through recording jobs of a workspace. The response is paginated.
+
+   ```c#
+      var roomId = "Room Id";
+      var status = "Status";
+      var sessionId = "Session Id";
+      var start = "Start";
+      var limit = 100;
+
+      // Note: filter fields are optional
+      var requestFilter = new RecordingRequestFilter()
+         .AddRoomId(roomId)
+         .AddStatus(status)
+         .AddSessionId(sessionId)
+         .AddStart(start)
+         .AddLimit(limit)
+         .Filter();
+
+      var result = await RecordingRestCommand.ListRecordingsAsync(requestFilter);
+   ```
+
+6. Pause recording for a specified room.
+
+   ```c#
+      var roomId = "Room Id";
+
+      var result = await RecordingRestCommand.PauseRecordingAsync(roomId);
+   ```
+
+7. Resume recording for a specified room.
+
+   ```c#
+      var roomId = "Room Id";
+
+      var result = await RecordingRestCommand.ResumeRecordingAsync(roomId);
+   ```
+
+---
+
+### Recording Assets
+
+[100ms Recording Assets Overview](https://www.100ms.live/docs/server-side/v2/api-reference/recording-assets/overview)
+
+This section provides code examples for the Recording Assets Server Side API
+
+1. Get a specific recording asset by id
+
+   ```c#
+      var assetId = "Recording Asset Id;
+
+      var result = await RecordingAssetRestCommand.GetAsync(assetId);
+   ```
+
+2. Generate a short-lived pre-signed URL for a recording asset.
+
+   ```c#
+      var assetId = "Recording Asset Id";
+
+      var result = await RecordingAssetRestCommand.GetPreSignedUrlAsync(assetId);
+   ```
+
+3. List and filter through recording assets of a workspace.
+
+   ```c#
+      var roomId = "Room Id";
+      var status = "Status";
+      var sessionId = "Session Id";
+      var start = "Start";
+      var limit = 100;
+
+      var filter = new RecordingAssetFilter()
+         .AddRoomId(roomId)
+         .AddStatus(status)
+         .AddSessionId(sessionId)
+         .AddStart(start)
+         .AddLimit(limit)
+         .filter();
+
+      var result = await RecordingAssetRestCommand.ListAsync(filter);
+   ```
+
+### Polls
+
+[100ms Polls Overview](https://www.100ms.live/docs/server-side/v2/api-reference/polls/overview)
+
+This section provides code examples for the Polls Server Side API
+
+1. Create a poll
+
+   ```c#
+      var option1 = new Option()
+      {
+         index = 1,
+         text = "Option1",
+         weight = 1
+      };
+
+      var answer1 = new Answer()
+      {
+         hidden = false,
+         text = "Answer1",
+         options = [option1],
+         trim = true,
+         @case = false
+      };
+
+      var question1 = new QuestionBuilder(1, "Test Question 1", "text", false)
+         .AddAnswer(answer1)
+         .AddOption(option1)
+         .Build();
+
+      var poll = new PollBuilder("TestPoll", 1, true).AddQuestion(question1).Build();
+
+      var result = await PollRestCommand.CreateAsync(poll);
+   ```
+
+2. Update a poll
+
+   ```c#
+      var pollId = "Poll Id";
+      var updateTitle = $"Updated Title";
+      var updateDuration = 10;
+
+      var poll = await PollRestCommand.GetAsync(pollId);
+      poll.duration = updateDuration;
+      poll.Title = updateTitle;
+
+      var result = await PollRestCommand.UpdateAsync(poll);
+   ```
+
+3. Get a specific poll by id
+
+   ```c#
+      var pollId = "Poll Id";
+
+
+      var result = await PollRestCommand.GetAsync(pollId);
+   ```
+
+4. Get sessions in which the specified poll was run.
+
+   ```c#
+      var pollId = "Poll Id";
+
+      var result = await PollRestCommand.GetSessionsAsync(pollId);
+   ```
+
+5. Get a specific response submitted by a user using a response_id
+
+   ```c#
+      var pollId = "Poll Id";
+      var responseId = "Response Id";
+
+      var result = await PollRestCommand.GetResponseAsync(pollId, responseId);
+   ```
+
+6. Get responses submitted by users for a given poll_id.
+
+   ```c#
+      var pollId = "Poll Id";
+
+      var result = await PollRestCommand.GetResponsesAsync(pollId);
+   ```
+
+7. Get result for a given result_id
+
+   ```c#
+      var pollId = "Poll Id";
+      var resultId = "Result Id";
+
+      var result = await PollRestCommand.GetResultAsync(pollId, resultId);
+   ```
+
+8. This endpoint is used to get results about a given poll_id
+
+   ```c#
+      var pollId = "Poll Id";
+
+      var result = await PollRestCommand.GetResultsAsync(pollId);
+   ```
+
+9. Get filtered poll results
+
+   ```c#
+      var pollId = "Poll Id";
+      var start = "Last Response Id";
+      var limit = 10;
+      var questionIndex = 1;
+
+      var filter = new PollFilter()
+                        .AddStart(start)
+                        .AddLimit(limit)
+                        .AddQuestion(questionIndex)
+                        .Filter();
+
+      var result = await PollRestCommand.GetResultsAsync(pollId, filter);
+   ```
+
+10. Get filtered poll responses
+
+```c#
+   var pollId = "Poll Id";
+   var all = false;
+   var start = "Last Response Id";
+   var limit = 10;
+   var questionIndex = 1;
+
+   var filter = new PollFilter()
+                     .AddAll(all)
+                     .AddStart(start)
+                     .AddLimit(limit)
+                     .AddQuestion(questionIndex)
+                     .Filter();
+
+   var result = await PollRestCommand.GetResponsesAsync(pollId, filter);
+```
 
 #### Last Updated
 

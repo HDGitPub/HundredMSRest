@@ -60,7 +60,7 @@ public class RoomCodesRestCommandTests
     public async Task Update_RoomCode_ReturnsRoomCode()
     {
         // Arrange
-        var roomCode = _settings.RoomCode; //"yxa-dpgr-bab"
+        var roomCode = _settings.RoomCode;
         var enabled = false;
         // Act
         var result = await RoomCodeRestCommand.UpdateAsync(roomCode, enabled);

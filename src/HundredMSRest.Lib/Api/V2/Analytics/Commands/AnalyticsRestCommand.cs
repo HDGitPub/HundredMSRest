@@ -13,7 +13,7 @@ public sealed class AnalyticsRestCommand : RestCommand
     /// </summary>
     public AnalyticsRestCommand(string? urlParams = null, string? filterParams = null)
     {
-        BuildBaseRoute("v2/analytics", urlParams, filterParams);
+        BuildBaseRoute("v2/analytics/events", urlParams, filterParams);
     }
 
     /// <summary>
@@ -24,14 +24,14 @@ public sealed class AnalyticsRestCommand : RestCommand
     /// <param name="httpClient"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static async Task<EventList> GetAsync(
+    public static async Task<EventList<T>> GetAsync<T>(
         string filter,
         HttpClient? httpClient = null,
         CancellationToken cancellationToken = default
     )
     {
-        var command = new AnalyticsRestCommand("events",filter);
-        return await command.RequestAsync<EventList>(
+        var command = new AnalyticsRestCommand(filterParams: filter);
+        return await command.RequestAsync<EventList<T>>(
             HttpMethod.Post,
             httpClient,
             cancellationToken: cancellationToken

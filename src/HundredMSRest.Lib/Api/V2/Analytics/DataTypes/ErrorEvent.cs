@@ -18,8 +18,8 @@ public record ErrorEvent : Event
     public string? domain { get; set; }
     public bool? is_terminal { get; set; }
     public string? action { get; set; }
-    public object? audio { get; set; }
-    public object? video { get; set; }
-    public object? devices { get; set; }
-    public object? agent { get; set; }
+    public Audio? audio { get; set; }
+    public Video? video { get; set; }
+    public Devices? devices { get; set; }
+    public Agent? agent { get; set; }
 }

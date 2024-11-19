@@ -1,3 +1,4 @@
+using HundredMSRest.Lib.Api.V2.Analytics.DataTypes;
 using System.Text;
 
 namespace HundredMSRest.Lib.Api.V2.Analytics.Filters;
@@ -8,8 +9,8 @@ namespace HundredMSRest.Lib.Api.V2.Analytics.Filters;
 public sealed class EventFilter
 {
     #region Attributes
-    private string? _roomId { get; set; }
-    private string? _type { get; set; }
+    private readonly string _roomId;
+    private readonly List<string> _types;
     private string? _sessionId { get; set; }
     private string? _peerId { get; set; }
     private string? _userId { get; set; }
@@ -20,16 +21,21 @@ public sealed class EventFilter
     #endregion
 
     #region Methods
+
+    public EventFilter(string roomId)
+    {
+        _roomId = roomId;
+        _types = new List<string>();
+    }
+
     public string Filter()
     {
         var builder = new StringBuilder("?");
-        if (_roomId is not null)
+        builder.Append($"room_id={_roomId}&");
+        
+        if (_types.Count > 0)
         {
-            builder.Append($"room_id={_roomId}&");
-        }
-        if (_type is not null)
-        {
-            builder.Append($"type={_type}&");
+            _types.ForEach(t => builder.Append($"type={t}&"));
         }
         if (_sessionId is not null)
         {
@@ -62,15 +68,9 @@ public sealed class EventFilter
         return builder.ToString().TrimEnd('&');
     }
 
-    public EventFilter AddRoomId(string roomId)
+    public EventFilter AddType(EventType eventType)
     {
-        _roomId = roomId;
-        return this;
-    }
-
-    public EventFilter AddType(string type)
-    {
-        _type = type;
+        _types.Add(eventType.ToString());
         return this;
     }
 

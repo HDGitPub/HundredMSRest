@@ -14,4 +14,4 @@ artifacts/
 .vs/
 
 # Exclude Nuke build automation
-.nuke
+.nuke/temp

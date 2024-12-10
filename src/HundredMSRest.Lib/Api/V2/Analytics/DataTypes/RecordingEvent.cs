@@ -3,7 +3,7 @@ namespace HundredMSRest.Lib.Api.V2.Analytics.DataTypes;
 /// <summary>
 /// Record <c>RecordingEvent</c>
 /// </summary>
-public record RecordingEvent: Event
+public record RecordingEvent : Event
 {
     public string? beam_id { get; set; }
     public string? template_id { get; set; }

@@ -12,3 +12,6 @@ artifacts/
 
 # Visual Studio directory
 .vs/
+
+# Exclude Nuke build automation
+.nuke

@@ -10,10 +10,10 @@ public record ErrorEvent : Event
     public string? account_id { get; set; }
     public string? room_name { get; set; }
     public string? template_id { get; set; }
-    public string? role { get ; set;}
+    public string? role { get; set; }
     public string? error_code { get; set; }
     public string? error_name { get; set; }
-    public string? error_message {get; set; }
+    public string? error_message { get; set; }
     public string? error_description { get; set; }
     public string? domain { get; set; }
     public bool? is_terminal { get; set; }

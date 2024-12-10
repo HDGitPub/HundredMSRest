@@ -1,5 +1,5 @@
-using HundredMSRest.Lib.Api.V2.Analytics.DataTypes;
 using System.Text;
+using HundredMSRest.Lib.Api.V2.Analytics.DataTypes;
 
 namespace HundredMSRest.Lib.Api.V2.Analytics.Filters;
 
@@ -32,7 +32,7 @@ public sealed class EventFilter
     {
         var builder = new StringBuilder("?");
         builder.Append($"room_id={_roomId}&");
-        
+
         if (_types.Count > 0)
         {
             _types.ForEach(t => builder.Append($"type={t}&"));

@@ -3,7 +3,7 @@ using HundredMSRest.Tests.IntegrationTests.Core;
 namespace HundredMSRest.Tests.IntegrationTests.Api.V2.Analytics;
 
 internal class AnalyticsTestSettings : TestSettings
-{    
+{
     #region Attributes
     private const string ROOM_ID = "HundredMSRest:Analytics:RoomId";
     #endregion

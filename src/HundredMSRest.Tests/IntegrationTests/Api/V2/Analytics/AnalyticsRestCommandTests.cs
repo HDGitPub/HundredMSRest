@@ -3,7 +3,6 @@ using HundredMSRest.Lib.Api.V2.Analytics.Commands;
 using HundredMSRest.Lib.Api.V2.Analytics.DataTypes;
 using HundredMSRest.Lib.Api.V2.Analytics.Filters;
 
-
 namespace HundredMSRest.Tests.IntegrationTests.Api.V2.Analytics;
 
 public class AnalyticsRestCommandTests
@@ -40,9 +39,7 @@ public class AnalyticsRestCommandTests
     {
         // Arrange
         var roomId = _settings.RoomId;
-        var filter = new EventFilter(roomId)
-            .AddType(EventType.BEAM_RECORDING_SUCCESS)
-            .Filter();
+        var filter = new EventFilter(roomId).AddType(EventType.BEAM_RECORDING_SUCCESS).Filter();
 
         // Act
         var result = await AnalyticsRestCommand.GetAsync<RecordingEvent>(filter);

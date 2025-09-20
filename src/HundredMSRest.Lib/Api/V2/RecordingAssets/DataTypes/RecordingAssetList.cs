@@ -8,4 +8,4 @@ namespace HundredMSRest.Lib.Api.V2.RecordingAssets.DataTypes;
 /// <param name="limit"></param>
 /// <param name="data"></param>
 /// <param name="last"></param>
-public record RecordingAssetList(int limit, RecordingAsset[] data, string last);
+public record RecordingAssetList(int limit, RecordingAsset[]? data, string last);

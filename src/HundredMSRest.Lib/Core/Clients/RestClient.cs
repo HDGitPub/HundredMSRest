@@ -46,7 +46,10 @@ internal class RestClient : IRestClient
         _httpExternalClient = httpClient;
         if (_httpExternalClient is not null)
         {
-            _httpExternalClient.BaseAddress = _baseUri;
+            if (_httpExternalClient.BaseAddress is null)
+            {
+                _httpExternalClient.BaseAddress = _baseUri;
+            }
         }
     }
 

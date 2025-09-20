@@ -6,4 +6,4 @@
 /// <param name="limit"></param>
 /// <param name="data"></param>
 /// <param name="last"></param>
-public record RecordingList(int limit, Recording[] data, string last);
+public record RecordingList(int limit, Recording[]? data, string last);

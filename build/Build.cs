@@ -17,13 +17,13 @@ using static Nuke.Common.IO.PathConstruction;
     "cicd",
     GitHubActionsImage.UbuntuLatest,
     On = new[] { GitHubActionsTrigger.Push },
-    InvokedTargets = new[] { nameof(Compile) })]
+    InvokedTargets = new[] { nameof(Compile), nameof(Pack) })]
 class Build : NukeBuild
 {
     public static int Main () => Execute<Build>(x => x.Compile);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
-    readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
+    readonly Configuration Configuration = Configuration.Release;
 
     Target Clean => _ => _
         .Before(Restore)
@@ -42,7 +42,15 @@ class Build : NukeBuild
         .DependsOn(Restore)
         .Executes(() =>
         {
-            DotNetTasks.DotNetBuild();
+            DotNetTasks.DotNetBuild(_ => _
+                .SetConfiguration(Configuration));
         });
 
+    Target Pack => _ => _
+        .DependsOn(Compile)
+        .Executes(() =>
+        {
+            DotNetTasks.DotNetPack(_ => _
+                .SetConfiguration(Configuration));
+        });
 }

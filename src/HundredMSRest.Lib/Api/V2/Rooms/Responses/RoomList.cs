@@ -8,4 +8,4 @@ namespace HundredMSRest.Lib.Api.V2.Rooms.Responses;
 /// <param name="limit"></param>
 /// <param name="data"></param>
 /// <param name="last"></param>
-public record RoomList(int limit, Room[] data, string last);
+public record RoomList(int limit, Room[]? data, string last);

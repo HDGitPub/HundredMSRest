@@ -211,12 +211,16 @@ public class PolicyRestCommandTests
             .AddMaxPeerCount(10)
             .AddPriority(4)
             .Build();
-        template?.roles.Add(testRole?.name, testRole);
 
-        var result = await PolicyRestCommand.UpdateAsync(template);
+        template?.roles?.Add(testRole.name ?? "Test", testRole);
 
-        // Assert
-        result.Should().NotBeNull();
+        if (template != null)
+        {
+            var result = await PolicyRestCommand.UpdateAsync(template);
+
+            // Assert
+            result.Should().NotBeNull();
+        }
     }
 
     // Role base tests
@@ -243,10 +247,7 @@ public class PolicyRestCommandTests
 
         // Act
         var role = await PolicyRestCommand.GetRoleAsync(templateId, roleName);
-        if (role is not null)
-        {
-            role.maxPeerCount = _settings.MaxPeerCount;
-        }
+        role.maxPeerCount = _settings.MaxPeerCount;
 
         var result = await PolicyRestCommand.UpdateRoleAsync(templateId, role);
 

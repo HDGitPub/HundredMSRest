@@ -6,7 +6,7 @@ using HundredMSRest.Lib.Api.V2.LiveStreams.DataTypes;
 /// <param name="limit"></param>
 /// <param name="data"></param>
 /// <param name="last"></param>
-public record LiveStreamList(int limit, LiveStream[] data, string last)
+public record LiveStreamList(int limit, LiveStream[]? data, string last)
 {
     public string? Error { get; set; }
 }
